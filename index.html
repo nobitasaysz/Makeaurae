@@ -1,234 +1,187 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MakeAurae — Create Smarter</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MakeAurae — Create Smarter</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
-    }
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:Arial,sans-serif}
+body{background:#08090f;color:#fff;min-height:100vh}
+header{padding:20px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #202332;background:#08090f}
+.logo{font-size:22px;font-weight:800}.logo span{color:#9b6cff}
+.menu{font-size:22px;color:#aaa}
+.hero{text-align:center;padding:50px 20px 30px}
+.badge{display:inline-block;padding:7px 13px;border:1px solid #30264c;border-radius:50px;color:#b89aff;font-size:12px;margin-bottom:18px;background:#110d1d}
+h1{font-size:40px;line-height:1.05;margin-bottom:15px}
+h1 span{background:linear-gradient(90deg,#a86cff,#5d9dff);-webkit-background-clip:text;color:transparent}
+.hero p{color:#999dad;max-width:520px;margin:auto;line-height:1.6;font-size:15px}
+.search{margin:28px auto 0;max-width:550px;display:flex;background:#11131c;border:1px solid #282b3b;border-radius:14px;padding:5px}
+.search input{flex:1;border:0;outline:none;background:transparent;color:white;padding:14px;font-size:14px}
+.search button,.generate{border:0;border-radius:10px;padding:13px 18px;background:#8b5cf6;color:white;font-weight:700}
+.section{padding:25px 20px;max-width:900px;margin:auto}
+.section-title{margin-bottom:18px}
+.section-title h2{font-size:20px}
+.tool{background:#10121b;border:1px solid #242738;border-radius:18px;padding:22px}
+.tool-icon{font-size:32px;margin-bottom:12px}
+.tool h3{font-size:21px;margin-bottom:8px}
+.tool p{color:#858998;font-size:13px;line-height:1.5;margin-bottom:20px}
+.input{width:100%;padding:15px;border:1px solid #292d40;border-radius:12px;background:#0b0d14;color:#fff;outline:none;margin-bottom:12px}
+.select{width:100%;padding:15px;border:1px solid #292d40;border-radius:12px;background:#0b0d14;color:#fff;outline:none;margin-bottom:15px}
+.generate{width:100%;cursor:pointer;font-size:15px}
+.results{margin-top:18px;display:grid;gap:10px}
+.result{display:flex;justify-content:space-between;align-items:center;background:#151722;border:1px solid #272b3b;padding:13px 15px;border-radius:12px}
+.result span{font-size:14px;word-break:break-all}
+.copy{border:0;background:#252a3c;color:#fff;padding:8px 12px;border-radius:8px;cursor:pointer}
+.info{color:#74798a;font-size:12px;text-align:center;margin-top:12px}
+footer{text-align:center;padding:45px 20px 90px;color:#666a78;font-size:12px}
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:rgba(12,13,20,.97);border-top:1px solid #202332;display:flex;justify-content:space-around;padding:12px 5px}
+.nav-item{color:#777b89;font-size:11px;text-align:center}.nav-item b{display:block;font-size:18px;margin-bottom:3px}.active{color:#a779ff}
+@media(max-width:600px){h1{font-size:34px}}
+</style>
+</head>
 
-    body {
-      background: #08090f;
-      color: #fff;
-      min-height: 100vh;
-    }
+<body>
 
-    header {
-      padding: 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 1px solid #1d2030;
-      position: sticky;
-      top: 0;
-      background: rgba(8,9,15,.92);
-      backdrop-filter: blur(12px);
-      z-index: 10;
-    }
+<header>
+<div class="logo">Make<span>Aurae</span></div>
+<div class="menu">☰</div>
+</header>
 
-    .logo {
-      font-size: 22px;
-      font-weight: 800;
-      letter-spacing: -.5px;
-    }
+<section class="hero">
+<div class="badge">✦ MAKEAURAE TOOLS</div>
+<h1>Create <span>Smarter.</span><br>Create Faster.</h1>
+<p>Simple, useful tools for creators, gamers and social media users.</p>
+</section>
 
-    .logo span {
-      color: #9b6cff;
-    }
+<section class="section">
 
-    .menu {
-      font-size: 22px;
-      color: #aaa;
-    }
+<div class="tool">
+<div class="tool-icon">👤</div>
+<h3>Username Generator</h3>
+<p>Create unique usernames for Instagram, gaming, social media and more.</p>
 
-    .hero {
-      padding: 55px 20px 35px;
-      text-align: center;
-    }
+<input id="nameInput" class="input" type="text" placeholder="Enter your name or word">
 
-    .badge {
-      display: inline-block;
-      padding: 7px 13px;
-      border: 1px solid #30264c;
-      border-radius: 50px;
-      color: #b89aff;
-      font-size: 12px;
-      margin-bottom: 18px;
-      background: #110d1d;
-    }
+<select id="styleInput" class="select">
+<option value="cool">Cool</option>
+<option value="gaming">Gaming</option>
+<option value="social">Social</option>
+<option value="anime">Anime</option>
+</select>
 
-    h1 {
-      font-size: 40px;
-      line-height: 1.05;
-      margin-bottom: 15px;
-    }
+<button class="generate" onclick="generateUsernames()">Generate Usernames ✨</button>
 
-    h1 span {
-      background: linear-gradient(90deg,#a86cff,#5d9dff);
-      -webkit-background-clip: text;
-      color: transparent;
-    }
+<div id="results" class="results"></div>
 
-    .hero p {
-      color: #999dad;
-      max-width: 500px;
-      margin: auto;
-      line-height: 1.6;
-      font-size: 15px;
-    }
+<div class="info">Your usernames are generated instantly on your device.</div>
+</div>
 
-    .search {
-      margin: 28px auto 0;
-      max-width: 550px;
-      display: flex;
-      background: #11131c;
-      border: 1px solid #282b3b;
-      border-radius: 14px;
-      padding: 5px;
-    }
+</section>
 
-    .search input {
-      flex: 1;
-      border: 0;
-      outline: none;
-      background: transparent;
-      color: white;
-      padding: 14px;
-      font-size: 14px;
-    }
+<footer>
+<strong>MakeAurae</strong><br><br>
+Create. Enhance. Stand Out.<br><br>
+© 2026 MakeAurae
+</footer>
 
-    .search button {
-      border: 0;
-      border-radius: 10px;
-      padding: 0 18px;
-      background: #8b5cf6;
-      color: white;
-      font-weight: 700;
-    }
+<div class="bottom-nav">
+<div class="nav-item active"><b>⌂</b>Home</div>
+<div class="nav-item"><b>⚙</b>Tools</div>
+<div class="nav-item"><b>✦</b>Create</div>
+<div class="nav-item"><b>♡</b>Saved</div>
+<div class="nav-item"><b>☰</b>More</div>
+</div>
 
-    .section {
-      padding: 25px 20px;
-      max-width: 1100px;
-      margin: auto;
-    }
+<script>
+function generateUsernames(){
 
-    .section-title {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 18px;
-    }
+const name=document.getElementById("nameInput").value.trim().replace(/\s+/g,"");
+const style=document.getElementById("styleInput").value;
+const results=document.getElementById("results");
 
-    .section-title h2 {
-      font-size: 20px;
-    }
+if(!name){
+results.innerHTML='<div class="info">Pehle apna naam ya word enter karo.</div>';
+return;
+}
 
-    .section-title span {
-      color: #8f93a3;
-      font-size: 12px;
-    }
+const random=Math.floor(Math.random()*999);
+let list=[];
 
-    .tools {
-      display: grid;
-      grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
-      gap: 14px;
-    }
+if(style==="gaming"){
+list=[
+name+"X",
+name+"OP",
+name+"YT",
+name+"GG",
+name+"Prime",
+name+"Rush",
+"Dark"+name,
+"Real"+name,
+name+"Plays",
+name+"_X"
+];
+}
 
-    .tool {
-      background: #10121b;
-      border: 1px solid #202332;
-      border-radius: 16px;
-      padding: 20px;
-      transition: .2s;
-      cursor: pointer;
-    }
+else if(style==="social"){
+list=[
+"its"+name,
+"the"+name,
+"hey"+name,
+"iam"+name,
+"real"+name,
+"nameis"+name,
+"name."+name,
+name+"daily",
+name+"world",
+"official"+name
+];
+}
 
-    .tool:hover {
-      transform: translateY(-3px);
-      border-color: #7450c9;
-    }
+else if(style==="anime"){
+list=[
+name+"Senpai",
+name+"Kun",
+name+"Chan",
+name+"Uchiha",
+"Shadow"+name,
+name+"Akatsuki",
+name+"Shinobi",
+name+"Sensei",
+"Dark"+name,
+name+"Rinnegan"
+];
+}
 
-    .icon {
-      width: 42px;
-      height: 42px;
-      display: grid;
-      place-items: center;
-      border-radius: 12px;
-      background: #19152a;
-      font-size: 20px;
-      margin-bottom: 15px;
-    }
+else{
+list=[
+"its"+name,
+"real"+name,
+"name."+name,
+name+"X",
+"name_"+name,
+"the"+name,
+name+"Nova",
+name+"Aura",
+name+"Verse",
+name+random
+];
+}
 
-    .tool h3 {
-      font-size: 16px;
-      margin-bottom: 7px;
-    }
+results.innerHTML=list.map((username,index)=>`
+<div class="result">
+<span>${username}</span>
+<button class="copy" onclick="copyName('${username}',this)">Copy</button>
+</div>
+`).join("");
+}
 
-    .tool p {
-      color: #858998;
-      font-size: 13px;
-      line-height: 1.5;
-    }
+function copyName(name,button){
+navigator.clipboard.writeText(name);
+button.innerText="Copied!";
+setTimeout(()=>button.innerText="Copy",1200);
+}
+</script>
 
-    .categories {
-      display: flex;
-      gap: 10px;
-      overflow-x: auto;
-      padding-bottom: 8px;
-    }
-
-    .category {
-      white-space: nowrap;
-      padding: 11px 17px;
-      border: 1px solid #272a39;
-      background: #11131c;
-      border-radius: 50px;
-      color: #b7bac5;
-      font-size: 13px;
-    }
-
-    .category.active {
-      background: #8b5cf6;
-      border-color: #8b5cf6;
-      color: white;
-    }
-
-    footer {
-      text-align: center;
-      padding: 45px 20px 90px;
-      color: #666a78;
-      font-size: 12px;
-    }
-
-    .bottom-nav {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: rgba(12,13,20,.96);
-      border-top: 1px solid #202332;
-      display: flex;
-      justify-content: space-around;
-      padding: 12px 5px;
-      z-index: 20;
-    }
-
-    .nav-item {
-      color: #777b89;
-      font-size: 11px;
-      text-align: center;
-    }
-
-    .nav-item b {
-      display: block;
-      font-size: 18px;
-      margin-bottom: 3px;
-    }
-
-    .nav-item.active
+</body>
+</html>
