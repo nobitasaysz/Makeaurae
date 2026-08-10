@@ -2,1243 +2,832 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <meta name="theme-color" content="#08090f">
-
 <title>MakeAurae — Create Smarter</title>
 
 <style>
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-  font-family:Arial,sans-serif;
+*{box-sizing:border-box;margin:0;padding:0;font-family:Arial,sans-serif}
+html{scroll-behavior:smooth}
+body{background:#08090f;color:#fff;min-height:100vh}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+
+/* LANDING */
+.landing{
+ min-height:100vh;display:flex;align-items:center;justify-content:center;
+ text-align:center;padding:30px 20px;
+ background:
+ radial-gradient(circle at 50% 35%,rgba(139,92,246,.16),transparent 35%),
+ #08090f;
 }
-
-html{
-  scroll-behavior:smooth;
+.landing-box{max-width:700px}
+.brand{
+ font-size:28px;font-weight:800;margin-bottom:35px
 }
-
-body{
-  background:#08090f;
-  color:#fff;
-  min-height:100vh;
-  overflow-x:hidden;
-}
-
-/* ================= HEADER ================= */
-
-header{
-  height:70px;
-  padding:0 20px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  border-bottom:1px solid #202332;
-  background:rgba(8,9,15,.95);
-  position:sticky;
-  top:0;
-  z-index:100;
-  backdrop-filter:blur(12px);
-}
-
-.logo{
-  font-size:22px;
-  font-weight:800;
-  letter-spacing:-.5px;
-}
-
-.logo span{
-  color:#9b6cff;
-}
-
-.header-actions{
-  display:flex;
-  align-items:center;
-  gap:10px;
-}
-
-.icon-btn{
-  width:40px;
-  height:40px;
-  border:1px solid #292c3c;
-  background:#11131c;
-  color:#fff;
-  border-radius:11px;
-  cursor:pointer;
-  font-size:18px;
-}
-
-.icon-btn:hover{
-  border-color:#8b5cf6;
-}
-
-/* ================= SIDE MENU ================= */
-
-.overlay{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.65);
-  z-index:150;
-  display:none;
-}
-
-.overlay.show{
-  display:block;
-}
-
-.side-menu{
-  position:fixed;
-  right:-310px;
-  top:0;
-  width:290px;
-  height:100vh;
-  background:#0d0f17;
-  border-left:1px solid #282b3b;
-  z-index:200;
-  padding:25px 18px;
-  transition:.3s ease;
-}
-
-.side-menu.open{
-  right:0;
-}
-
-.menu-head{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-bottom:30px;
-}
-
-.menu-head h3{
-  font-size:20px;
-}
-
-.close-menu{
-  background:#171a25;
-  border:0;
-  color:#fff;
-  width:36px;
-  height:36px;
-  border-radius:10px;
-  font-size:18px;
-}
-
-.menu-item{
-  width:100%;
-  padding:14px;
-  margin-bottom:8px;
-  border-radius:12px;
-  background:transparent;
-  border:1px solid transparent;
-  color:#b9bdca;
-  text-align:left;
-  cursor:pointer;
-  font-size:14px;
-}
-
-.menu-item:hover{
-  background:#151722;
-  border-color:#282c3e;
-  color:#fff;
-}
-
-/* ================= LANDING ================= */
-
-.hero{
-  text-align:center;
-  padding:62px 20px 35px;
-  max-width:850px;
-  margin:auto;
-}
-
+.brand span{color:#9b6cff}
 .badge{
-  display:inline-block;
-  padding:7px 14px;
-  border:1px solid #30264c;
-  border-radius:50px;
-  color:#b89aff;
-  font-size:12px;
-  margin-bottom:20px;
-  background:#110d1d;
+ display:inline-block;padding:7px 14px;border:1px solid #30264c;
+ border-radius:50px;color:#b89aff;font-size:12px;
+ background:#110d1d;margin-bottom:22px
 }
-
-.hero h1{
-  font-size:clamp(36px,8vw,62px);
-  line-height:1.02;
-  letter-spacing:-2px;
-  margin-bottom:18px;
+.landing h1{
+ font-size:clamp(42px,10vw,72px);line-height:1;
+ letter-spacing:-3px;margin-bottom:20px
 }
-
 .gradient{
-  background:linear-gradient(90deg,#a86cff,#5d9dff);
-  -webkit-background-clip:text;
-  background-clip:text;
-  color:transparent;
+ background:linear-gradient(90deg,#a86cff,#5d9dff);
+ -webkit-background-clip:text;background-clip:text;color:transparent
 }
-
-.hero p{
-  color:#999dad;
-  max-width:600px;
-  margin:auto;
-  line-height:1.7;
-  font-size:15px;
+.landing p{
+ color:#999dad;line-height:1.7;font-size:15px;
+ max-width:570px;margin:auto
 }
-
 .cta{
-  display:inline-block;
-  margin-top:25px;
-  padding:14px 23px;
-  background:linear-gradient(90deg,#8b5cf6,#6d7cff);
-  border:0;
-  border-radius:12px;
-  color:#fff;
-  font-weight:700;
-  text-decoration:none;
-  cursor:pointer;
-  box-shadow:0 8px 30px rgba(115,83,220,.2);
+ margin-top:30px;padding:15px 25px;border:0;border-radius:12px;
+ color:#fff;font-weight:700;background:linear-gradient(90deg,#8b5cf6,#637cff);
+ box-shadow:0 10px 35px rgba(116,84,220,.2)
 }
 
-/* ================= SEARCH ================= */
-
-.search-wrap{
-  padding:5px 20px 25px;
-  max-width:650px;
-  margin:auto;
+/* APP */
+#app{display:none}
+header{
+ height:68px;padding:0 18px;display:flex;align-items:center;
+ justify-content:space-between;border-bottom:1px solid #202332;
+ background:rgba(8,9,15,.96);position:sticky;top:0;z-index:100;
+ backdrop-filter:blur(12px)
+}
+.logo{font-size:21px;font-weight:800}
+.logo span{color:#9b6cff}
+.header-right{display:flex;gap:9px}
+.icon-btn{
+ width:40px;height:40px;border:1px solid #292c3c;
+ background:#11131c;color:#fff;border-radius:11px;font-size:18px
 }
 
+/* DRAWER */
+.overlay{
+ position:fixed;inset:0;background:rgba(0,0,0,.7);
+ z-index:200;display:none
+}
+.overlay.show{display:block}
+.drawer{
+ position:fixed;right:-310px;top:0;width:290px;height:100vh;
+ background:#0d0f17;border-left:1px solid #292c3c;
+ z-index:210;padding:22px 17px;transition:.3s
+}
+.drawer.open{right:0}
+.drawer-head{
+ display:flex;justify-content:space-between;align-items:center;
+ margin-bottom:28px
+}
+.drawer-head h3{font-size:19px}
+.close{
+ width:36px;height:36px;border:0;border-radius:10px;
+ background:#191c27;color:#fff;font-size:20px
+}
+.menu-btn{
+ width:100%;border:1px solid transparent;background:transparent;
+ color:#aeb2c0;padding:14px;border-radius:11px;text-align:left;
+ margin-bottom:6px
+}
+.menu-btn:hover{background:#151722;border-color:#292c3c;color:#fff}
+
+/* PAGES */
+.page{display:none;padding-bottom:100px}
+.page.active{display:block}
+.hero{
+ text-align:center;padding:48px 20px 25px;max-width:800px;margin:auto
+}
+.hero h1{font-size:clamp(34px,8vw,55px);margin-bottom:15px}
+.hero p{color:#8d92a1;line-height:1.6;font-size:14px}
+
+/* SEARCH */
+.search-wrap{max-width:650px;margin:0 auto;padding:10px 20px 25px}
 .search{
-  display:flex;
-  align-items:center;
-  background:#11131c;
-  border:1px solid #282b3b;
-  border-radius:14px;
-  padding:5px;
+ display:flex;align-items:center;background:#11131c;
+ border:1px solid #282b3b;border-radius:14px;padding:5px
 }
-
-.search-icon{
-  padding:0 10px;
-  color:#777c8d;
-}
-
+.search-icon{padding:0 10px;color:#777c8d}
 .search input{
-  flex:1;
-  border:0;
-  outline:none;
-  background:transparent;
-  color:#fff;
-  padding:13px 5px;
-  font-size:14px;
+ flex:1;background:transparent;border:0;outline:0;color:#fff;
+ padding:13px 5px
 }
 
-/* ================= SECTIONS ================= */
+/* SECTIONS */
+.section{max-width:1050px;margin:auto;padding:20px}
+.section-title{margin-bottom:17px}
+.section-title h2{font-size:21px}
+.section-title p{color:#777c8d;font-size:12px;margin-top:5px}
 
-.section{
-  padding:25px 20px;
-  max-width:1050px;
-  margin:auto;
-}
-
-.section-title{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-bottom:18px;
-}
-
-.section-title h2{
-  font-size:21px;
-}
-
-.section-title p{
-  color:#777c8d;
-  font-size:12px;
-}
-
-/* ================= FOLDERS ================= */
-
+/* FOLDERS */
 .folder-grid{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:14px;
+ display:grid;grid-template-columns:repeat(2,1fr);gap:14px
 }
-
 .folder{
-  position:relative;
-  min-height:145px;
-  padding:20px;
-  border:1px solid #25283a;
-  background:linear-gradient(145deg,#12141e,#0d0f17);
-  border-radius:18px;
-  cursor:pointer;
-  overflow:hidden;
-  transition:.2s;
+ min-height:145px;padding:20px;border:1px solid #25283a;
+ border-radius:18px;background:linear-gradient(145deg,#12141e,#0d0f17);
+ position:relative;overflow:hidden;transition:.2s
 }
-
-.folder:hover{
-  transform:translateY(-3px);
-  border-color:#7654d5;
-}
-
+.folder:hover{transform:translateY(-3px);border-color:#7654d5}
 .folder:before{
-  content:"";
-  position:absolute;
-  width:120px;
-  height:120px;
-  border-radius:50%;
-  background:rgba(139,92,246,.10);
-  right:-45px;
-  bottom:-45px;
+ content:"";position:absolute;width:120px;height:120px;
+ border-radius:50%;background:rgba(139,92,246,.09);
+ right:-45px;bottom:-45px
+}
+.folder-icon{font-size:34px;margin-bottom:13px}
+.folder h3{font-size:16px;margin-bottom:6px}
+.folder p{color:#777c8d;font-size:12px;line-height:1.4}
+.soon{
+ position:absolute;right:10px;top:10px;font-size:8px;
+ color:#a98cff;border:1px solid #30264c;background:#191521;
+ padding:5px 7px;border-radius:20px
 }
 
-.folder-icon{
-  font-size:35px;
-  margin-bottom:14px;
+/* TOOL LIST */
+.list-card{
+ display:flex;align-items:center;gap:15px;padding:17px;
+ background:#10121b;border:1px solid #25283a;border-radius:15px;
+ margin-bottom:11px
+}
+.list-icon{font-size:29px}
+.list-info{flex:1}
+.list-info h3{font-size:15px;margin-bottom:5px}
+.list-info p{font-size:11px;color:#777c8d}
+.open-btn{
+ border:0;background:#252a3c;color:#fff;padding:9px 12px;
+ border-radius:9px;font-size:12px
 }
 
-.folder h3{
-  font-size:16px;
-  margin-bottom:6px;
+/* TOOL */
+.tool{
+ background:#10121b;border:1px solid #242738;
+ border-radius:18px;padding:22px
 }
-
-.folder p{
-  color:#777c8d;
-  font-size:12px;
-  line-height:1.4;
+.tool-icon{font-size:31px;margin-bottom:10px}
+.tool h2{font-size:21px;margin-bottom:7px}
+.tool>p{color:#858998;font-size:13px;line-height:1.5;margin-bottom:18px}
+.input,.select,.textarea{
+ width:100%;padding:14px;border:1px solid #292d40;
+ border-radius:11px;background:#0b0d14;color:#fff;
+ outline:0;margin-bottom:12px
 }
-
-.folder .soon{
-  position:absolute;
-  right:12px;
-  top:12px;
-  font-size:9px;
-  padding:5px 7px;
-  border-radius:20px;
-  background:#191521;
-  color:#a88bff;
-  border:1px solid #30264c;
-}
-
-/* ================= TOOL CARDS ================= */
-
-.tool-card{
-  background:#10121b;
-  border:1px solid #242738;
-  border-radius:18px;
-  padding:22px;
-  margin-bottom:16px;
-}
-
-.tool-icon{
-  font-size:31px;
-  margin-bottom:10px;
-}
-
-.tool-card h3{
-  font-size:20px;
-  margin-bottom:7px;
-}
-
-.tool-card p{
-  color:#858998;
-  font-size:13px;
-  line-height:1.5;
-  margin-bottom:18px;
-}
-
-.input,
-.select,
-.textarea{
-  width:100%;
-  padding:14px;
-  border:1px solid #292d40;
-  border-radius:11px;
-  background:#0b0d14;
-  color:#fff;
-  outline:none;
-  margin-bottom:12px;
-  font-size:14px;
-}
-
-.textarea{
-  min-height:130px;
-  resize:vertical;
-}
-
-.input:focus,
-.select:focus,
-.textarea:focus{
-  border-color:#7654d5;
-}
-
+.textarea{min-height:130px;resize:vertical}
 .generate{
-  width:100%;
-  border:0;
-  border-radius:11px;
-  padding:14px;
-  background:#8b5cf6;
-  color:#fff;
-  font-weight:700;
-  cursor:pointer;
-  font-size:14px;
+ width:100%;padding:14px;border:0;border-radius:11px;
+ background:#8b5cf6;color:#fff;font-weight:700
 }
-
-.generate:hover{
-  background:#7c4fe4;
-}
-
-.results{
-  margin-top:16px;
-  display:grid;
-  gap:9px;
-}
-
+.results{display:grid;gap:9px;margin-top:16px}
 .result{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:10px;
-  background:#151722;
-  border:1px solid #272b3b;
-  padding:12px;
-  border-radius:11px;
+ display:flex;align-items:center;justify-content:space-between;
+ gap:10px;background:#151722;border:1px solid #272b3b;
+ padding:12px;border-radius:11px
 }
-
-.result span{
-  font-size:13px;
-  word-break:break-word;
+.result span{font-size:13px;word-break:break-word}
+.copy,.fav{
+ border:0;background:#252a3c;color:#fff;padding:8px 11px;
+ border-radius:8px;font-size:11px
 }
-
-.copy{
-  flex-shrink:0;
-  border:0;
-  background:#252a3c;
-  color:#fff;
-  padding:8px 11px;
-  border-radius:8px;
-  cursor:pointer;
-  font-size:12px;
-}
-
-.favorite{
-  flex-shrink:0;
-  border:0;
-  background:#252a3c;
-  color:#aaa;
-  padding:8px 10px;
-  border-radius:8px;
-  cursor:pointer;
-}
-
-.favorite.active{
-  color:#ffd35c;
-}
-
-.info{
-  color:#74798a;
-  font-size:12px;
-  text-align:center;
-  margin-top:12px;
-}
-
-/* ================= SCRIPT ================= */
-
-.script-options{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:10px;
-}
-
+.fav.active{color:#ffd35c}
+.result-actions{display:flex;gap:6px}
 .script-output{
-  margin-top:15px;
-  background:#0b0d14;
-  border:1px solid #292d40;
-  border-radius:12px;
-  padding:16px;
-  color:#d5d8e3;
-  font-size:14px;
-  line-height:1.7;
-  white-space:pre-wrap;
-  display:none;
+ display:none;margin-top:15px;background:#0b0d14;
+ border:1px solid #292d40;border-radius:12px;padding:16px;
+ color:#d5d8e3;font-size:13px;line-height:1.7;white-space:pre-wrap
 }
 
-/* ================= COMING SOON ================= */
+/* SETTINGS */
+.settings-card{
+ background:#10121b;border:1px solid #25283a;border-radius:16px;
+ overflow:hidden
+}
+.setting{
+ display:flex;align-items:center;justify-content:space-between;
+ padding:17px;border-bottom:1px solid #202332
+}
+.setting:last-child{border-bottom:0}
+.setting-info h3{font-size:14px;margin-bottom:4px}
+.setting-info p{font-size:11px;color:#777c8d}
+.setting-action{
+ border:1px solid #303449;background:#171a25;color:#fff;
+ padding:8px 11px;border-radius:8px;font-size:11px
+}
 
+/* BACK */
+.back{
+ border:0;background:transparent;color:#a98cff;
+ font-size:13px;margin-bottom:20px
+}
+
+/* EMPTY / COMING */
 .coming{
-  text-align:center;
-  padding:35px 20px;
-  border:1px dashed #2c3042;
-  border-radius:18px;
-  background:#0d0f17;
+ text-align:center;padding:45px 20px;border:1px dashed #303448;
+ border-radius:18px;background:#0d0f17
 }
+.coming-icon{font-size:40px;margin-bottom:12px}
+.coming p{color:#777c8d;font-size:13px;margin-top:8px}
 
-.coming-icon{
-  font-size:38px;
-  margin-bottom:10px;
+/* BOTTOM */
+.bottom-nav{
+ position:fixed;left:0;right:0;bottom:0;z-index:120;
+ background:rgba(12,13,20,.97);border-top:1px solid #202332;
+ display:flex;justify-content:space-around;padding:9px 4px;
+ backdrop-filter:blur(12px)
 }
-
-.coming h3{
-  margin-bottom:7px;
+.nav{
+ color:#777b89;text-align:center;font-size:10px;cursor:pointer;
+ min-width:55px
 }
-
-.coming p{
-  color:#777c8d;
-  font-size:13px;
-}
-
-/* ================= FOOTER ================= */
+.nav b{display:block;font-size:18px;margin-bottom:3px}
+.nav.active{color:#a779ff}
 
 footer{
-  text-align:center;
-  padding:50px 20px 105px;
-  color:#666a78;
-  font-size:12px;
-  line-height:1.7;
+ text-align:center;color:#666a78;font-size:12px;
+ padding:45px 20px 110px
 }
 
-footer strong{
-  color:#aaa;
-}
-
-/* ================= BOTTOM NAV ================= */
-
-.bottom-nav{
-  position:fixed;
-  bottom:0;
-  left:0;
-  right:0;
-  background:rgba(12,13,20,.97);
-  border-top:1px solid #202332;
-  display:flex;
-  justify-content:space-around;
-  padding:10px 5px;
-  z-index:120;
-  backdrop-filter:blur(12px);
-}
-
-.nav-item{
-  color:#777b89;
-  font-size:10px;
-  text-align:center;
-  cursor:pointer;
-  min-width:55px;
-}
-
-.nav-item b{
-  display:block;
-  font-size:18px;
-  margin-bottom:3px;
-}
-
-.nav-item.active{
-  color:#a779ff;
-}
-
-/* ================= HIDDEN ================= */
-
-.page{
-  display:none;
-}
-
-.page.active{
-  display:block;
-}
-
-/* ================= MOBILE ================= */
-
-@media(max-width:600px){
-
-  .folder-grid{
-    grid-template-columns:1fr 1fr;
-  }
-
-  .folder{
-    min-height:135px;
-    padding:16px;
-  }
-
-  .folder-icon{
-    font-size:30px;
-  }
-
-  .folder h3{
-    font-size:14px;
-  }
-
-  .folder p{
-    font-size:11px;
-  }
-
-  .script-options{
-    grid-template-columns:1fr;
-  }
-
-}
-
-@media(min-width:750px){
-
-  .folder-grid{
-    grid-template-columns:repeat(4,1fr);
-  }
-
-  .tool-grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:16px;
-  }
-
-  .tool-card{
-    margin-bottom:0;
-  }
-
+@media(min-width:700px){
+ .folder-grid{grid-template-columns:repeat(4,1fr)}
+ .section{padding-left:25px;padding-right:25px}
 }
 </style>
 </head>
 
 <body>
 
-<!-- ================= HEADER ================= -->
+<!-- ================= LANDING PAGE ================= -->
+
+<section id="landing" class="landing">
+
+ <div class="landing-box">
+
+  <div class="brand">Make<span>Aurae</span></div>
+
+  <div class="badge">✦ CREATE SMARTER</div>
+
+  <h1>
+   Create <span class="gradient">Smarter.</span><br>
+   Create Faster.
+  </h1>
+
+  <p>
+   A simple creator hub for usernames, stylish text,
+   scripts and many more tools coming soon.
+  </p>
+
+  <button class="cta" onclick="enterSite()">
+   Explore MakeAurae ✨
+  </button>
+
+ </div>
+
+</section>
+
+
+<!-- ================= APP ================= -->
+
+<div id="app">
 
 <header>
 
-  <div class="logo">
-    Make<span>Aurae</span>
-  </div>
+ <div class="logo">Make<span>Aurae</span></div>
 
-  <div class="header-actions">
+ <div class="header-right">
 
-    <button class="icon-btn" onclick="focusSearch()">
-      🔍
-    </button>
+  <button class="icon-btn" onclick="focusSearch()">🔍</button>
 
-    <button class="icon-btn" onclick="openMenu()">
-      ☰
-    </button>
+  <button class="icon-btn" onclick="openDrawer()">☰</button>
 
-  </div>
+ </div>
 
 </header>
 
 
-<!-- ================= SIDE MENU ================= -->
+<!-- DRAWER -->
 
-<div id="overlay" class="overlay" onclick="closeMenu()"></div>
+<div id="overlay" class="overlay" onclick="closeDrawer()"></div>
 
-<div id="sideMenu" class="side-menu">
+<aside id="drawer" class="drawer">
 
-  <div class="menu-head">
-    <h3>MakeAurae</h3>
-    <button class="close-menu" onclick="closeMenu()">×</button>
-  </div>
+ <div class="drawer-head">
+  <h3>MakeAurae</h3>
+  <button class="close" onclick="closeDrawer()">×</button>
+ </div>
 
-  <button class="menu-item" onclick="goHome()">⌂ &nbsp; Home</button>
+ <button class="menu-btn" onclick="showPage('home')">⌂ &nbsp; Home</button>
 
-  <button class="menu-item" onclick="showTools()">⚙ &nbsp; All Tools</button>
+ <button class="menu-btn" onclick="showPage('tools')">🛠️ &nbsp; All Tools</button>
 
-  <button class="menu-item" onclick="showFavorites()">♡ &nbsp; Favorites</button>
+ <button class="menu-btn" onclick="showPage('saved')">♡ &nbsp; Saved</button>
 
-  <button class="menu-item" onclick="showComing('Contact Us')">
-    ✉ &nbsp; Contact Us
-  </button>
+ <button class="menu-btn" onclick="showPage('settings')">⚙️ &nbsp; Settings</button>
 
-  <button class="menu-item" onclick="showComing('Feedback')">
-    💬 &nbsp; Feedback
-  </button>
+ <button class="menu-btn" onclick="showPage('contact')">✉️ &nbsp; Contact Us</button>
 
-  <button class="menu-item" onclick="showComing('About MakeAurae')">
-    ✦ &nbsp; About MakeAurae
-  </button>
+ <button class="menu-btn" onclick="showPage('feedback')">💬 &nbsp; Feedback</button>
 
-</div>
+ <button class="menu-btn" onclick="showPage('about')">ℹ️ &nbsp; About MakeAurae</button>
+
+</aside>
 
 
-<!-- ================= HOME PAGE ================= -->
+<!-- ================= HOME ================= -->
 
-<main id="homePage" class="page active">
+<main id="home" class="page active">
 
-<section class="hero">
+ <section class="hero">
 
-  <div class="badge">
-    ✦ MAKEAURAE TOOLS
-  </div>
+  <div class="badge">✦ MAKEAURAE TOOLS</div>
 
-  <h1>
-    Create <span class="gradient">Smarter.</span><br>
-    Create Faster.
-  </h1>
+  <h1>Create <span class="gradient">Smarter.</span></h1>
 
   <p>
-    Simple, useful tools for creators, gamers and social media users.
-    Everything you need to create better, faster and easier.
+   Simple tools for creators, gamers and social media users.
   </p>
 
-  <button class="cta" onclick="scrollToFolders()">
-    Explore MakeAurae ✨
-  </button>
+ </section>
 
-</section>
-
-
-<!-- SEARCH -->
-
-<div class="search-wrap">
+ <div class="search-wrap">
 
   <div class="search">
 
-    <div class="search-icon">⌕</div>
+   <span class="search-icon">⌕</span>
 
-    <input
-      id="searchInput"
-      type="text"
-      placeholder="Search tools, folders..."
-      oninput="searchEverything()"
-    >
+   <input
+    id="search"
+    placeholder="Search folders..."
+    oninput="searchFolders()"
+   >
 
   </div>
 
-</div>
+ </div>
 
 
-<!-- FOLDERS -->
-
-<section class="section" id="foldersSection">
+ <section class="section">
 
   <div class="section-title">
+   <h2>Explore</h2>
+   <p>Choose a folder to get started</p>
+  </div>
 
-    <div>
-      <h2>Explore</h2>
-      <p>Everything in one place</p>
-    </div>
+  <div id="folders" class="folder-grid">
+
+   <div class="folder" data-name="Tools"
+        onclick="openFolder('tools')">
+    <div class="folder-icon">🛠️</div>
+    <h3>Tools</h3>
+    <p>Useful creator tools</p>
+   </div>
+
+   <div class="folder" data-name="Image"
+        onclick="openFolder('image')">
+    <span class="soon">COMING SOON</span>
+    <div class="folder-icon">🖼️</div>
+    <h3>Image</h3>
+    <p>Image tools</p>
+   </div>
+
+   <div class="folder" data-name="Wallpapers"
+        onclick="openFolder('wallpapers')">
+    <span class="soon">COMING SOON</span>
+    <div class="folder-icon">🌌</div>
+    <h3>Wallpapers</h3>
+    <p>HD wallpapers</p>
+   </div>
+
+   <div class="folder" data-name="PFP"
+        onclick="openFolder('pfp')">
+    <span class="soon">COMING SOON</span>
+    <div class="folder-icon">👤</div>
+    <h3>PFP</h3>
+    <p>Profile picture tools</p>
+   </div>
+
+   <div class="folder" data-name="Gaming"
+        onclick="openFolder('gaming')">
+    <span class="soon">COMING SOON</span>
+    <div class="folder-icon">🎮</div>
+    <h3>Gaming</h3>
+    <p>Gaming tools</p>
+   </div>
+
+   <div class="folder" data-name="Creator"
+        onclick="openFolder('creator')">
+    <span class="soon">COMING SOON</span>
+    <div class="folder-icon">✍️</div>
+    <h3>Creator</h3>
+    <p>Creator utilities</p>
+   </div>
+
+   <div class="folder" data-name="AI Tools"
+        onclick="openFolder('ai')">
+    <span class="soon">COMING SOON</span>
+    <div class="folder-icon">🤖</div>
+    <h3>AI Tools</h3>
+    <p>Smart utilities</p>
+   </div>
+
+   <div class="folder" data-name="Social Media"
+        onclick="openFolder('social')">
+    <span class="soon">COMING SOON</span>
+    <div class="folder-icon">📱</div>
+    <h3>Social Media</h3>
+    <p>Instagram & YouTube</p>
+   </div>
 
   </div>
 
-
-  <div class="folder-grid" id="folderGrid">
-
-    <div class="folder searchable"
-         data-name="Tools"
-         onclick="showTools()">
-
-      <div class="folder-icon">🛠️</div>
-
-      <h3>Tools</h3>
-
-      <p>Useful creator tools</p>
-
-    </div>
-
-
-    <div class="folder searchable"
-         data-name="Image"
-         onclick="showComing('Image Tools')">
-
-      <span class="soon">COMING SOON</span>
-
-      <div class="folder-icon">🖼️</div>
-
-      <h3>Image</h3>
-
-      <p>Image creation tools</p>
-
-    </div>
-
-
-    <div class="folder searchable"
-         data-name="Wallpapers"
-         onclick="showComing('Wallpapers')">
-
-      <span class="soon">COMING SOON</span>
-
-      <div class="folder-icon">🌌</div>
-
-      <h3>Wallpapers</h3>
-
-      <p>HD wallpapers</p>
-
-    </div>
-
-
-    <div class="folder searchable"
-         data-name="PFP Profile Picture"
-         onclick="showComing('PFP Generator')">
-
-      <span class="soon">COMING SOON</span>
-
-      <div class="folder-icon">👤</div>
-
-      <h3>PFP</h3>
-
-      <p>Profile picture tools</p>
-
-    </div>
-
-
-    <div class="folder searchable"
-         data-name="Gaming"
-         onclick="showComing('Gaming Tools')">
-
-      <span class="soon">COMING SOON</span>
-
-      <div class="folder-icon">🎮</div>
-
-      <h3>Gaming</h3>
-
-      <p>Gaming creator tools</p>
-
-    </div>
-
-
-    <div class="folder searchable"
-         data-name="Creator"
-         onclick="showComing('Creator Tools')">
-
-      <span class="soon">COMING SOON</span>
-
-      <div class="folder-icon">✍️</div>
-
-      <h3>Creator</h3>
-
-      <p>Tools for creators</p>
-
-    </div>
-
-
-    <div class="folder searchable"
-         data-name="AI Artificial Intelligence"
-         onclick="showComing('AI Tools')">
-
-      <span class="soon">COMING SOON</span>
-
-      <div class="folder-icon">🤖</div>
-
-      <h3>AI Tools</h3>
-
-      <p>Smart AI utilities</p>
-
-    </div>
-
-
-    <div class="folder searchable"
-         data-name="Social Media Instagram YouTube"
-         onclick="showComing('Social Media Tools')">
-
-      <span class="soon">COMING SOON</span>
-
-      <div class="folder-icon">📱</div>
-
-      <h3>Social Media</h3>
-
-      <p>Instagram & YouTube tools</p>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- QUICK TOOLS -->
-
-<section class="section">
-
-  <div class="section-title">
-
-    <div>
-      <h2>Quick Tools</h2>
-      <p>Ready to use</p>
-    </div>
-
-  </div>
-
-  <div class="tool-grid">
-
-    <!-- USERNAME -->
-
-    <div class="tool-card searchable"
-         data-name="Username Generator">
-
-      <div class="tool-icon">👤</div>
-
-      <h3>Username Generator</h3>
-
-      <p>
-        Create unique usernames for Instagram, gaming,
-        social media and more.
-      </p>
-
-      <input
-        id="nameInput"
-        class="input"
-        type="text"
-        placeholder="Enter your name or word"
-      >
-
-      <select id="styleInput" class="select">
-
-        <option value="cool">Cool</option>
-        <option value="gaming">Gaming</option>
-        <option value="social">Social</option>
-        <option value="anime">Anime</option>
-
-      </select>
-
-      <button class="generate" onclick="generateUsernames()">
-        Generate Usernames ✨
-      </button>
-
-      <div id="results" class="results"></div>
-
-      <div class="info">
-        Generated directly on your device.
-      </div>
-
-    </div>
-
-
-    <!-- STYLISH TEXT -->
-
-    <div class="tool-card searchable"
-         data-name="Stylish Text Generator">
-
-      <div class="tool-icon">🔤</div>
-
-      <h3>Stylish Text Generator</h3>
-
-      <p>
-        Convert normal text into stylish fonts for
-        social media, gaming and more.
-      </p>
-
-      <input
-        id="styleTextInput"
-        class="input"
-        type="text"
-        placeholder="Enter your text..."
-      >
-
-      <button class="generate" onclick="generateStyles()">
-        Generate Styles ✨
-      </button>
-
-      <div id="styleResults" class="results"></div>
-
-    </div>
-
-
-    <!-- SCRIPT GENERATOR -->
-
-    <div class="tool-card searchable"
-         data-name="Script Generator YouTube Video">
-
-      <div class="tool-icon">🎬</div>
-
-      <h3>Script Generator</h3>
-
-      <p>
-        Tell us about your video and get a simple
-        ready-to-use video script.
-      </p>
-
-      <input
-        id="scriptTopic"
-        class="input"
-        type="text"
-        placeholder="Video topic..."
-      >
-
-      <textarea
-        id="scriptDetails"
-        class="textarea"
-        placeholder="Tell us about your video..."
-      ></textarea>
-
-      <div class="script-options">
-
-        <select id="scriptType" class="select">
-
-          <option>YouTube Video</option>
-          <option>Shorts</option>
-          <option>Instagram Reel</option>
-          <option>Gaming Video</option>
-
-        </select>
-
-        <select id="scriptTone" class="select">
-
-          <option>Friendly</option>
-          <option>Professional</option>
-          <option>Energetic</option>
-          <option>Storytelling</option>
-
-        </select>
-
-      </div>
-
-      <button class="generate" onclick="generateScript()">
-        Generate Script ✨
-      </button>
-
-      <div id="scriptOutput" class="script-output"></div>
-
-    </div>
-
-
-    <!-- COMING SOON TOOL -->
-
-    <div class="tool-card">
-
-      <div class="coming">
-
-        <div class="coming-icon">🚀</div>
-
-        <h3>More Tools Coming</h3>
-
-        <p>
-          New creator, gaming and social media tools
-          will be added soon.
-        </p>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
+ </section>
 
 </main>
 
 
-<!-- ================= TOOLS PAGE ================= -->
+<!-- ================= FOLDER: TOOLS ================= -->
 
-<main id="toolsPage" class="page">
+<main id="tools" class="page">
 
-<section class="hero">
+ <section class="section">
 
-  <div class="badge">🛠️ TOOLS</div>
+  <button class="back" onclick="showPage('home')">← Back to Home</button>
 
-  <h1>
-    Your <span class="gradient">Creator Tools.</span>
-  </h1>
+  <div class="section-title">
+   <h2>🛠️ Tools</h2>
+   <p>MakeAurae creator tools</p>
+  </div>
 
-  <p>
-    Simple tools designed to help you create faster.
-  </p>
-
-</section>
-
-<section class="section">
-
-  <div class="tool-card">
-
-    <div class="tool-icon">👤</div>
-
+  <div class="list-card">
+   <div class="list-icon">👤</div>
+   <div class="list-info">
     <h3>Username Generator</h3>
-
-    <p>Create unique usernames instantly.</p>
-
-    <input
-      id="nameInput2"
-      class="input"
-      placeholder="Enter name..."
-    >
-
-    <select id="styleInput2" class="select">
-
-      <option value="cool">Cool</option>
-      <option value="gaming">Gaming</option>
-      <option value="social">Social</option>
-      <option value="anime">Anime</option>
-
-    </select>
-
-    <button class="generate" onclick="generateUsernames2()">
-      Generate ✨
-    </button>
-
-    <div id="results2" class="results"></div>
-
+    <p>Create unique usernames</p>
+   </div>
+   <button class="open-btn"
+           onclick="openTool('username')">Open</button>
   </div>
 
-
-  <div class="tool-card">
-
-    <div class="tool-icon">🔤</div>
-
-    <h3>Stylish Text</h3>
-
-    <p>Make your text stand out.</p>
-
-    <input
-      id="styleTextInput2"
-      class="input"
-      placeholder="Enter text..."
-    >
-
-    <button class="generate" onclick="generateStyles2()">
-      Generate Styles ✨
-    </button>
-
-    <div id="styleResults2" class="results"></div>
-
+  <div class="list-card">
+   <div class="list-icon">🔤</div>
+   <div class="list-info">
+    <h3>Stylish Text Generator</h3>
+    <p>Generate stylish text</p>
+   </div>
+   <button class="open-btn"
+           onclick="openTool('style')">Open</button>
   </div>
 
-
-  <div class="tool-card">
-
-    <div class="tool-icon">🎬</div>
-
+  <div class="list-card">
+   <div class="list-icon">🎬</div>
+   <div class="list-info">
     <h3>Script Generator</h3>
-
-    <p>Create a basic script for your video idea.</p>
-
-    <input
-      id="scriptTopic2"
-      class="input"
-      placeholder="Video topic..."
-    >
-
-    <textarea
-      id="scriptDetails2"
-      class="textarea"
-      placeholder="Describe your video..."
-    ></textarea>
-
-    <button class="generate" onclick="generateScript2()">
-      Generate Script ✨
-    </button>
-
-    <div id="scriptOutput2" class="script-output"></div>
-
+    <p>Create a basic video script</p>
+   </div>
+   <button class="open-btn"
+           onclick="openTool('script')">Open</button>
   </div>
 
-
-  <div class="coming">
-
-    <div class="coming-icon">✨</div>
-
-    <h3>More Tools Coming Soon</h3>
-
-    <p>
-      We are building more useful tools for MakeAurae.
-    </p>
-
-  </div>
-
-</section>
+ </section>
 
 </main>
 
 
-<!-- ================= COMING SOON PAGE ================= -->
+<!-- ================= TOOL PAGE ================= -->
 
-<main id="comingPage" class="page">
+<main id="toolPage" class="page">
 
-<section class="hero">
+ <section class="section">
+
+  <button class="back" onclick="showPage('tools')">← Back to Tools</button>
+
+  <!-- USERNAME -->
+
+  <div id="usernameTool" class="tool tool-content">
+
+   <div class="tool-icon">👤</div>
+   <h2>Username Generator</h2>
+
+   <p>Create unique usernames for Instagram, gaming and social media.</p>
+
+   <input id="usernameInput" class="input"
+          placeholder="Enter your name or word">
+
+   <select id="usernameStyle" class="select">
+    <option value="cool">Cool</option>
+    <option value="gaming">Gaming</option>
+    <option value="social">Social</option>
+    <option value="anime">Anime</option>
+   </select>
+
+   <button class="generate" onclick="generateUsernames()">
+    Generate Usernames ✨
+   </button>
+
+   <div id="usernameResults" class="results"></div>
+
+  </div>
+
+
+  <!-- STYLE -->
+
+  <div id="styleTool" class="tool tool-content" style="display:none">
+
+   <div class="tool-icon">🔤</div>
+   <h2>Stylish Text Generator</h2>
+
+   <p>Convert normal text into stylish fonts.</p>
+
+   <input id="styleInput" class="input"
+          placeholder="Enter your text...">
+
+   <button class="generate" onclick="generateStyles()">
+    Generate Styles ✨
+   </button>
+
+   <div id="styleResults" class="results"></div>
+
+  </div>
+
+
+  <!-- SCRIPT -->
+
+  <div id="scriptTool" class="tool tool-content" style="display:none">
+
+   <div class="tool-icon">🎬</div>
+   <h2>Script Generator</h2>
+
+   <p>
+    Tell MakeAurae about your video and generate a basic script.
+   </p>
+
+   <input id="scriptTopic" class="input"
+          placeholder="Video topic...">
+
+   <textarea id="scriptDetails" class="textarea"
+             placeholder="Tell us about your video..."></textarea>
+
+   <select id="scriptType" class="select">
+    <option>YouTube Video</option>
+    <option>YouTube Shorts</option>
+    <option>Instagram Reel</option>
+    <option>Gaming Video</option>
+   </select>
+
+   <select id="scriptTone" class="select">
+    <option>Friendly</option>
+    <option>Professional</option>
+    <option>Energetic</option>
+    <option>Storytelling</option>
+   </select>
+
+   <button class="generate" onclick="generateScript()">
+    Generate Script ✨
+   </button>
+
+   <div id="scriptOutput" class="script-output"></div>
+
+  </div>
+
+ </section>
+
+</main>
+
+
+<!-- ================= COMING SOON FOLDER ================= -->
+
+<main id="coming" class="page">
+
+ <section class="hero">
 
   <div class="badge">✦ MAKEAURAE</div>
 
   <h1>
-    <span class="gradient" id="comingTitle">
-      Coming Soon
-    </span>
+   <span id="comingName" class="gradient">Coming Soon</span>
   </h1>
 
   <p>
-    This section is currently being built.
-    More powerful tools are coming to MakeAurae.
+   This folder is being prepared. New tools will be added here soon.
   </p>
 
-  <button class="cta" onclick="goHome()">
-    ← Back Home
+  <button class="cta" onclick="showPage('home')">
+   ← Back Home
   </button>
 
-</section>
+ </section>
 
 </main>
 
 
-<!-- ================= FOOTER ================= -->
+<!-- ================= SAVED ================= -->
+
+<main id="saved" class="page">
+
+ <section class="section">
+
+  <div class="hero" style="padding-left:0;padding-right:0">
+   <div class="badge">♡ SAVED</div>
+   <h1>Your <span class="gradient">Favorites.</span></h1>
+   <p>Your saved usernames and generated items will appear here.</p>
+  </div>
+
+  <div id="savedList"></div>
+
+ </section>
+
+</main>
+
+
+<!-- ================= SETTINGS ================= -->
+
+<main id="settings" class="page">
+
+ <section class="section">
+
+  <div class="hero" style="padding-left:0;padding-right:0">
+   <div class="badge">⚙️ SETTINGS</div>
+   <h1>MakeAurae <span class="gradient">Settings.</span></h1>
+   <p>Customize your MakeAurae experience.</p>
+  </div>
+
+  <div class="settings-card">
+
+   <div class="setting">
+    <div class="setting-info">
+     <h3>🌙 Appearance</h3>
+     <p>MakeAurae currently uses dark mode.</p>
+    </div>
+    <button class="setting-action" onclick="toggleTheme()">
+     Toggle
+    </button>
+   </div>
+
+   <div class="setting">
+    <div class="setting-info">
+     <h3>🔔 Notifications</h3>
+     <p>Manage future notifications.</p>
+    </div>
+    <button class="setting-action"
+            onclick="comingAlert('Notifications')">
+     Soon
+    </button>
+   </div>
+
+   <div class="setting">
+    <div class="setting-info">
+     <h3>🌐 Language</h3>
+     <p>Language options will be added later.</p>
+    </div>
+    <button class="setting-action"
+            onclick="comingAlert('Language')">
+     Soon
+    </button>
+   </div>
+
+   <div class="setting">
+    <div class="setting-info">
+     <h3>📩 Contact Us</h3>
+     <p>Get in touch with MakeAurae.</p>
+    </div>
+    <button class="setting-action"
+            onclick="showPage('contact')">
+     Open
+    </button>
+   </div>
+
+   <div class="setting">
+    <div class="setting-info">
+     <h3>💬 Feedback</h3>
+     <p>Help us improve MakeAurae.</p>
+    </div>
+    <button class="setting-action"
+            onclick="showPage('feedback')">
+     Open
+    </button>
+   </div>
+
+   <div class="setting">
+    <div class="setting-info">
+     <h3>ℹ️ About</h3>
+     <p>Learn about MakeAurae.</p>
+    </div>
+    <button class="setting-action"
+            onclick="showPage('about')">
+     Open
+    </button>
+   </div>
+
+ </div>
+
+ </section>
+
+</main>
+
+
+<!-- ================= CONTACT ================= -->
+
+<main id="contact" class="page">
+
+ <section class="section">
+
+  <div class="hero">
+   <div class="badge">📩 CONTACT</div>
+   <h1>Contact <span class="gradient">Us.</span></h1>
+   <p>
+    Contact system will be connected when we add backend support.
+   </p>
+  </div>
+
+  <div class="coming">
+   <div class="coming-icon">📬</div>
+   <h3>Contact System Coming Soon</h3>
+   <p>We will add the real contact form later.</p>
+  </div>
+
+ </section>
+
+</main>
+
+
+<!-- ================= FEEDBACK ================= -->
+
+<main id="feedback" class="page">
+
+ <section class="section">
+
+  <div class="hero">
+   <div class="badge">💬 FEEDBACK</div>
+   <h1>Your <span class="gradient">Feedback.</span></h1>
+   <p>
+    A proper feedback system will be connected later.
+   </p>
+  </div>
+
+  <div class="coming">
+   <div class="coming-icon">💡</div>
+   <h3>Feedback System Coming Soon</h3>
+   <p>We'll connect a real feedback form in a future update.</p>
+  </div>
+
+ </section>
+
+</main>
+
+
+<!-- ================= ABOUT ================= -->
+
+<main id="about" class="page">
+
+ <section class="section">
+
+  <div class="hero">
+   <div class="badge">✦ ABOUT</div>
+   <h1>About <span class="gradient">MakeAurae.</span></h1>
+   <p>
+    MakeAurae is a creator-focused hub designed to make
+    everyday content creation simpler and faster.
+   </p>
+  </div>
+
+  <div class="coming">
+   <div class="coming-icon">✨</div>
+   <h3>Create. Enhance. Stand Out.</h3>
+   <p>
+    More tools for creators, gamers and social media users
+    are coming soon.
+   </p>
+  </div>
+
+ </section>
+
+</main>
+
 
 <footer>
-
-  <strong>MakeAurae</strong>
-
-  <br><br>
-
-  Create. Enhance. Stand Out.
-
-  <br><br>
-
-  © 2026 MakeAurae
-
+ <strong>MakeAurae</strong><br><br>
+ Create. Enhance. Stand Out.<br><br>
+ © 2026 MakeAurae
 </footer>
 
 
 <!-- ================= BOTTOM NAV ================= -->
 
-<div class="bottom-nav">
+<nav class="bottom-nav">
 
-  <div class="nav-item active" onclick="goHome()">
-    <b>⌂</b>
-    Home
-  </div>
+ <div class="nav" onclick="showPage('home')">
+  <b>⌂</b>Home
+ </div>
 
-  <div class="nav-item" onclick="showTools()">
-    <b>⚙</b>
-    Tools
-  </div>
+ <div class="nav" onclick="showPage('tools')">
+  <b>🛠</b>Tools
+ </div>
 
-  <div class="nav-item" onclick="scrollToFolders()">
-    <b>✦</b>
-    Explore
-  </div>
+ <div class="nav" onclick="showPage('home');setTimeout(()=>document.getElementById('folders').scrollIntoView({behavior:'smooth'}),100)">
+  <b>✦</b>Explore
+ </div>
 
-  <div class="nav-item" onclick="showFavorites()">
-    <b>♡</b>
-    Saved
-  </div>
+ <div class="nav" onclick="showPage('saved')">
+  <b>♡</b>Saved
+ </div>
 
-  <div class="nav-item" onclick="openMenu()">
-    <b>☰</b>
-    More
-  </div>
-
-</div>
-
-
-<script>
-
-/* ================= MENU ================= */
-
-function openMenu(){
-
-  document.getElementById("sideMenu").classList.add("open");
-
-  document.getElementById("overlay").classList.add("show");
-
-}
-
-function closeMenu(){
-
-  document.getElementById("sideMenu").classList.remove("open");
-
-  document.getElementById("overlay").classList.remove("show");
-
-}
-
-
-/* ================= PAGE SYSTEM ================= */
-
-function hidePages(){
-
-  document.querySelectorAll(".page").forEach(page=>{
-    page.classList.remove("active");
-  });
-
-}
-
-function goHome(){
-
-  closeMen
+ <div class="nav" onclick="showPage('settings')">
+  <b>⚙</b>Settings
+  
