@@ -78,7 +78,28 @@ footer{text-align:center;padding:45px 20px 90px;color:#666a78;font-size:12px}
 </div>
 
 </section>
+<section class="section">
+  <div class="tool">
+    <div class="tool-icon">🔤</div>
 
+    <h3>Stylish Text Generator</h3>
+
+    <p>Convert your normal text into stylish fonts for social media, gaming and more.</p>
+
+    <input
+      id="styleTextInput"
+      class="input"
+      type="text"
+      placeholder="Enter your text..."
+    >
+
+    <button class="generate" onclick="generateStyles()">
+      Generate Styles ✨
+    </button>
+
+    <div id="styleResults" class="results"></div>
+  </div>
+</section>
 <footer>
 <strong>MakeAurae</strong><br><br>
 Create. Enhance. Stand Out.<br><br>
@@ -181,6 +202,72 @@ navigator.clipboard.writeText(name);
 button.innerText="Copied!";
 setTimeout(()=>button.innerText="Copy",1200);
 }
+  function generateStyles() {
+  const text = document.getElementById("styleTextInput").value.trim();
+  const results = document.getElementById("styleResults");
+
+  if (!text) {
+    results.innerHTML =
+      '<div class="info">Pehle apna text enter karo.</div>';
+    return;
+  }
+
+  const normal = text;
+
+  const bold = text.split("").map(c => {
+    const code = c.charCodeAt(0);
+
+    if (code >= 65 && code <= 90)
+      return String.fromCodePoint(0x1D400 + code - 65);
+
+    if (code >= 97 && code <= 122)
+      return String.fromCodePoint(0x1D41A + code - 97);
+
+    return c;
+  }).join("");
+
+  const italic = text.split("").map(c => {
+    const code = c.charCodeAt(0);
+
+    if (code >= 65 && code <= 90)
+      return String.fromCodePoint(0x1D434 + code - 65);
+
+    if (code >= 97 && code <= 122)
+      return String.fromCodePoint(0x1D44E + code - 97);
+
+    return c;
+  }).join("");
+
+  const fullWidth = text
+    .split("")
+    .map(c => {
+      const code = c.charCodeAt(0);
+
+      if (code >= 33 && code <= 126)
+        return String.fromCharCode(code + 0xFEE0);
+
+      return c === " " ? "　" : c;
+    })
+    .join("");
+
+  const styles = [
+    ["Normal", normal],
+    ["Bold", bold],
+    ["Italic", italic],
+    ["Full Width", fullWidth],
+    ["Uppercase", text.toUpperCase()],
+    ["Lowercase", text.toLowerCase()]
+  ];
+
+  results.innerHTML = styles.map(([name, value]) => `
+    <div class="result">
+      <span>${value}</span>
+      <button class="copy" onclick="copyName('${value.replace(/'/g, "\\'")}',this)">
+        Copy
+      </button>
+    </div>
+  `).join("");
+  }
 </script>
 
 </body>
