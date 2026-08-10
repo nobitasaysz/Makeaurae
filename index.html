@@ -6,85 +6,340 @@
 <title>MakeAurae — Create Smarter</title>
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0;font-family:Arial,sans-serif}
-body{background:#08090f;color:#fff;min-height:100vh}
-header{padding:20px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #202332;background:#08090f}
-.logo{font-size:22px;font-weight:800}.logo span{color:#9b6cff}
-.menu{font-size:22px;color:#aaa}
-.hero{text-align:center;padding:50px 20px 30px}
-.badge{display:inline-block;padding:7px 13px;border:1px solid #30264c;border-radius:50px;color:#b89aff;font-size:12px;margin-bottom:18px;background:#110d1d}
-h1{font-size:40px;line-height:1.05;margin-bottom:15px}
-h1 span{background:linear-gradient(90deg,#a86cff,#5d9dff);-webkit-background-clip:text;color:transparent}
-.hero p{color:#999dad;max-width:520px;margin:auto;line-height:1.6;font-size:15px}
-.search{margin:28px auto 0;max-width:550px;display:flex;background:#11131c;border:1px solid #282b3b;border-radius:14px;padding:5px}
-.search input{flex:1;border:0;outline:none;background:transparent;color:white;padding:14px;font-size:14px}
-.search button,.generate{border:0;border-radius:10px;padding:13px 18px;background:#8b5cf6;color:white;font-weight:700}
-.section{padding:25px 20px;max-width:900px;margin:auto}
-.section-title{margin-bottom:18px}
-.section-title h2{font-size:20px}
-.tool{background:#10121b;border:1px solid #242738;border-radius:18px;padding:22px}
-.tool-icon{font-size:32px;margin-bottom:12px}
-.tool h3{font-size:21px;margin-bottom:8px}
-.tool p{color:#858998;font-size:13px;line-height:1.5;margin-bottom:20px}
-.input{width:100%;padding:15px;border:1px solid #292d40;border-radius:12px;background:#0b0d14;color:#fff;outline:none;margin-bottom:12px}
-.select{width:100%;padding:15px;border:1px solid #292d40;border-radius:12px;background:#0b0d14;color:#fff;outline:none;margin-bottom:15px}
-.generate{width:100%;cursor:pointer;font-size:15px}
-.results{margin-top:18px;display:grid;gap:10px}
-.result{display:flex;justify-content:space-between;align-items:center;background:#151722;border:1px solid #272b3b;padding:13px 15px;border-radius:12px}
-.result span{font-size:14px;word-break:break-all}
-.copy{border:0;background:#252a3c;color:#fff;padding:8px 12px;border-radius:8px;cursor:pointer}
-.info{color:#74798a;font-size:12px;text-align:center;margin-top:12px}
-footer{text-align:center;padding:45px 20px 90px;color:#666a78;font-size:12px}
-.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:rgba(12,13,20,.97);border-top:1px solid #202332;display:flex;justify-content:space-around;padding:12px 5px}
-.nav-item{color:#777b89;font-size:11px;text-align:center}.nav-item b{display:block;font-size:18px;margin-bottom:3px}.active{color:#a779ff}
-@media(max-width:600px){h1{font-size:34px}}
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family:Arial,sans-serif
+}
+
+body{
+  background:#08090f;
+  color:#fff;
+  min-height:100vh
+}
+
+header{
+  padding:20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  border-bottom:1px solid #202332;
+  background:#08090f
+}
+
+.logo{
+  font-size:22px;
+  font-weight:800
+}
+
+.logo span{
+  color:#9b6cff
+}
+
+.menu{
+  font-size:22px;
+  color:#aaa
+}
+
+.hero{
+  text-align:center;
+  padding:50px 20px 30px
+}
+
+.badge{
+  display:inline-block;
+  padding:7px 13px;
+  border:1px solid #30264c;
+  border-radius:50px;
+  color:#b89aff;
+  font-size:12px;
+  margin-bottom:18px;
+  background:#110d1d
+}
+
+h1{
+  font-size:40px;
+  line-height:1.05;
+  margin-bottom:15px
+}
+
+h1 span{
+  background:linear-gradient(90deg,#a86cff,#5d9dff);
+  -webkit-background-clip:text;
+  color:transparent
+}
+
+.hero p{
+  color:#999dad;
+  max-width:520px;
+  margin:auto;
+  line-height:1.6;
+  font-size:15px
+}
+
+.section{
+  padding:25px 20px;
+  max-width:900px;
+  margin:auto
+}
+
+.tool{
+  background:#10121b;
+  border:1px solid #242738;
+  border-radius:18px;
+  padding:22px;
+  margin-bottom:5px
+}
+
+.tool-icon{
+  font-size:32px;
+  margin-bottom:12px
+}
+
+.tool h3{
+  font-size:21px;
+  margin-bottom:8px
+}
+
+.tool p{
+  color:#858998;
+  font-size:13px;
+  line-height:1.5;
+  margin-bottom:20px
+}
+
+.input{
+  width:100%;
+  padding:15px;
+  border:1px solid #292d40;
+  border-radius:12px;
+  background:#0b0d14;
+  color:#fff;
+  outline:none;
+  margin-bottom:12px
+}
+
+.input:focus,
+.select:focus{
+  border-color:#8b5cf6
+}
+
+.select{
+  width:100%;
+  padding:15px;
+  border:1px solid #292d40;
+  border-radius:12px;
+  background:#0b0d14;
+  color:#fff;
+  outline:none;
+  margin-bottom:15px
+}
+
+.generate{
+  width:100%;
+  border:0;
+  border-radius:10px;
+  padding:13px 18px;
+  background:#8b5cf6;
+  color:white;
+  font-weight:700;
+  cursor:pointer;
+  font-size:15px
+}
+
+.generate:active{
+  transform:scale(.98)
+}
+
+.results{
+  margin-top:18px;
+  display:grid;
+  gap:10px
+}
+
+.result{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  background:#151722;
+  border:1px solid #272b3b;
+  padding:13px 15px;
+  border-radius:12px
+}
+
+.result span{
+  font-size:14px;
+  word-break:break-word;
+  line-height:1.5;
+  flex:1
+}
+
+.copy{
+  flex-shrink:0;
+  border:0;
+  background:#252a3c;
+  color:#fff;
+  padding:8px 12px;
+  border-radius:8px;
+  cursor:pointer
+}
+
+.copy:hover{
+  background:#343a52
+}
+
+.info{
+  color:#74798a;
+  font-size:12px;
+  text-align:center;
+  margin-top:12px
+}
+
+footer{
+  text-align:center;
+  padding:45px 20px 90px;
+  color:#666a78;
+  font-size:12px
+}
+
+.bottom-nav{
+  position:fixed;
+  bottom:0;
+  left:0;
+  right:0;
+  background:rgba(12,13,20,.97);
+  border-top:1px solid #202332;
+  display:flex;
+  justify-content:space-around;
+  padding:12px 5px;
+  z-index:100
+}
+
+.nav-item{
+  color:#777b89;
+  font-size:11px;
+  text-align:center
+}
+
+.nav-item b{
+  display:block;
+  font-size:18px;
+  margin-bottom:3px
+}
+
+.active{
+  color:#a779ff
+}
+
+@media(max-width:600px){
+  h1{
+    font-size:34px
+  }
+
+  .section{
+    padding:18px 15px
+  }
+
+  .tool{
+    padding:18px
+  }
+
+  .result{
+    align-items:flex-start
+  }
+}
 </style>
 </head>
 
 <body>
 
+<!-- HEADER -->
 <header>
-<div class="logo">Make<span>Aurae</span></div>
-<div class="menu">☰</div>
+  <div class="logo">Make<span>Aurae</span></div>
+  <div class="menu">☰</div>
 </header>
 
+
+<!-- HERO -->
 <section class="hero">
-<div class="badge">✦ MAKEAURAE TOOLS</div>
-<h1>Create <span>Smarter.</span><br>Create Faster.</h1>
-<p>Simple, useful tools for creators, gamers and social media users.</p>
-</section>
 
-<section class="section">
+  <div class="badge">✦ MAKEAURAE TOOLS</div>
 
-<div class="tool">
-<div class="tool-icon">👤</div>
-<h3>Username Generator</h3>
-<p>Create unique usernames for Instagram, gaming, social media and more.</p>
+  <h1>
+    Create <span>Smarter.</span><br>
+    Create Faster.
+  </h1>
 
-<input id="nameInput" class="input" type="text" placeholder="Enter your name or word">
-
-<select id="styleInput" class="select">
-<option value="cool">Cool</option>
-<option value="gaming">Gaming</option>
-<option value="social">Social</option>
-<option value="anime">Anime</option>
-</select>
-
-<button class="generate" onclick="generateUsernames()">Generate Usernames ✨</button>
-
-<div id="results" class="results"></div>
-
-<div class="info">Your usernames are generated instantly on your device.</div>
-</div>
+  <p>
+    Simple, useful tools for creators, gamers and social media users.
+  </p>
 
 </section>
+
+
+<!-- TOOL 1 : USERNAME GENERATOR -->
 <section class="section">
+
   <div class="tool">
+
+    <div class="tool-icon">👤</div>
+
+    <h3>Username Generator</h3>
+
+    <p>
+      Create unique usernames for Instagram, gaming,
+      social media and more.
+    </p>
+
+    <input
+      id="nameInput"
+      class="input"
+      type="text"
+      placeholder="Enter your name or word"
+    >
+
+    <select id="styleInput" class="select">
+
+      <option value="cool">Cool</option>
+      <option value="gaming">Gaming</option>
+      <option value="social">Social</option>
+      <option value="anime">Anime</option>
+
+    </select>
+
+    <button
+      class="generate"
+      onclick="generateUsernames()"
+    >
+      Generate Usernames ✨
+    </button>
+
+    <div id="results" class="results"></div>
+
+    <div class="info">
+      Your usernames are generated instantly on your device.
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- TOOL 2 : STYLISH TEXT -->
+<section class="section">
+
+  <div class="tool">
+
     <div class="tool-icon">🔤</div>
 
     <h3>Stylish Text Generator</h3>
 
-    <p>Convert your normal text into stylish fonts for social media, gaming and more.</p>
+    <p>
+      Convert your normal text into stylish fonts
+      for social media, gaming and more.
+    </p>
 
     <input
       id="styleTextInput"
@@ -93,181 +348,645 @@ footer{text-align:center;padding:45px 20px 90px;color:#666a78;font-size:12px}
       placeholder="Enter your text..."
     >
 
-    <button class="generate" onclick="generateStyles()">
+    <button
+      class="generate"
+      onclick="generateStyles()"
+    >
       Generate Styles ✨
     </button>
 
     <div id="styleResults" class="results"></div>
+
   </div>
+
 </section>
+
+
+<!-- TOOL 3 : BIO GENERATOR -->
+<section class="section">
+
+  <div class="tool">
+
+    <div class="tool-icon">📝</div>
+
+    <h3>Instagram Bio Generator</h3>
+
+    <p>
+      Create a clean and catchy bio for Instagram,
+      gaming, creators and social media.
+    </p>
+
+    <input
+      id="bioName"
+      class="input"
+      type="text"
+      placeholder="Enter your name..."
+    >
+
+    <input
+      id="bioNiche"
+      class="input"
+      type="text"
+      placeholder="Your niche (e.g. Gaming, Anime, Creator)"
+    >
+
+    <select id="bioStyle" class="select">
+
+      <option value="cool">Cool</option>
+      <option value="attitude">Attitude</option>
+      <option value="gaming">Gaming</option>
+      <option value="creator">Creator</option>
+      <option value="anime">Anime</option>
+      <option value="simple">Simple</option>
+
+    </select>
+
+    <button
+      class="generate"
+      onclick="generateBios()"
+    >
+      Generate Bios ✨
+    </button>
+
+    <div id="bioResults" class="results"></div>
+
+  </div>
+
+</section>
+
+
+<!-- FOOTER -->
 <footer>
-<strong>MakeAurae</strong><br><br>
-Create. Enhance. Stand Out.<br><br>
-© 2026 MakeAurae
+
+  <strong>MakeAurae</strong>
+
+  <br><br>
+
+  Create. Enhance. Stand Out.
+
+  <br><br>
+
+  © 2026 MakeAurae
+
 </footer>
 
+
+<!-- BOTTOM NAV -->
 <div class="bottom-nav">
-<div class="nav-item active"><b>⌂</b>Home</div>
-<div class="nav-item"><b>⚙</b>Tools</div>
-<div class="nav-item"><b>✦</b>Create</div>
-<div class="nav-item"><b>♡</b>Saved</div>
-<div class="nav-item"><b>☰</b>More</div>
+
+  <div class="nav-item active">
+    <b>⌂</b>
+    Home
+  </div>
+
+  <div class="nav-item">
+    <b>⚙</b>
+    Tools
+  </div>
+
+  <div class="nav-item">
+    <b>✦</b>
+    Create
+  </div>
+
+  <div class="nav-item">
+    <b>♡</b>
+    Saved
+  </div>
+
+  <div class="nav-item">
+    <b>☰</b>
+    More
+  </div>
+
 </div>
+
 
 <script>
+
+/* =========================
+   TOOL 1
+   USERNAME GENERATOR
+========================= */
+
 function generateUsernames(){
 
-const name=document.getElementById("nameInput").value.trim().replace(/\s+/g,"");
-const style=document.getElementById("styleInput").value;
-const results=document.getElementById("results");
+  const name =
+    document
+    .getElementById("nameInput")
+    .value
+    .trim()
+    .replace(/\s+/g,"");
 
-if(!name){
-results.innerHTML='<div class="info">Pehle apna naam ya word enter karo.</div>';
-return;
-}
+  const style =
+    document.getElementById("styleInput").value;
 
-const random=Math.floor(Math.random()*999);
-let list=[];
+  const results =
+    document.getElementById("results");
 
-if(style==="gaming"){
-list=[
-name+"X",
-name+"OP",
-name+"YT",
-name+"GG",
-name+"Prime",
-name+"Rush",
-"Dark"+name,
-"Real"+name,
-name+"Plays",
-name+"_X"
-];
-}
+  if(!name){
 
-else if(style==="social"){
-list=[
-"its"+name,
-"the"+name,
-"hey"+name,
-"iam"+name,
-"real"+name,
-"nameis"+name,
-"name."+name,
-name+"daily",
-name+"world",
-"official"+name
-];
-}
-
-else if(style==="anime"){
-list=[
-name+"Senpai",
-name+"Kun",
-name+"Chan",
-name+"Uchiha",
-"Shadow"+name,
-name+"Akatsuki",
-name+"Shinobi",
-name+"Sensei",
-"Dark"+name,
-name+"Rinnegan"
-];
-}
-
-else{
-list=[
-"its"+name,
-"real"+name,
-"name."+name,
-name+"X",
-"name_"+name,
-"the"+name,
-name+"Nova",
-name+"Aura",
-name+"Verse",
-name+random
-];
-}
-
-results.innerHTML=list.map((username,index)=>`
-<div class="result">
-<span>${username}</span>
-<button class="copy" onclick="copyName('${username}',this)">Copy</button>
-</div>
-`).join("");
-}
-
-function copyName(name,button){
-navigator.clipboard.writeText(name);
-button.innerText="Copied!";
-setTimeout(()=>button.innerText="Copy",1200);
-}
-  function generateStyles() {
-  const text = document.getElementById("styleTextInput").value.trim();
-  const results = document.getElementById("styleResults");
-
-  if (!text) {
     results.innerHTML =
-      '<div class="info">Pehle apna text enter karo.</div>';
+      '<div class="info">Pehle apna naam ya word enter karo.</div>';
+
     return;
   }
 
-  const normal = text;
+  const random =
+    Math.floor(Math.random()*999);
 
-  const bold = text.split("").map(c => {
-    const code = c.charCodeAt(0);
+  let list=[];
 
-    if (code >= 65 && code <= 90)
-      return String.fromCodePoint(0x1D400 + code - 65);
 
-    if (code >= 97 && code <= 122)
-      return String.fromCodePoint(0x1D41A + code - 97);
+  if(style==="gaming"){
 
-    return c;
-  }).join("");
+    list=[
+      name+"X",
+      name+"OP",
+      name+"YT",
+      name+"GG",
+      name+"Prime",
+      name+"Rush",
+      "Dark"+name,
+      "Real"+name,
+      name+"Plays",
+      name+"_X"
+    ];
 
-  const italic = text.split("").map(c => {
-    const code = c.charCodeAt(0);
+  }
 
-    if (code >= 65 && code <= 90)
-      return String.fromCodePoint(0x1D434 + code - 65);
 
-    if (code >= 97 && code <= 122)
-      return String.fromCodePoint(0x1D44E + code - 97);
+  else if(style==="social"){
 
-    return c;
-  }).join("");
+    list=[
+      "its"+name,
+      "the"+name,
+      "hey"+name,
+      "iam"+name,
+      "real"+name,
+      "nameis"+name,
+      name+"."+name,
+      name+"daily",
+      name+"world",
+      "official"+name
+    ];
 
-  const fullWidth = text
+  }
+
+
+  else if(style==="anime"){
+
+    list=[
+      name+"Senpai",
+      name+"Kun",
+      name+"Chan",
+      name+"Uchiha",
+      "Shadow"+name,
+      name+"Akatsuki",
+      name+"Shinobi",
+      name+"Sensei",
+      "Dark"+name,
+      name+"Rinnegan"
+    ];
+
+  }
+
+
+  else{
+
+    list=[
+      "its"+name,
+      "real"+name,
+      name+"."+name,
+      name+"X",
+      name+"_"+name,
+      "the"+name,
+      name+"Nova",
+      name+"Aura",
+      name+"Verse",
+      name+random
+    ];
+
+  }
+
+
+  results.innerHTML =
+    list.map(username => `
+
+      <div class="result">
+
+        <span>${escapeHTML(username)}</span>
+
+        <button
+          class="copy"
+          onclick="copyText(this, '${escapeAttribute(username)}')"
+        >
+          Copy
+        </button>
+
+      </div>
+
+    `).join("");
+
+}
+
+
+/* =========================
+   TOOL 2
+   STYLISH TEXT
+========================= */
+
+function generateStyles(){
+
+  const text =
+    document
+    .getElementById("styleTextInput")
+    .value
+    .trim();
+
+  const results =
+    document.getElementById("styleResults");
+
+  if(!text){
+
+    results.innerHTML =
+      '<div class="info">Pehle apna text enter karo.</div>';
+
+    return;
+  }
+
+
+  const normal=text;
+
+
+  const bold =
+    text.split("").map(c => {
+
+      const code=c.charCodeAt(0);
+
+      if(code>=65 && code<=90)
+        return String.fromCodePoint(
+          0x1D400+code-65
+        );
+
+      if(code>=97 && code<=122)
+        return String.fromCodePoint(
+          0x1D41A+code-97
+        );
+
+      return c;
+
+    }).join("");
+
+
+  const italic =
+    text.split("").map(c => {
+
+      const code=c.charCodeAt(0);
+
+      if(code>=65 && code<=90)
+        return String.fromCodePoint(
+          0x1D434+code-65
+        );
+
+      if(code>=97 && code<=122)
+        return String.fromCodePoint(
+          0x1D44E+code-97
+        );
+
+      return c;
+
+    }).join("");
+
+
+  const fullWidth =
+    text
     .split("")
     .map(c => {
-      const code = c.charCodeAt(0);
 
-      if (code >= 33 && code <= 126)
-        return String.fromCharCode(code + 0xFEE0);
+      const code=c.charCodeAt(0);
 
-      return c === " " ? "　" : c;
+      if(code>=33 && code<=126)
+        return String.fromCharCode(
+          code+0xFEE0
+        );
+
+      return c===" " ? "　" : c;
+
     })
     .join("");
 
-  const styles = [
-    ["Normal", normal],
-    ["Bold", bold],
-    ["Italic", italic],
-    ["Full Width", fullWidth],
-    ["Uppercase", text.toUpperCase()],
-    ["Lowercase", text.toLowerCase()]
+
+  const styles=[
+
+    ["Normal",normal],
+    ["Bold",bold],
+    ["Italic",italic],
+    ["Full Width",fullWidth],
+    ["Uppercase",text.toUpperCase()],
+    ["Lowercase",text.toLowerCase()]
+
   ];
 
-  results.innerHTML = styles.map(([name, value]) => `
-    <div class="result">
-      <span>${value}</span>
-      <button class="copy" onclick="copyName('${value.replace(/'/g, "\\'")}',this)">
-        Copy
-      </button>
-    </div>
-  `).join("");
+
+  results.innerHTML =
+    styles.map(([name,value]) => `
+
+      <div class="result">
+
+        <span>${escapeHTML(value)}</span>
+
+        <button
+          class="copy"
+          onclick="copyText(this, ${JSON.stringify(value)})"
+        >
+          Copy
+        </button>
+
+      </div>
+
+    `).join("");
+
+}
+
+
+/* =========================
+   TOOL 3
+   BIO GENERATOR
+========================= */
+
+function generateBios(){
+
+  const name =
+    document
+    .getElementById("bioName")
+    .value
+    .trim();
+
+  const niche =
+    document
+    .getElementById("bioNiche")
+    .value
+    .trim();
+
+  const style =
+    document
+    .getElementById("bioStyle")
+    .value;
+
+  const results =
+    document.getElementById("bioResults");
+
+
+  if(!name || !niche){
+
+    results.innerHTML =
+      '<div class="info">Name aur niche dono enter karo.</div>';
+
+    return;
   }
+
+
+  let bios=[];
+
+
+  if(style==="cool"){
+
+    bios=[
+
+      `${name} ✦ | ${niche}`,
+
+      `Just ${name} ✨
+Creating my own vibe 🎯
+${niche} | Dreams → Reality`,
+
+      `${name} ⚡
+Different mindset. Different journey.
+${niche} 🚀`,
+
+      `Welcome to ${name}'s world 🌎
+${niche} • Creator • Dreamer`,
+
+      `${name} ✨
+Creating • Learning • Growing`
+
+    ];
+
+  }
+
+
+  else if(style==="attitude"){
+
+    bios=[
+
+      `${name} 👑
+My vibe. My rules.
+${niche} ⚡`,
+
+      `Not here to fit in.
+Here to stand out. 🔥
+${name} | ${niche}`,
+
+      `${name} 🖤
+Silent moves. Loud results.
+${niche} 👑`,
+
+      `Built different ⚡
+${name} | ${niche}`,
+
+      `No competition.
+I'm in my own lane. 🥷`
+
+    ];
+
+  }
+
+
+  else if(style==="gaming"){
+
+    bios=[
+
+      `${name} 🎮
+${niche} | Gamer
+Playing. Winning. Repeating. 🔥`,
+
+      `🎮 ${name}
+⚡ ${niche}
+🏆 Leveling up every day`,
+
+      `${name} × Gaming 🎮
+Clutch • Grind • Repeat`,
+
+      `Gaming is not a hobby.
+It's my world. 🎮🔥
+${name}`,
+
+      `🎯 ${name}
+🎮 ${niche}
+🏆 Future Champion`
+
+    ];
+
+  }
+
+
+  else if(style==="creator"){
+
+    bios=[
+
+      `${name} ✨
+Content Creator 🎬
+${niche} | Creating daily`,
+
+      `🎬 ${name}
+Creating content that stands out.
+${niche} 🚀`,
+
+      `${name} | Creator ✦
+Ideas → Content → Community`,
+
+      `Making content.
+Building a community. ❤️
+${name} • ${niche}`,
+
+      `✨ ${name}
+Creator | Editor | Dreamer
+${niche}`
+
+    ];
+
+  }
+
+
+  else if(style==="anime"){
+
+    bios=[
+
+      `${name} ⚔️
+Anime • ${niche} • Edits
+Living in my own arc 🌀`,
+
+      `🌀 ${name}
+Anime is my escape.
+${niche} ⚡`,
+
+      `${name} | Shinobi Mode 🥷
+${niche} • Anime • Edits`,
+
+      `⚔️ Main Character Energy
+${name}
+${niche} 🌀`,
+
+      `Lost in anime worlds 🌌
+${name} • ${niche}`
+
+    ];
+
+  }
+
+
+  else{
+
+    bios=[
+
+      `${name} ✨
+${niche}`,
+
+      `${name} | ${niche}
+Creating & growing 🚀`,
+
+      `Just ${name}.
+Doing what I love. ❤️
+${niche}`,
+
+      `${name} 🌱
+Learn • Create • Grow`,
+
+      `${name} | Creator
+${niche} ✦`
+
+    ];
+
+  }
+
+
+  results.innerHTML =
+    bios.map(bio => `
+
+      <div class="result">
+
+        <span style="white-space:pre-line">
+          ${escapeHTML(bio)}
+        </span>
+
+        <button
+          class="copy"
+          onclick="copyText(this, ${JSON.stringify(bio)})"
+        >
+          Copy
+        </button>
+
+      </div>
+
+    `).join("");
+
+}
+
+
+/* =========================
+   COPY FUNCTION
+========================= */
+
+function copyText(button,text){
+
+  navigator.clipboard.writeText(text)
+  .then(()=>{
+
+    button.innerText="Copied!";
+
+    setTimeout(()=>{
+      button.innerText="Copy";
+    },1200);
+
+  })
+  .catch(()=>{
+
+    button.innerText="Failed";
+
+    setTimeout(()=>{
+      button.innerText="Copy";
+    },1200);
+
+  });
+
+}
+
+
+/* =========================
+   SECURITY HELPERS
+========================= */
+
+function escapeHTML(text){
+
+  return text
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+
+}
+
+
+function escapeAttribute(text){
+
+  return text
+    .replace(/\\/g,"\\\\")
+    .replace(/'/g,"\\'")
+    .replace(/"/g,"&quot;");
+
+}
+
 </script>
 
 </body>
