@@ -2,3856 +2,805 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
 <meta name="theme-color" content="#08090f">
+<meta name="description" content="MakeAurae — Create Smarter. Create Faster.">
+<link rel="icon" type="image/png" href="logo.png">
 <title>MakeAurae — Create Smarter</title>
 
 <style>
-*{
- box-sizing:border-box;
- margin:0;
- padding:0;
- font-family:Arial,sans-serif;
-}
-
-body{
- background:#08090f;
- color:#fff;
- min-height:100vh;
-}
-
-button,input,select,textarea{
- font:inherit;
-}
-
-button{
- cursor:pointer;
-}
-
-button:active{
- transform:scale(.97);
-}
-
-/* ================= LANDING ================= */
+*{box-sizing:border-box;margin:0;padding:0;font-family:Arial,sans-serif}
+html{scroll-behavior:smooth}
+body{background:#08090f;color:#fff;min-height:100vh}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+button:active{transform:scale(.97)}
+img{max-width:100%;display:block}
 
 #landing{
- position:fixed;
- inset:0;
- z-index:9999;
- display:flex;
- align-items:center;
- justify-content:center;
- text-align:center;
- background:#08090f;
- overflow:hidden;
- transition:opacity .6s ease;
+ position:fixed;inset:0;z-index:9999;display:flex;align-items:center;
+ justify-content:center;text-align:center;background:#08090f;overflow:hidden;
+ transition:opacity .6s ease
 }
-
 .landing-bg{
- position:absolute;
- width:420px;
- height:420px;
- border-radius:50%;
- background:rgba(139,92,246,.13);
- filter:blur(80px);
- animation:glow 3s ease-in-out infinite;
+ position:absolute;width:420px;height:420px;border-radius:50%;
+ background:rgba(139,92,246,.13);filter:blur(80px);
+ animation:glow 3s ease-in-out infinite
 }
-
-@keyframes glow{
- 0%,100%{
-  transform:scale(.85);
-  opacity:.45;
- }
- 50%{
-  transform:scale(1.15);
-  opacity:1;
- }
+@keyframes glow{0%,100%{transform:scale(.85);opacity:.45}50%{transform:scale(1.15);opacity:1}}
+.landing-content{position:relative;width:min(92%,650px)}
+.logo-big-img{
+ width:112px;height:112px;object-fit:cover;border-radius:50%;
+ margin:0 auto 18px;box-shadow:0 0 35px rgba(139,92,246,.35);
+ opacity:0;animation:fadeUp .7s .1s forwards
 }
-
-.landing-content{
- position:relative;
- width:min(90%,650px);
+.logo-word{font-size:30px;font-weight:800;margin-bottom:20px;opacity:0;animation:fadeUp .7s .25s forwards}
+.logo-word span,.logo span{color:#9b6cff}
+.landing-badge,.badge{
+ display:inline-block;padding:7px 14px;border:1px solid #30264c;border-radius:50px;
+ color:#b89aff;background:#110d1d;font-size:11px;letter-spacing:1px
 }
-
-.logo-big{
- font-size:30px;
- font-weight:800;
- margin-bottom:25px;
- opacity:0;
- animation:fadeUp .7s .2s forwards;
-}
-
-.logo-big span,
-.logo span{
- color:#9b6cff;
-}
-
-.landing-badge,
-.badge{
- display:inline-block;
- padding:7px 14px;
- border:1px solid #30264c;
- border-radius:50px;
- color:#b89aff;
- background:#110d1d;
- font-size:11px;
- letter-spacing:1px;
-}
-
-.landing-badge{
- opacity:0;
- animation:fadeUp .7s .6s forwards;
-}
-
+.landing-badge{opacity:0;animation:fadeUp .7s .55s forwards}
 .landing-title{
- font-size:clamp(42px,10vw,70px);
- line-height:1;
- letter-spacing:-3px;
- margin:22px 0 16px;
- opacity:0;
- animation:fadeUp .8s .9s forwards;
+ font-size:clamp(42px,10vw,70px);line-height:1;letter-spacing:-3px;margin:22px 0 16px;
+ opacity:0;animation:fadeUp .8s .85s forwards
 }
-
 .gradient{
  background:linear-gradient(90deg,#a86cff,#5d9dff);
- -webkit-background-clip:text;
- background-clip:text;
- color:transparent;
+ -webkit-background-clip:text;background-clip:text;color:transparent
 }
-
 .landing-desc{
- color:#9297a7;
- line-height:1.6;
- font-size:14px;
- max-width:530px;
- margin:auto;
- opacity:0;
- animation:fadeUp .8s 1.2s forwards;
+ color:#9297a7;line-height:1.6;font-size:14px;max-width:530px;margin:auto;
+ opacity:0;animation:fadeUp .8s 1.15s forwards
 }
-
 .loading-box{
- width:220px;
- height:4px;
- background:#1a1d28;
- border-radius:20px;
- overflow:hidden;
- margin:30px auto 12px;
- opacity:0;
- animation:fadeIn .5s 1.5s forwards;
+ width:220px;height:4px;background:#1a1d28;border-radius:20px;overflow:hidden;
+ margin:30px auto 12px;opacity:0;animation:fadeIn .5s 1.45s forwards
 }
-
 .loading-line{
- width:0;
- height:100%;
- background:linear-gradient(90deg,#8b5cf6,#62a0ff);
- box-shadow:0 0 15px #8b5cf6;
- animation:loading 3.2s 1.6s forwards;
+ width:0;height:100%;background:linear-gradient(90deg,#8b5cf6,#62a0ff);
+ box-shadow:0 0 15px #8b5cf6;animation:loading 3.2s 1.5s forwards
 }
+.loading-text{color:#686d7d;font-size:11px;opacity:0;animation:fadeIn .5s 1.55s forwards}
+@keyframes loading{to{width:100%}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
 
-@keyframes loading{
- to{
-  width:100%;
- }
-}
-
-.loading-text{
- color:#686d7d;
- font-size:11px;
- opacity:0;
- animation:fadeIn .5s 1.6s forwards;
-}
-
-@keyframes fadeUp{
- from{
-  opacity:0;
-  transform:translateY(18px);
- }
- to{
-  opacity:1;
-  transform:translateY(0);
- }
-}
-
-@keyframes fadeIn{
- from{
-  opacity:0;
- }
- to{
-  opacity:1;
- }
-}
-
-/* ================= APP ================= */
-
-#app{
- display:none;
-}
-
+#app{display:none}
 header{
- height:68px;
- padding:0 18px;
- display:flex;
- align-items:center;
- justify-content:space-between;
- border-bottom:1px solid #202332;
- background:rgba(8,9,15,.96);
- position:sticky;
- top:0;
- z-index:100;
- backdrop-filter:blur(12px);
+ height:68px;padding:0 18px;display:flex;align-items:center;justify-content:space-between;
+ border-bottom:1px solid #202332;background:rgba(8,9,15,.96);position:sticky;top:0;
+ z-index:100;backdrop-filter:blur(12px)
 }
-
-.logo{
- font-size:21px;
- font-weight:800;
-}
-
-.header-right{
- display:flex;
- gap:9px;
-}
-
+.logo{display:flex;align-items:center;gap:9px;font-size:21px;font-weight:800}
+.logo img{width:38px;height:38px;border-radius:50%;object-fit:cover}
+.header-right{display:flex;gap:9px}
 .icon-btn{
- width:40px;
- height:40px;
- border:1px solid #292c3c;
- background:#11131c;
- color:#fff;
- border-radius:11px;
- font-size:18px;
+ width:40px;height:40px;border:1px solid #292c3c;background:#11131c;color:#fff;
+ border-radius:11px;font-size:18px
 }
 
-/* ================= DRAWER ================= */
-
-.overlay{
- position:fixed;
- inset:0;
- background:rgba(0,0,0,.7);
- z-index:200;
- display:none;
-}
-
-.overlay.show{
- display:block;
-}
-
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:200;display:none}
+.overlay.show{display:block}
 .drawer{
- position:fixed;
- right:-310px;
- top:0;
- width:290px;
- height:100vh;
- background:#0d0f17;
- border-left:1px solid #292c3c;
- z-index:210;
- padding:22px 17px;
- transition:.3s;
+ position:fixed;right:-310px;top:0;width:290px;height:100vh;background:#0d0f17;
+ border-left:1px solid #292c3c;z-index:210;padding:22px 17px;transition:.3s
 }
-
-.drawer.open{
- right:0;
-}
-
-.drawer-head{
- display:flex;
- justify-content:space-between;
- align-items:center;
- margin-bottom:28px;
-}
-
-.close{
- width:36px;
- height:36px;
- border:0;
- border-radius:10px;
- background:#191c27;
- color:#fff;
- font-size:20px;
-}
-
+.drawer.open{right:0}
+.drawer-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:28px}
+.drawer-brand{display:flex;align-items:center;gap:8px}
+.drawer-brand img{width:34px;height:34px;border-radius:50%}
+.close{width:36px;height:36px;border:0;border-radius:10px;background:#191c27;color:#fff;font-size:20px}
 .menu-btn{
- width:100%;
- border:1px solid transparent;
- background:transparent;
- color:#aeb2c0;
- padding:14px;
- border-radius:11px;
- text-align:left;
- margin-bottom:6px;
+ width:100%;border:1px solid transparent;background:transparent;color:#aeb2c0;
+ padding:14px;border-radius:11px;text-align:left;margin-bottom:6px
 }
+.menu-btn:hover{background:#151722;border-color:#292c3c;color:#fff}
 
-.menu-btn:hover{
- background:#151722;
- border-color:#292c3c;
- color:#fff;
-}
+.page{display:none;padding-bottom:100px}
+.page.active{display:block}
+.hero{text-align:center;padding:48px 20px 25px;max-width:800px;margin:auto}
+.hero h1{font-size:clamp(34px,8vw,55px);margin:15px 0}
+.hero p{color:#8d92a1;line-height:1.6;font-size:14px}
+.search-wrap{max-width:650px;margin:auto;padding:10px 20px 25px}
+.search{display:flex;align-items:center;background:#11131c;border:1px solid #282b3b;border-radius:14px;padding:5px}
+.search-icon{padding:0 10px;color:#777c8d}
+.search input{flex:1;background:transparent;border:0;outline:0;color:#fff;padding:13px 5px}
+.section{max-width:1050px;margin:auto;padding:20px}
+.section-title{margin-bottom:17px}
+.section-title h2{font-size:21px}
+.section-title p{color:#777c8d;font-size:12px;margin-top:5px}
 
-/* ================= PAGES ================= */
-
-.page{
- display:none;
- padding-bottom:100px;
-}
-
-.page.active{
- display:block;
-}
-
-.hero{
- text-align:center;
- padding:48px 20px 25px;
- max-width:800px;
- margin:auto;
-}
-
-.hero h1{
- font-size:clamp(34px,8vw,55px);
- margin:15px 0;
-}
-
-.hero p{
- color:#8d92a1;
- line-height:1.6;
- font-size:14px;
-}
-
-/* ================= SEARCH ================= */
-
-.search-wrap{
- max-width:650px;
- margin:auto;
- padding:10px 20px 25px;
-}
-
-.search{
- display:flex;
- align-items:center;
- background:#11131c;
- border:1px solid #282b3b;
- border-radius:14px;
- padding:5px;
-}
-
-.search-icon{
- padding:0 10px;
- color:#777c8d;
-}
-
-.search input{
- flex:1;
- background:transparent;
- border:0;
- outline:0;
- color:#fff;
- padding:13px 5px;
-}
-
-/* ================= SECTION ================= */
-
-.section{
- max-width:1050px;
- margin:auto;
- padding:20px;
-}
-
-.section-title{
- margin-bottom:17px;
-}
-
-.section-title h2{
- font-size:21px;
-}
-
-.section-title p{
- color:#777c8d;
- font-size:12px;
- margin-top:5px;
-}
-
-/* ================= FOLDERS ================= */
-
-.folder-grid{
- display:grid;
- grid-template-columns:repeat(2,1fr);
- gap:14px;
-}
-
+.folder-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
 .folder{
- min-height:145px;
- padding:20px;
- border:1px solid #25283a;
- border-radius:18px;
- background:linear-gradient(145deg,#12141e,#0d0f17);
- position:relative;
- overflow:hidden;
- transition:.2s;
- cursor:pointer;
+ min-height:145px;padding:20px;border:1px solid #25283a;border-radius:18px;
+ background:linear-gradient(145deg,#12141e,#0d0f17);position:relative;overflow:hidden;
+ transition:.2s;cursor:pointer
 }
-
-.folder:hover{
- transform:translateY(-3px);
- border-color:#7654d5;
-}
-
+.folder:hover{transform:translateY(-3px);border-color:#7654d5}
 .folder:before{
- content:"";
- position:absolute;
- width:120px;
- height:120px;
- border-radius:50%;
- background:rgba(139,92,246,.09);
- right:-45px;
- bottom:-45px;
+ content:"";position:absolute;width:120px;height:120px;border-radius:50%;
+ background:rgba(139,92,246,.09);right:-45px;bottom:-45px
 }
-
-.folder-icon{
- font-size:34px;
- margin-bottom:13px;
-}
-
-.folder h3{
- font-size:16px;
- margin-bottom:6px;
-}
-
-.folder p{
- color:#777c8d;
- font-size:12px;
- line-height:1.4;
-}
-
+.folder-icon{font-size:34px;margin-bottom:13px}
+.folder h3{font-size:16px;margin-bottom:6px}
+.folder p{color:#777c8d;font-size:12px;line-height:1.4}
 .soon{
- position:absolute;
- right:10px;
- top:10px;
- font-size:8px;
- color:#a98cff;
- border:1px solid #30264c;
- background:#191521;
- padding:5px 7px;
- border-radius:20px;
+ position:absolute;right:10px;top:10px;font-size:8px;color:#a98cff;border:1px solid #30264c;
+ background:#191521;padding:5px 7px;border-radius:20px
 }
 
-/* ================= TOOL ================= */
-
-.tool{
- background:#10121b;
- border:1px solid #242738;
- border-radius:18px;
- padding:22px;
+.tool{background:#10121b;border:1px solid #242738;border-radius:18px;padding:22px}
+.tool-icon{font-size:31px;margin-bottom:10px}
+.tool h2{font-size:21px;margin-bottom:7px}
+.tool>p{color:#858998;font-size:13px;line-height:1.5;margin-bottom:18px}
+.input,.select,.textarea{
+ width:100%;padding:14px;border:1px solid #292d40;border-radius:11px;
+ background:#0b0d14;color:#fff;outline:0;margin-bottom:12px
 }
-
-.tool-icon{
- font-size:31px;
- margin-bottom:10px;
-}
-
-.tool h2{
- font-size:21px;
- margin-bottom:7px;
-}
-
-.tool>p{
- color:#858998;
- font-size:13px;
- line-height:1.5;
- margin-bottom:18px;
-}
-
-.input,
-.select,
-.textarea{
- width:100%;
- padding:14px;
- border:1px solid #292d40;
- border-radius:11px;
- background:#0b0d14;
- color:#fff;
- outline:0;
- margin-bottom:12px;
-}
-
-.textarea{
- min-height:130px;
- resize:vertical;
-}
-
+.textarea{min-height:130px;resize:vertical}
 .generate{
- width:100%;
- padding:14px;
- border:0;
- border-radius:11px;
- background:#8b5cf6;
- color:#fff;
- font-weight:700;
+ width:100%;padding:14px;border:0;border-radius:11px;background:#8b5cf6;color:#fff;font-weight:700
 }
-
-.results{
- display:grid;
- gap:9px;
- margin-top:16px;
-}
-
+.generate:hover{background:#7c4fe5}
+.results{display:grid;gap:9px;margin-top:16px}
 .result{
- display:flex;
- align-items:center;
- justify-content:space-between;
- gap:10px;
- background:#151722;
- border:1px solid #272b3b;
- padding:12px;
- border-radius:11px;
+ display:flex;align-items:center;justify-content:space-between;gap:10px;
+ background:#151722;border:1px solid #272b3b;padding:12px;border-radius:11px
 }
-
-.result span{
- font-size:13px;
- word-break:break-word;
- white-space:pre-wrap;
+.result span{font-size:13px;word-break:break-word;white-space:pre-wrap}
+.result-actions{display:flex;gap:6px;flex-shrink:0}
+.copy,.fav{
+ border:0;background:#252a3c;color:#fff;padding:8px 11px;border-radius:8px;font-size:11px
 }
-
-.result-actions{
- display:flex;
- gap:6px;
- flex-shrink:0;
-}
-
-.copy,
-.fav{
- border:0;
- background:#252a3c;
- color:#fff;
- padding:8px 11px;
- border-radius:8px;
- font-size:11px;
-}
-
-.fav.active{
- color:#ffd35c;
-}
-
-/* ================= LIST ================= */
-
+.fav.active{color:#ffd35c}
 .list-card{
- display:flex;
- align-items:center;
- gap:15px;
- padding:17px;
- background:#10121b;
- border:1px solid #25283a;
- border-radius:15px;
- margin-bottom:11px;
+ display:flex;align-items:center;gap:15px;padding:17px;background:#10121b;
+ border:1px solid #25283a;border-radius:15px;margin-bottom:11px
 }
-
-.list-icon{
- font-size:28px;
-}
-
-.list-info{
- flex:1;
-}
-
-.list-info h3{
- font-size:15px;
- margin-bottom:5px;
-}
-
-.list-info p{
- font-size:11px;
- color:#777c8d;
-}
-
-.open-btn{
- border:0;
- background:#252a3c;
- color:#fff;
- padding:9px 12px;
- border-radius:9px;
- font-size:12px;
-}
-
-/* ================= COMING ================= */
-
+.list-icon{font-size:28px}.list-info{flex:1}.list-info h3{font-size:15px;margin-bottom:5px}
+.list-info p{font-size:11px;color:#777c8d}
+.open-btn{border:0;background:#252a3c;color:#fff;padding:9px 12px;border-radius:9px;font-size:12px}
 .coming{
- text-align:center;
- padding:45px 20px;
- border:1px dashed #303448;
- border-radius:18px;
- background:#0d0f17;
+ text-align:center;padding:45px 20px;border:1px dashed #303448;border-radius:18px;background:#0d0f17
 }
-
-.coming-icon{
- font-size:40px;
- margin-bottom:12px;
-}
-
-.coming p{
- color:#777c8d;
- font-size:13px;
- margin-top:8px;
-}
-
-/* ================= SETTINGS ================= */
-
-.settings-card{
- background:#10121b;
- border:1px solid #25283a;
- border-radius:16px;
- overflow:hidden;
-}
-
+.coming-icon{font-size:40px;margin-bottom:12px}
+.coming p{color:#777c8d;font-size:13px;margin-top:8px}
+.settings-card{background:#10121b;border:1px solid #25283a;border-radius:16px;overflow:hidden}
 .setting{
- display:flex;
- align-items:center;
- justify-content:space-between;
- padding:17px;
- border-bottom:1px solid #202332;
+ display:flex;align-items:center;justify-content:space-between;padding:17px;border-bottom:1px solid #202332
 }
-
-.setting:last-child{
- border-bottom:0;
-}
-
-.setting-info h3{
- font-size:14px;
- margin-bottom:4px;
-}
-
-.setting-info p{
- font-size:11px;
- color:#777c8d;
-}
-
-.setting-action{
- border:1px solid #303449;
- background:#171a25;
- color:#fff;
- padding:8px 11px;
- border-radius:8px;
- font-size:11px;
-}
-
-/* ================= BACK ================= */
-
-.back{
- border:0;
- background:transparent;
- color:#a98cff;
- font-size:13px;
- margin-bottom:20px;
-}
-
-/* ================= NAV ================= */
-
+.setting:last-child{border-bottom:0}
+.setting-info h3{font-size:14px;margin-bottom:4px}.setting-info p{font-size:11px;color:#777c8d}
+.setting-action{border:1px solid #303449;background:#171a25;color:#fff;padding:8px 11px;border-radius:8px;font-size:11px}
+.back{border:0;background:transparent;color:#a98cff;font-size:13px;margin-bottom:20px}
 .bottom-nav{
- position:fixed;
- left:0;
- right:0;
- bottom:0;
- z-index:120;
- background:rgba(12,13,20,.97);
- border-top:1px solid #202332;
- display:flex;
- justify-content:space-around;
- padding:9px 4px;
- backdrop-filter:blur(12px);
+ position:fixed;left:0;right:0;bottom:0;z-index:120;background:rgba(12,13,20,.97);
+ border-top:1px solid #202332;display:flex;justify-content:space-around;padding:9px 4px;
+ backdrop-filter:blur(12px)
 }
-
-.nav{
- color:#777b89;
- text-align:center;
- font-size:10px;
- cursor:pointer;
- min-width:55px;
+.nav{color:#777b89;text-align:center;font-size:10px;cursor:pointer;min-width:55px}
+.nav b{display:block;font-size:18px;margin-bottom:3px}.nav.active{color:#a779ff}
+footer{text-align:center;color:#666a78;font-size:12px;padding:45px 20px 110px}
+.toast{
+ position:fixed;left:50%;bottom:82px;transform:translate(-50%,20px);
+ background:#171a25;border:1px solid #34384b;color:#fff;padding:11px 15px;border-radius:11px;
+ font-size:12px;opacity:0;pointer-events:none;transition:.25s;z-index:99999
 }
-
-.nav b{
- display:block;
- font-size:18px;
- margin-bottom:3px;
-}
-
-.nav.active{
- color:#a779ff;
-}
-
-/* ================= FOOTER ================= */
-
-footer{
- text-align:center;
- color:#666a78;
- font-size:12px;
- padding:45px 20px 110px;
-}
-
-/* ================= RESPONSIVE ================= */
-
+.toast.show{opacity:1;transform:translate(-50%,0)}
+.empty{text-align:center;color:#777c8d;padding:25px}
 @media(min-width:700px){
-
- .folder-grid{
-  grid-template-columns:repeat(4,1fr);
- }
-
- .section{
-  padding-left:25px;
-  padding-right:25px;
- }
-
+ .folder-grid{grid-template-columns:repeat(4,1fr)}
+ .section{padding-left:25px;padding-right:25px}
 }
 </style>
 </head>
 
 <body>
 
-<!-- ========================================================= -->
-<!-- LANDING -->
-<!-- ========================================================= -->
-
 <section id="landing">
-
  <div class="landing-bg"></div>
-
  <div class="landing-content">
-
-  <div class="logo-big">
-   Make<span>Aurae</span>
-  </div>
-
-  <div class="landing-badge">
-   ✦ CREATE SMARTER
-  </div>
-
-  <h1 class="landing-title">
-   Create <span class="gradient">Smarter.</span><br>
-   Create Faster.
-  </h1>
-
-  <p class="landing-desc">
-   A simple creator hub for creators, gamers and social media users.
-  </p>
-
-  <div class="loading-box">
-   <div class="loading-line"></div>
-  </div>
-
-  <div class="loading-text">
-   Preparing your workspace...
-  </div>
-
+  <img class="logo-big-img" src="logo.png" alt="MakeAurae Logo">
+  <div class="logo-word">Make<span>Aurae</span></div>
+  <div class="landing-badge">✦ CREATE SMARTER</div>
+  <h1 class="landing-title">Create <span class="gradient">Smarter.</span><br>Create Faster.</h1>
+  <p class="landing-desc">A simple creator hub for creators, gamers and social media users.</p>
+  <div class="loading-box"><div class="loading-line"></div></div>
+  <div class="loading-text">Preparing your workspace...</div>
  </div>
-
 </section>
-
-
-<!-- ========================================================= -->
-<!-- APP -->
-<!-- ========================================================= -->
 
 <div id="app">
 
 <header>
-
  <div class="logo">
-  Make<span>Aurae</span>
+  <img src="logo.png" alt="MakeAurae">
+  <span>Make<span>Aurae</span></span>
  </div>
-
  <div class="header-right">
-
-  <button class="icon-btn" onclick="focusSearch()">
-   🔍
-  </button>
-
-  <button class="icon-btn" onclick="openDrawer()">
-   ☰
-  </button>
-
+  <button class="icon-btn" onclick="focusSearch()" aria-label="Search">🔍</button>
+  <button class="icon-btn" onclick="openDrawer()" aria-label="Menu">☰</button>
  </div>
-
 </header>
-
-
-<!-- ========================================================= -->
-<!-- DRAWER -->
-<!-- ========================================================= -->
 
 <div id="overlay" class="overlay" onclick="closeDrawer()"></div>
 
 <aside id="drawer" class="drawer">
-
  <div class="drawer-head">
-
-  <h3>MakeAurae</h3>
-
-  <button class="close" onclick="closeDrawer()">
-   ×
-  </button>
-
+  <div class="drawer-brand"><img src="logo.png" alt=""><strong>MakeAurae</strong></div>
+  <button class="close" onclick="closeDrawer()">×</button>
  </div>
-
- <button class="menu-btn" onclick="showPage('home')">
-  ⌂ &nbsp; Home
- </button>
-
- <button class="menu-btn" onclick="openFolder('tools')">
-  🛠️ &nbsp; Tools
- </button>
-
- <button class="menu-btn" onclick="openFolder('creator')">
-  ✍️ &nbsp; Creator
- </button>
-
- <button class="menu-btn" onclick="openFolder('gaming')">
-  🎮 &nbsp; Gaming
- </button>
-
- <button class="menu-btn" onclick="showPage('saved')">
-  ♡ &nbsp; Saved
- </button>
-
- <button class="menu-btn" onclick="showPage('settings')">
-  ⚙️ &nbsp; Settings
- </button>
-
- <button class="menu-btn" onclick="showPage('contact')">
-  ✉️ &nbsp; Contact Us
- </button>
-
- <button class="menu-btn" onclick="showPage('feedback')">
-  💬 &nbsp; Feedback
- </button>
-
- <button class="menu-btn" onclick="showPage('about')">
-  ℹ️ &nbsp; About
- </button>
-
+ <button class="menu-btn" onclick="showPage('home')">⌂ &nbsp; Home</button>
+ <button class="menu-btn" onclick="openFolder('tools')">🛠️ &nbsp; Tools</button>
+ <button class="menu-btn" onclick="openFolder('creator')">✍️ &nbsp; Creator</button>
+ <button class="menu-btn" onclick="openFolder('gaming')">🎮 &nbsp; Gaming</button>
+ <button class="menu-btn" onclick="showPage('saved')">♡ &nbsp; Saved</button>
+ <button class="menu-btn" onclick="showPage('settings')">⚙️ &nbsp; Settings</button>
+ <button class="menu-btn" onclick="showPage('contact')">✉️ &nbsp; Contact Us</button>
+ <button class="menu-btn" onclick="showPage('feedback')">💬 &nbsp; Feedback</button>
+ <button class="menu-btn" onclick="showPage('about')">ℹ️ &nbsp; About</button>
 </aside>
 
-
-<!-- ========================================================= -->
-<!-- HOME -->
-<!-- ========================================================= -->
-
 <main id="home" class="page active">
-
  <section class="hero">
-
-  <div class="badge">
-   ✦ MAKEAURAE TOOLS
-  </div>
-
-  <h1>
-   Create <span class="gradient">Smarter.</span>
-  </h1>
-
-  <p>
-   Simple tools for creators, gamers and social media users.
-  </p>
-
+  <div class="badge">✦ MAKEAURAE TOOLS</div>
+  <h1>Create <span class="gradient">Smarter.</span></h1>
+  <p>Simple tools for creators, gamers and social media users.</p>
  </section>
-
-
  <div class="search-wrap">
-
   <div class="search">
-
    <span class="search-icon">⌕</span>
-
-   <input
-    id="search"
-    placeholder="Search folders..."
-    oninput="searchFolders()"
-   >
-
+   <input id="search" placeholder="Search folders..." oninput="searchFolders()">
   </div>
-
  </div>
-
-
  <section class="section">
-
-  <div class="section-title">
-
-   <h2>
-    Explore MakeAurae
-   </h2>
-
-   <p>
-    Choose a folder to get started
-   </p>
-
-  </div>
-
-
+  <div class="section-title"><h2>Explore MakeAurae</h2><p>Choose a folder to get started</p></div>
   <div id="folders" class="folder-grid">
-
-   <!-- ACTIVE -->
-
-   <div class="folder"
-    data-name="Tools"
-    onclick="openFolder('tools')">
-
-    <div class="folder-icon">
-     🛠️
-    </div>
-
-    <h3>Tools</h3>
-
-    <p>
-     Useful creator utilities
-    </p>
-
-   </div>
-
-
-   <div class="folder"
-    data-name="Creator"
-    onclick="openFolder('creator')">
-
-    <div class="folder-icon">
-     ✍️
-    </div>
-
-    <h3>Creator</h3>
-
-    <p>
-     Content creation tools
-    </p>
-
-   </div>
-
-
-   <div class="folder"
-    data-name="Gaming"
-    onclick="openFolder('gaming')">
-
-    <div class="folder-icon">
-     🎮
-    </div>
-
-    <h3>Gaming</h3>
-
-    <p>
-     Gaming utilities
-    </p>
-
-   </div>
-
-
-   <!-- COMING SOON -->
-
-   <div class="folder"
-    data-name="Image"
-    onclick="openFolder('image')">
-
-    <span class="soon">
-     COMING SOON
-    </span>
-
-    <div class="folder-icon">
-     🖼️
-    </div>
-
-    <h3>Image</h3>
-
-    <p>
-     Image tools
-    </p>
-
-   </div>
-
-
-   <div class="folder"
-    data-name="Wallpapers"
-    onclick="openFolder('wallpapers')">
-
-    <span class="soon">
-     COMING SOON
-    </span>
-
-    <div class="folder-icon">
-     🌌
-    </div>
-
-    <h3>Wallpapers</h3>
-
-    <p>
-     HD wallpapers
-    </p>
-
-   </div>
-
-
-   <div class="folder"
-    data-name="PFP"
-    onclick="openFolder('pfp')">
-
-    <span class="soon">
-     COMING SOON
-    </span>
-
-    <div class="folder-icon">
-     👤
-    </div>
-
-    <h3>PFP</h3>
-
-    <p>
-     Profile picture tools
-    </p>
-
-   </div>
-
-
-   <div class="folder"
-    data-name="AI Tools"
-    onclick="openFolder('ai')">
-
-    <span class="soon">
-     COMING SOON
-    </span>
-
-    <div class="folder-icon">
-     🤖
-    </div>
-
-    <h3>AI Tools</h3>
-
-    <p>
-     Smart AI utilities
-    </p>
-
-   </div>
-
-
-   <div class="folder"
-    data-name="Social Media"
-    onclick="openFolder('social')">
-
-    <span class="soon">
-     COMING SOON
-    </span>
-
-    <div class="folder-icon">
-     📱
-    </div>
-
-    <h3>Social Media</h3>
-
-    <p>
-     Instagram & YouTube
-    </p>
-
-   </div>
-
+   <div class="folder" data-name="Tools" onclick="openFolder('tools')"><div class="folder-icon">🛠️</div><h3>Tools</h3><p>Useful creator utilities</p></div>
+   <div class="folder" data-name="Creator" onclick="openFolder('creator')"><div class="folder-icon">✍️</div><h3>Creator</h3><p>Content creation tools</p></div>
+   <div class="folder" data-name="Gaming" onclick="openFolder('gaming')"><div class="folder-icon">🎮</div><h3>Gaming</h3><p>Gaming utilities</p></div>
+   <div class="folder" data-name="Image" onclick="openFolder('image')"><span class="soon">COMING SOON</span><div class="folder-icon">🖼️</div><h3>Image</h3><p>Image tools</p></div>
+   <div class="folder" data-name="Wallpapers" onclick="openFolder('wallpapers')"><span class="soon">COMING SOON</span><div class="folder-icon">🌌</div><h3>Wallpapers</h3><p>HD wallpapers</p></div>
+   <div class="folder" data-name="PFP" onclick="openFolder('pfp')"><span class="soon">COMING SOON</span><div class="folder-icon">👤</div><h3>PFP</h3><p>Profile picture tools</p></div>
+   <div class="folder" data-name="AI Tools" onclick="openFolder('ai')"><span class="soon">COMING SOON</span><div class="folder-icon">🤖</div><h3>AI Tools</h3><p>Smart AI utilities</p></div>
+   <div class="folder" data-name="Social Media" onclick="openFolder('social')"><span class="soon">COMING SOON</span><div class="folder-icon">📱</div><h3>Social Media</h3><p>Instagram & YouTube</p></div>
   </div>
-
  </section>
-
-
- <footer>
-
-  <strong>MakeAurae</strong>
-
-  <br><br>
-
-  Create. Enhance. Stand Out.
-
-  <br><br>
-
-  © 2026 MakeAurae
-
- </footer>
-
+ <footer><strong>MakeAurae</strong><br><br>Create. Enhance. Stand Out.<br><br>© 2026 MakeAurae</footer>
 </main>
-
-
-<!-- ========================================================= -->
-<!-- CATEGORY -->
-<!-- ========================================================= -->
 
 <main id="category" class="page">
-
  <section class="section">
-
-  <button class="back" onclick="showPage('home')">
-   ← Back to Home
-  </button>
-
+  <button class="back" onclick="showPage('home')">← Back to Home</button>
   <div class="hero" style="padding-top:15px">
-
-   <div class="badge" id="categoryBadge">
-    ✦ MAKEAURAE
-   </div>
-
-   <h1 id="categoryTitle">
-    <span class="gradient">
-     Tools.
-    </span>
-   </h1>
-
-   <p id="categoryDesc">
-    Useful tools for you.
-   </p>
-
+   <div class="badge" id="categoryBadge">✦ MAKEAURAE</div>
+   <h1 id="categoryTitle"><span class="gradient">Tools.</span></h1>
+   <p id="categoryDesc">Useful tools for you.</p>
   </div>
-
   <div id="categoryTools"></div>
-
  </section>
-
 </main>
-
-
-<!-- ========================================================= -->
-<!-- TOOL PAGE -->
-<!-- ========================================================= -->
 
 <main id="toolPage" class="page">
-
  <section class="section">
-
-  <button class="back" onclick="backToCategory()">
-   ← Back
-  </button>
-
+  <button class="back" onclick="backToCategory()">← Back</button>
   <div id="activeTool"></div>
-
  </section>
-
 </main>
-
-
-<!-- ========================================================= -->
-<!-- COMING SOON -->
-<!-- ========================================================= -->
 
 <main id="coming" class="page">
-
  <section class="hero">
-
-  <div class="badge">
-   ✦ MAKEAURAE
-  </div>
-
-  <h1>
-   <span id="comingName" class="gradient">
-    Coming Soon
-   </span>
-  </h1>
-
-  <p>
-   This folder is being prepared.
-   New tools will be added here soon.
-  </p>
-
-  <br>
-
-  <button class="back" onclick="showPage('home')">
-   ← Back Home
-  </button>
-
+  <div class="badge">✦ MAKEAURAE</div>
+  <h1><span id="comingName" class="gradient">Coming Soon</span></h1>
+  <p>This folder is being prepared.<br>New tools will be added here soon.</p><br>
+  <button class="back" onclick="showPage('home')">← Back Home</button>
  </section>
-
 </main>
-
-
-<!-- ========================================================= -->
-<!-- SAVED -->
-<!-- ========================================================= -->
 
 <main id="saved" class="page">
-
  <section class="section">
-
   <div class="hero">
-
-   <div class="badge">
-    ♡ SAVED
-   </div>
-
-   <h1>
-    Your <span class="gradient">Favorites.</span>
-   </h1>
-
-   <p>
-    Your saved results will appear here.
-   </p>
-
+   <div class="badge">♡ SAVED</div>
+   <h1>Your <span class="gradient">Favorites.</span></h1>
+   <p>Your saved results will appear here.</p>
   </div>
-
   <div id="savedList"></div>
-
  </section>
-
 </main>
-
-
-<!-- ========================================================= -->
-<!-- SETTINGS -->
-<!-- ========================================================= -->
 
 <main id="settings" class="page">
-
  <section class="section">
-
   <div class="hero">
-
-   <div class="badge">
-    ⚙️ SETTINGS
-   </div>
-
-   <h1>
-    MakeAurae <span class="gradient">Settings.</span>
-   </h1>
-
-   <p>
-    Customize your MakeAurae experience.
-   </p>
-
+   <div class="badge">⚙️ SETTINGS</div>
+   <h1>MakeAurae <span class="gradient">Settings.</span></h1>
+   <p>Customize your MakeAurae experience.</p>
   </div>
-
-
   <div class="settings-card">
-
-   <div class="setting">
-
-    <div class="setting-info">
-
-     <h3>
-      🌙 Appearance
-     </h3>
-
-     <p>
-      Dark mode is currently active.
-     </p>
-
-    </div>
-
-    <button class="setting-action"
-     onclick="comingAlert('Appearance')">
-     Soon
-    </button>
-
-   </div>
-
-
-   <div class="setting">
-
-    <div class="setting-info">
-
-     <h3>
-      🔔 Notifications
-     </h3>
-
-     <p>
-      Future notification controls.
-     </p>
-
-    </div>
-
-    <button class="setting-action"
-     onclick="comingAlert('Notifications')">
-     Soon
-    </button>
-
-   </div>
-
-
-   <div class="setting">
-
-    <div class="setting-info">
-
-     <h3>
-      🌐 Language
-     </h3>
-
-     <p>
-      More languages coming soon.
-     </p>
-
-    </div>
-
-    <button class="setting-action"
-     onclick="comingAlert('Language')">
-     Soon
-    </button>
-
-   </div>
-
-
-   <div class="setting">
-
-    <div class="setting-info">
-
-     <h3>
-      ✉️ Contact
-     </h3>
-
-     <p>
-      Contact MakeAurae.
-     </p>
-
-    </div>
-
-    <button class="setting-action"
-     onclick="showPage('contact')">
-     Open
-    </button>
-
-   </div>
-
-
-   <div class="setting">
-
-    <div class="setting-info">
-
-     <h3>
-      💬 Feedback
-     </h3>
-
-     <p>
-      Help us improve MakeAurae.
-     </p>
-
-    </div>
-
-    <button class="setting-action"
-     onclick="showPage('feedback')">
-     Open
-    </button>
-
-   </div>
-
+   <div class="setting"><div class="setting-info"><h3>🌙 Appearance</h3><p>Dark mode is currently active.</p></div><button class="setting-action" onclick="comingAlert('Appearance')">Soon</button></div>
+   <div class="setting"><div class="setting-info"><h3>🔔 Notifications</h3><p>Future notification controls.</p></div><button class="setting-action" onclick="comingAlert('Notifications')">Soon</button></div>
+   <div class="setting"><div class="setting-info"><h3>🌐 Language</h3><p>More languages coming soon.</p></div><button class="setting-action" onclick="comingAlert('Language')">Soon</button></div>
+   <div class="setting"><div class="setting-info"><h3>✉️ Contact</h3><p>Contact MakeAurae.</p></div><button class="setting-action" onclick="showPage('contact')">Open</button></div>
+   <div class="setting"><div class="setting-info"><h3>💬 Feedback</h3><p>Help us improve MakeAurae.</p></div><button class="setting-action" onclick="showPage('feedback')">Open</button></div>
   </div>
-
  </section>
-
 </main>
-
-
-<!-- ========================================================= -->
-<!-- CONTACT -->
-<!-- ========================================================= -->
 
 <main id="contact" class="page">
-
  <section class="section">
-
-  <div class="hero">
-
-   <div class="badge">
-    ✉️ CONTACT
-   </div>
-
-   <h1>
-    Contact <span class="gradient">Us.</span>
-   </h1>
-
-   <p>
-    Have a question or suggestion?
-   </p>
-
-  </div>
-
-
+  <div class="hero"><div class="badge">✉️ CONTACT</div><h1>Contact <span class="gradient">Us.</span></h1><p>Have a question or suggestion?</p></div>
   <div class="tool">
-
-   <input
-    class="input"
-    id="contactName"
-    placeholder="Your name"
-   >
-
-   <input
-    class="input"
-    id="contactEmail"
-    type="email"
-    placeholder="Your email"
-   >
-
-   <textarea
-    class="textarea"
-    id="contactMessage"
-    placeholder="Write your message..."
-   ></textarea>
-
-   <button
-    class="generate"
-    onclick="sendContact()">
-    Send Message ✨
-   </button>
-
+   <input class="input" id="contactName" placeholder="Your name">
+   <input class="input" id="contactEmail" type="email" placeholder="Your email">
+   <textarea class="textarea" id="contactMessage" placeholder="Write your message..."></textarea>
+   <button class="generate" onclick="sendContact()">Send Message ✨</button>
   </div>
-
  </section>
-
 </main>
-
-
-<!-- ========================================================= -->
-<!-- FEEDBACK -->
-<!-- ========================================================= -->
 
 <main id="feedback" class="page">
-
  <section class="section">
-
-  <div class="hero">
-
-   <div class="badge">
-    💬 FEEDBACK
-   </div>
-
-   <h1>
-    Help Us <span class="gradient">Improve.</span>
-   </h1>
-
-   <p>
-    Tell us what you think about MakeAurae.
-   </p>
-
-  </div>
-
-
+  <div class="hero"><div class="badge">💬 FEEDBACK</div><h1>Help Us <span class="gradient">Improve.</span></h1><p>Tell us what you think about MakeAurae.</p></div>
   <div class="tool">
-
-   <select
-    id="feedbackType"
-    class="select">
-
-    <option>General Feedback</option>
-    <option>Bug Report</option>
-    <option>Tool Suggestion</option>
-    <option>Design Suggestion</option>
-
-   </select>
-
-
-   <textarea
-    id="feedbackText"
-    class="textarea"
-    placeholder="Write your feedback..."></textarea>
-
-
-   <button
-    class="generate"
-    onclick="sendFeedback()">
-
-    Submit Feedback ✨
-
-   </button>
-
+   <select id="feedbackType" class="select"><option>General Feedback</option><option>Bug Report</option><option>Tool Suggestion</option><option>Design Suggestion</option></select>
+   <textarea id="feedbackText" class="textarea" placeholder="Write your feedback..."></textarea>
+   <button class="generate" onclick="sendFeedback()">Submit Feedback ✨</button>
   </div>
-
  </section>
-
 </main>
-
-
-<!-- ========================================================= -->
-<!-- ABOUT -->
-<!-- ========================================================= -->
 
 <main id="about" class="page">
-
  <section class="section">
-
-  <div class="hero">
-
-   <div class="badge">
-    ✦ ABOUT MAKEAURAE
-   </div>
-
-   <h1>
-    Create <span class="gradient">Smarter.</span>
-   </h1>
-
-   <p>
-    MakeAurae brings useful creator tools together
-    in one simple and easy-to-use hub.
-   </p>
-
-  </div>
-
-
+  <div class="hero"><div class="badge">✦ ABOUT MAKEAURAE</div><h1>Create <span class="gradient">Smarter.</span></h1><p>MakeAurae brings useful creator tools together in one simple and easy-to-use hub.</p></div>
   <div class="tool">
-
-   <div class="tool-icon">
-    ✨
-   </div>
-
-   <h2>
-    MakeAurae
-   </h2>
-
-   <p>
-    Create. Enhance. Stand Out.
-    <br><br>
-    MakeAurae is built for creators, gamers
-    and social media users who want simple,
-    fast and useful tools in one place.
-   </p>
-
-
+   <div class="tool-icon">✨</div><h2>MakeAurae</h2>
+   <p>Create. Enhance. Stand Out.<br><br>MakeAurae is built for creators, gamers and social media users who want simple, fast and useful tools in one place.</p>
    <div class="results">
-
-    <div class="result">
-     <span>🛠️ Creator Tools</span>
-    </div>
-
-    <div class="result">
-     <span>🎮 Gaming Tools</span>
-    </div>
-
-    <div class="result">
-     <span>✍️ Content Tools</span>
-    </div>
-
-    <div class="result">
-     <span>📱 Social Media Tools</span>
-    </div>
-
-    <div class="result">
-     <span>🚀 More Tools Coming Soon</span>
-    </div>
-
+    <div class="result"><span>🛠️ Creator Tools</span></div>
+    <div class="result"><span>🎮 Gaming Tools</span></div>
+    <div class="result"><span>✍️ Content Tools</span></div>
+    <div class="result"><span>📱 Social Media Tools</span></div>
+    <div class="result"><span>🚀 More Tools Coming Soon</span></div>
    </div>
-
   </div>
-
  </section>
-
 </main>
 
-
-<!-- ========================================================= -->
-<!-- BOTTOM NAV -->
-<!-- ========================================================= -->
-
 <nav class="bottom-nav">
-
- <div
-  class="nav active"
-  data-page="home"
-  onclick="showPage('home')">
-
-  <b>⌂</b>
-  Home
-
- </div>
-
-
- <div
-  class="nav"
-  data-page="tools"
-  onclick="openFolder('tools')">
-
-  <b>🛠️</b>
-  Tools
-
- </div>
-
-
- <div
-  class="nav"
-  data-page="creator"
-  onclick="openFolder('creator')">
-
-  <b>✦</b>
-  Explore
-
- </div>
-
-
- <div
-  class="nav"
-  data-page="saved"
-  onclick="showPage('saved')">
-
-  <b>♡</b>
-  Saved
-
- </div>
-
-
- <div
-  class="nav"
-  data-page="settings"
-  onclick="showPage('settings')">
-
-  <b>⚙</b>
-  Settings
-
- </div>
-
+ <div class="nav active" data-page="home" onclick="showPage('home')"><b>⌂</b>Home</div>
+ <div class="nav" data-page="tools" onclick="openFolder('tools')"><b>🛠️</b>Tools</div>
+ <div class="nav" data-page="creator" onclick="openFolder('creator')"><b>✦</b>Explore</div>
+ <div class="nav" data-page="saved" onclick="showPage('saved')"><b>♡</b>Saved</div>
+ <div class="nav" data-page="settings" onclick="showPage('settings')"><b>⚙</b>Settings</div>
 </nav>
 
 </div>
 
-
-<!-- ========================================================= -->
-<!-- JAVASCRIPT -->
-<!-- ========================================================= -->
+<div id="toast" class="toast"></div>
 
 <script>
+let currentCategory="tools";
+let currentTool="";
+let savedResults=JSON.parse(localStorage.getItem("makeaurae_saved")||"[]");
 
-/* ========================================================= */
-/* LANDING */
-/* ========================================================= */
-
-setTimeout(function(){
-
- const landing =
-  document.getElementById("landing");
-
- const app =
-  document.getElementById("app");
-
- if(landing){
-  landing.style.opacity="0";
- }
-
- setTimeout(function(){
-
-  if(landing){
-   landing.style.display="none";
-  }
-
-  if(app){
-   app.style.display="block";
-  }
-
-  renderSaved();
-
- },600);
-
-},4500);
-
-
-/* ========================================================= */
-/* DATA */
-/* ========================================================= */
-
-const categories = {
-
+const categories={
  tools:{
-  title:"Tools",
-  desc:"Simple utilities for everyday creator tasks.",
-  icon:"🛠️",
-
+  title:"Tools",desc:"Simple utilities for everyday creator tasks.",icon:"🛠️",
   tools:[
-
-   ["username","👤",
-    "Username Generator",
-    "Create unique usernames"],
-
-   ["style","🔤",
-    "Stylish Text Generator",
-    "Create stylish social text"],
-
-   ["script","🎬",
-    "Script Generator",
-    "Create a basic video script"],
-
-   ["case","🔠",
-    "Text Case Converter",
-    "Change text capitalization"],
-
-   ["counter","🔢",
-    "Word & Character Counter",
-    "Count words and characters"],
-
-   ["reverse","🔄",
-    "Text Reverser",
-    "Reverse your text"],
-
-   ["clean","🧹",
-    "Text Cleaner",
-    "Remove extra spaces"],
-
-   ["duplicate","📋",
-    "Duplicate Text Remover",
-    "Remove repeated lines"]
-
+   ["username","👤","Username Generator","Create unique usernames"],
+   ["style","🔤","Stylish Text Generator","Create stylish social text"],
+   ["script","🎬","Script Generator","Create a basic video script"],
+   ["case","🔠","Text Case Converter","Change text capitalization"],
+   ["counter","🔢","Word & Character Counter","Count words and characters"],
+   ["reverse","🔄","Text Reverser","Reverse your text"],
+   ["clean","🧹","Text Cleaner","Remove extra spaces"],
+   ["duplicate","📋","Duplicate Text Remover","Remove repeated lines"]
   ]
  },
-
-
  creator:{
-  title:"Creator",
-  desc:"Tools designed for content creators.",
-  icon:"✍️",
-
+  title:"Creator",desc:"Tools designed for content creators.",icon:"✍️",
   tools:[
-
-   ["hashtag","#️⃣",
-    "Hashtag Generator",
-    "Generate useful hashtags"],
-
-   ["caption","📝",
-    "Caption Generator",
-    "Create social captions"],
-
-   ["bio","🎯",
-    "Bio Generator",
-    "Create creator bios"],
-
-   ["title","🎬",
-    "YouTube Title Generator",
-    "Create video title ideas"]
-
+   ["hashtag","#️⃣","Hashtag Generator","Generate useful hashtags"],
+   ["caption","📝","Caption Generator","Create social captions"],
+   ["bio","🎯","Bio Generator","Create creator bios"],
+   ["title","🎬","YouTube Title Generator","Create video title ideas"]
   ]
  },
-
-
  gaming:{
-  title:"Gaming",
-  desc:"Simple tools for gamers and gaming creators.",
-  icon:"🎮",
-
+  title:"Gaming",desc:"Simple tools for gamers and gaming creators.",icon:"🎮",
   tools:[
-
-   ["gameuser","🎮",
-    "Gaming Username Generator",
-    "Generate gaming names"],
-
-   ["clan","🏷️",
-    "Clan Name Generator",
-    "Create clan name ideas"],
-
-   ["gamebio","⚡",
-    "Gaming Bio Generator",
-    "Create gaming bios"]
-
+   ["gameuser","🎮","Gaming Username Generator","Generate gaming names"],
+   ["clan","🏷️","Clan Name Generator","Create clan name ideas"],
+   ["gamebio","⚡","Gaming Bio Generator","Create gaming bios"]
   ]
  }
-
 };
 
+function init(){
+ setTimeout(()=>{
+  const landing=document.getElementById("landing");
+  const app=document.getElementById("app");
+  if(landing) landing.style.opacity="0";
+  setTimeout(()=>{
+   if(landing) landing.style.display="none";
+   if(app) app.style.display="block";
+   renderSaved();
+  },650);
+ },3500);
+}
+window.addEventListener("load",init);
 
-/* ========================================================= */
-/* PAGE SYSTEM */
-/* ========================================================= */
-
-let currentCategory="tools";
-
-let currentTool="";
-
+function openDrawer(){
+ document.getElementById("drawer").classList.add("open");
+ document.getElementById("overlay").classList.add("show");
+}
+function closeDrawer(){
+ document.getElementById("drawer").classList.remove("open");
+ document.getElementById("overlay").classList.remove("show");
+}
 
 function showPage(page){
+ document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+ const target=document.getElementById(page);
+ if(target) target.classList.add("active");
 
- document
-  .querySelectorAll(".page")
-  .forEach(function(p){
-
-   p.classList.remove("active");
-
-  });
-
-
- const target =
-  document.getElementById(page);
-
-
- if(target){
-  target.classList.add("active");
- }
-
-
- document
-  .querySelectorAll(".nav")
-  .forEach(function(n){
-
-   n.classList.remove("active");
-
-  });
-
-
- if(page==="home"){
-
-  const nav =
-   document.querySelector('[data-page="home"]');
-
-  if(nav){
-   nav.classList.add("active");
-  }
-
- }
-
-
- if(page==="saved"){
-
-  const nav =
-   document.querySelector('[data-page="saved"]');
-
-  if(nav){
-   nav.classList.add("active");
-  }
-
- }
-
-
- if(page==="settings"){
-
-  const nav =
-   document.querySelector('[data-page="settings"]');
-
-  if(nav){
-   nav.classList.add("active");
-  }
-
- }
-
+ document.querySelectorAll(".nav").forEach(n=>n.classList.remove("active"));
+ const nav=document.querySelector('[data-page="'+page+'"]');
+ if(nav) nav.classList.add("active");
 
  closeDrawer();
-
- window.scrollTo({
-  top:0,
-  behavior:"smooth"
- });
-
+ window.scrollTo({top:0,behavior:"smooth"});
 }
-
-
-/* ========================================================= */
-/* FOLDER SYSTEM */
-/* ========================================================= */
 
 function openFolder(folder){
-
  if(!categories[folder]){
-
-  const names={
-
-   image:"Image Tools",
-   wallpapers:"Wallpapers",
-   pfp:"PFP Tools",
-   ai:"AI Tools",
-   social:"Social Media Tools"
-
-  };
-
-
-  document.getElementById("comingName").innerText =
-   names[folder] || "Coming Soon";
-
-
+  const names={image:"Image Tools",wallpapers:"Wallpapers",pfp:"PFP Tools",ai:"AI Tools",social:"Social Media Tools"};
+  document.getElementById("comingName").innerText=names[folder]||"Coming Soon";
   showPage("coming");
-
   return;
-
  }
-
-
  currentCategory=folder;
-
-
- document.getElementById("categoryBadge").innerText =
-  categories[folder].icon+" "+
-  categories[folder].title.toUpperCase();
-
-
- document.getElementById("categoryTitle").innerHTML =
-  '<span class="gradient">'+
-  categories[folder].title+
-  '.</span>';
-
-
- document.getElementById("categoryDesc").innerText =
-  categories[folder].desc;
-
-
+ document.getElementById("categoryBadge").innerText=categories[folder].icon+" "+categories[folder].title.toUpperCase();
+ document.getElementById("categoryTitle").innerHTML='<span class="gradient">'+categories[folder].title+'.</span>';
+ document.getElementById("categoryDesc").innerText=categories[folder].desc;
  renderCategoryTools();
-
  showPage("category");
-
 }
-
-
-/* ========================================================= */
-/* CATEGORY TOOLS */
-/* ========================================================= */
 
 function renderCategoryTools(){
-
- const box =
-  document.getElementById("categoryTools");
-
- const data =
-  categories[currentCategory];
-
-
- box.innerHTML =
-  data.tools.map(function(tool){
-
-   return `
-
-    <div class="list-card">
-
-     <div class="list-icon">
-      ${tool[1]}
-     </div>
-
-     <div class="list-info">
-
-      <h3>
-       ${tool[2]}
-      </h3>
-
-      <p>
-       ${tool[3]}
-      </p>
-
-     </div>
-
-     <button
-      class="open-btn"
-      onclick="openTool('${tool[0]}')">
-
-      Open
-
-     </button>
-
-    </div>
-
-   `;
-
-  }).join("");
-
+ const box=document.getElementById("categoryTools");
+ const data=categories[currentCategory];
+ box.innerHTML=data.tools.map(tool=>`
+  <div class="list-card">
+   <div class="list-icon">${tool[1]}</div>
+   <div class="list-info"><h3>${tool[2]}</h3><p>${tool[3]}</p></div>
+   <button class="open-btn" onclick="openTool('${tool[0]}')">Open</button>
+  </div>`).join("");
 }
-
-
-/* ========================================================= */
-/* OPEN TOOL */
-/* ========================================================= */
 
 function openTool(tool){
-
  currentTool=tool;
-
+ document.getElementById("activeTool").innerHTML=getToolHTML(tool);
  showPage("toolPage");
-
- document.getElementById("activeTool").innerHTML =
-  getToolHTML(tool);
-
 }
 
-
-/* ========================================================= */
-/* TOOL HTML */
-/* ========================================================= */
-
-function getToolHTML(tool){
-
-
- if(tool==="username")
-
- return toolBox(
-  "👤",
-  "Username Generator",
-  "Create unique usernames for Instagram, gaming and social media.",
-
-  `
-
-   <input
-    id="toolInput"
-    class="input"
-    placeholder="Enter your name or word">
-
-
-   <select
-    id="toolStyle"
-    class="select">
-
-    <option>Cool</option>
-    <option>Gaming</option>
-    <option>Social</option>
-    <option>Anime</option>
-
-   </select>
-
-
-   <button
-    class="generate"
-    onclick="runTool('username')">
-
-    Generate Usernames ✨
-
-   </button>
-
-
-   <div
-    id="toolResults"
-    class="results">
-   </div>
-
-  `
- );
-
-
- if(tool==="style")
-
- return toolBox(
-  "🔤",
-  "Stylish Text Generator",
-  "Convert normal text into stylish text.",
-
-  `
-
-   <input
-    id="toolInput"
-    class="input"
-    placeholder="Enter your text...">
-
-
-   <button
-    class="generate"
-    onclick="runTool('style')">
-
-    Generate Styles ✨
-
-   </button>
-
-
-   <div id="toolResults"
-    class="results">
-   </div>
-
-  `
- );
-
-
- if(tool==="script")
-
- return toolBox(
-  "🎬",
-  "Script Generator",
-  "Create a simple starter script for your video.",
-
-  `
-
-   <input
-    id="toolTopic"
-    class="input"
-    placeholder="Video topic...">
-
-
-   <textarea
-    id="toolDetails"
-    class="textarea"
-    placeholder="Tell us about your video...">
-   </textarea>
-
-
-   <select
-    id="toolType"
-    class="select">
-
-    <option>YouTube Video</option>
-    <option>YouTube Shorts</option>
-    <option>Instagram Reel</option>
-    <option>Gaming Video</option>
-
-   </select>
-
-
-   <select
-    id="toolTone"
-    class="select">
-
-    <option>Friendly</option>
-    <option>Professional</option>
-    <option>Energetic</option>
-    <option>Storytelling</option>
-
-   </select>
-
-
-   <button
-    class="generate"
-    onclick="runTool('script')">
-
-    Generate Script ✨
-
-   </button>
-
-
-   <div
-    id="toolResults"
-    class="results">
-   </div>
-
-  `
- );
-
-
- if(tool==="case")
-
- return toolBox(
-  "🔠",
-  "Text Case Converter",
-  "Convert text into different capitalization styles.",
-
-  `
-
-   <textarea
-    id="toolInput"
-    class="textarea"
-    placeholder="Enter your text..."></textarea>
-
-
-   <button
-    class="generate"
-    onclick="runTool('case')">
-
-    Convert Text ✨
-
-   </button>
-
-
-   <div
-    id="toolResults"
-    class="results">
-   </div>
-
-  `
- );
-
-
- if(tool==="counter")
-
- return toolBox(
-  "🔢",
-  "Word & Character Counter",
-  "Count words and characters instantly.",
-
-  `
-
-   <textarea
-    id="toolInput"
-    class="textarea"
-    placeholder="Type or paste your text..."
-    oninput="runTool('counter')"></textarea>
-
-
-   <div
-    id="toolResults"
-    class="results">
-   </div>
-
-  `
- );
-
-
- if(tool==="reverse")
-
- return toolBox(
-  "🔄",
-  "Text Reverser",
-  "Reverse your text instantly.",
-
-  `
-
-   <input
-    id="toolInput"
-    class="input"
-    placeholder="Enter text...">
-
-
-   <button
-    class="generate"
-    onclick="runTool('reverse')">
-
-    Reverse Text ✨
-
-   </button>
-
-
-   <div
-    id="toolResults"
-    class="results">
-   </div>
-
-  `
- );
-
-
- if(tool==="clean")
-
- return toolBox(
-  "🧹",
-  "Text Cleaner",
-  "Remove unnecessary spaces and clean your text.",
-
-  `
-
-   <textarea
-    id="toolInput"
-    class="textarea"
-    placeholder="Paste your text..."></textarea>
-
-
-   <button
-    class="generate"
-    onclick="runTool('clean')">
-
-    Clean Text ✨
-
-   </button>
-
-
-   <div
-    id="toolResults"
-    class="results">
-   </div>
-
-  `
- );
-
-
- if(tool==="duplicate")
-
- return toolBox(
-  "📋",
-  "Duplicate Text Remover",
-  "Remove repeated lines from your text.",
-
-  `
-
-   <textarea
-    id="toolInput"
-    class="textarea"
-    placeholder="Paste your lines here..."></textarea>
-
-
-   <button
-    class="generate"
-    onclick="runTool('duplicate')">
-
-    Remove Duplicates ✨
-
-   </button>
-
-
-   <div
-    id="toolResults"
-    class="results">
-   </div>
-
-  `
- );
-
-
- /* CREATOR */
-
-
- if(tool==="hashtag")
-
- return toolBox(
-  "#️⃣",
-  "Hashtag Generator",
-  "Create hashtags for your content.",
-
-  `
-
-   <input
-    id="toolInput"
-    class="input"
-    placeholder="Enter your topic...">
-
-
-   <button
-    class="generate"
-    onclick="runTool('hashtag')">
-
-    Generate Hashtags ✨
-
-   </button>
-
-
-   <div
-    id="toolResults"
-    class="results">
-   </div>
-
-  `
- );
-
-
- if(tool==="caption")
-
- return toolBox(
-  "📝",
-  "Caption Generator",
-  "Create captions for your social posts.",
-
-  `
-
-   <input
-    id="toolInput"
-    class="input"
-    placeholder="What is your post about?">
-
-
-   <select
-    id="toolStyle"
-    class="select">
-
-    <option>Cool</option>
-    <option>Funny</option>
-    <option>Motivational</option>
-    <option>Simple</option>
-
-   </select>
-
-
-   <button
-    class="generate"
-    onclick="runTool('caption')">
-
-    Generate Captions ✨
-
-   </button>
-
-
-   <div
-    id="toolResults"
-    class="results">
-   </div>
-
-  `
- );
-
-
- if(tool==="bio")
-
- return toolBox(
-  "🎯",
-  "Bio Generator",
-  "Create short bios for Instagram and social media.",
-
-  `
-
-   <input
-    id="toolInput"
-    class="input"
-    placeholder="Tell us about yourself...">
-
-
-   <select
-    id="toolStyle"
-    class="select">
-
-    <option>Creator</option>
-    <option>Gaming</option>
-    <option>Anime</option>
-    <option>Simple</option>
-
-   </select>
-
-
-   <button
-    class="generate"
-    onclick="runTool('bio')">
-
-    Generate Bios ✨
-
-   </button>
-
-
-   <div
-    id="toolResults"
-    class="results">
-   </div>
-
-  `
- );
-
-
- if(tool==="title")
-
- return toolBox(
-  "🎬",
-  "YouTube Title Generator",
-  "Generate catchy video title ideas.",
-
-  `
-
-   <input
-    id="toolInput"
-    class="input"
-    placeholder="Enter your video topic...">
-
-
-   <button
-    class="generate"
-    onclick="runTool('title')">
-
-    Generate Titles ✨
-
-   </button>
-
-
-   <div
-    id="toolResults"
-    class="results">
-   </div>
-
-  `
- );
-
-
- /* GAMING */
-
-
- if(tool==="gameuser")
-
- return toolBox(
-  "🎮",
-  "Gaming Username Generator",
-  "Generate unique gaming names.",
-
-  `
-
-   <input
-    id="toolInput"
-    class="input"
-    placeholder="Enter a word or name...">
-
-
-   <button
-    class="generate"
-    onclick="runTool('gameuser')">
-
-    Generate Gaming Names ✨
-
-   </button>
-
-
-   <div
-    id="toolResults"
-    class="results">
-   </div>
-
-  `
- );
-
-
- if(tool==="clan")
-
- return toolBox(
-  "🏷️",
-  "Clan Name Generator",
-  "Create powerful gaming clan names.",
-
-  `
-
-   <input
-    id="toolInput"
-    class="input"
-    placeholder="Enter a theme or word...">
-
-
-   <button
-    class="generate"
-    onclick="runTool('clan')">
-
-    Generate Clan Names ✨
-
-   </button>
-
-
-   <div
-    id="toolResults"
-    class="results">
-   </div>
-
-  `
- );
-
-
- if(tool==="gamebio")
-
- return toolBox(
-  "⚡",
-  "Gaming Bio Generator",
-  "Create short gaming bios.",
-
-  `
-
-   <input
-    id="toolInput"
-    class="input"
-    placeholder="Enter your gaming style...">
-
-
-   <button
-    class="generate"
-    onclick="runTool('gamebio')">
-
-    Generate Gaming Bios ✨
-
-   </button>
-
-
-   <div
-    id="toolResults"
-    class="results">
-   </div>
-
-  `
- );
-
-
- return toolBox(
-  "✨",
-  "MakeAurae Tool",
-  "More features coming soon.",
-
-  `
-   <div class="coming">
-
-    <div class="coming-icon">
-     🚀
-    </div>
-
-    <p>
-     This tool is being prepared.
-    </p>
-
-   </div>
-  `
- );
-
-}
-
-
-/* ========================================================= */
-/* TOOL BOX */
-/* ========================================================= */
+function backToCategory(){showPage("category")}
 
 function toolBox(icon,title,desc,content){
-
- return `
-
-  <div class="tool">
-
-   <div class="tool-icon">
-    ${icon}
-   </div>
-
-   <h2>
-    ${title}
-   </h2>
-
-   <p>
-    ${desc}
-   </p>
-
-   ${content}
-
-  </div>
-
- `;
-
+ return `<div class="tool"><div class="tool-icon">${icon}</div><h2>${title}</h2><p>${desc}</p>${content}</div>`;
 }
 
+function getToolHTML(tool){
+ if(tool==="username") return toolBox("👤","Username Generator","Create unique usernames for Instagram, gaming and social media.",`
+  <input id="toolInput" class="input" placeholder="Enter your name or word">
+  <select id="toolStyle" class="select"><option>Cool</option><option>Gaming</option><option>Social</option><option>Anime</option></select>
+  <button class="generate" onclick="runTool('username')">Generate Usernames ✨</button><div id="toolResults" class="results"></div>`);
 
-/* ========================================================= */
-/* TOOL RUNNER */
-/* ========================================================= */
+ if(tool==="style") return toolBox("🔤","Stylish Text Generator","Convert normal text into stylish text.",`
+  <input id="toolInput" class="input" placeholder="Enter your text...">
+  <button class="generate" onclick="runTool('style')">Generate Styles ✨</button><div id="toolResults" class="results"></div>`);
+
+ if(tool==="script") return toolBox("🎬","Script Generator","Create a simple starter script for your video.",`
+  <input id="toolTopic" class="input" placeholder="Video topic...">
+  <textarea id="toolDetails" class="textarea" placeholder="Tell us about your video..."></textarea>
+  <select id="toolType" class="select"><option>YouTube Video</option><option>YouTube Shorts</option><option>Instagram Reel</option><option>Gaming Video</option></select>
+  <select id="toolTone" class="select"><option>Friendly</option><option>Professional</option><option>Energetic</option><option>Storytelling</option></select>
+  <button class="generate" onclick="runTool('script')">Generate Script ✨</button><div id="toolResults" class="results"></div>`);
+
+ if(tool==="case") return toolBox("🔠","Text Case Converter","Convert text into different capitalization styles.",`
+  <textarea id="toolInput" class="textarea" placeholder="Enter your text..."></textarea>
+  <button class="generate" onclick="runTool('case')">Convert Text ✨</button><div id="toolResults" class="results"></div>`);
+
+ if(tool==="counter") return toolBox("🔢","Word & Character Counter","Count words and characters instantly.",`
+  <textarea id="toolInput" class="textarea" placeholder="Type or paste your text..." oninput="runTool('counter')"></textarea>
+  <div id="toolResults" class="results"></div>`);
+
+ if(tool==="reverse") return toolBox("🔄","Text Reverser","Reverse your text instantly.",`
+  <input id="toolInput" class="input" placeholder="Enter text...">
+  <button class="generate" onclick="runTool('reverse')">Reverse Text ✨</button><div id="toolResults" class="results"></div>`);
+
+ if(tool==="clean") return toolBox("🧹","Text Cleaner","Remove unnecessary spaces and clean your text.",`
+  <textarea id="toolInput" class="textarea" placeholder="Paste your text..."></textarea>
+  <button class="generate" onclick="runTool('clean')">Clean Text ✨</button><div id="toolResults" class="results"></div>`);
+
+ if(tool==="duplicate") return toolBox("📋","Duplicate Text Remover","Remove repeated lines from your text.",`
+  <textarea id="toolInput" class="textarea" placeholder="Paste your lines here..."></textarea>
+  <button class="generate" onclick="runTool('duplicate')">Remove Duplicates ✨</button><div id="toolResults" class="results"></div>`);
+
+ if(tool==="hashtag") return toolBox("#️⃣","Hashtag Generator","Create hashtags for your content.",`
+  <input id="toolInput" class="input" placeholder="Enter your topic...">
+  <button class="generate" onclick="runTool('hashtag')">Generate Hashtags ✨</button><div id="toolResults" class="results"></div>`);
+
+ if(tool==="caption") return toolBox("📝","Caption Generator","Create captions for your social posts.",`
+  <input id="toolInput" class="input" placeholder="What is your post about?">
+  <select id="toolStyle" class="select"><option>Cool</option><option>Funny</option><option>Motivational</option><option>Simple</option></select>
+  <button class="generate" onclick="runTool('caption')">Generate Captions ✨</button><div id="toolResults" class="results"></div>`);
+
+ if(tool==="bio") return toolBox("🎯","Bio Generator","Create short bios for Instagram and social media.",`
+  <input id="toolInput" class="input" placeholder="Tell us about yourself...">
+  <select id="toolStyle" class="select"><option>Creator</option><option>Gaming</option><option>Anime</option><option>Simple</option></select>
+  <button class="generate" onclick="runTool('bio')">Generate Bios ✨</button><div id="toolResults" class="results"></div>`);
+
+ if(tool==="title") return toolBox("🎬","YouTube Title Generator","Generate catchy video title ideas.",`
+  <input id="toolInput" class="input" placeholder="Enter your video topic...">
+  <button class="generate" onclick="runTool('title')">Generate Titles ✨</button><div id="toolResults" class="results"></div>`);
+
+ if(tool==="gameuser") return toolBox("🎮","Gaming Username Generator","Generate unique gaming names.",`
+  <input id="toolInput" class="input" placeholder="Enter a word or name...">
+  <button class="generate" onclick="runTool('gameuser')">Generate Gaming Names ✨</button><div id="toolResults" class="results"></div>`);
+
+ if(tool==="clan") return toolBox("🏷️","Clan Name Generator","Create powerful gaming clan names.",`
+  <input id="toolInput" class="input" placeholder="Enter a theme or word...">
+  <button class="generate" onclick="runTool('clan')">Generate Clan Names ✨</button><div id="toolResults" class="results"></div>`);
+
+ if(tool==="gamebio") return toolBox("⚡","Gaming Bio Generator","Create short gaming bios.",`
+  <input id="toolInput" class="input" placeholder="Enter your gaming style...">
+  <button class="generate" onclick="runTool('gamebio')">Generate Gaming Bios ✨</button><div id="toolResults" class="results"></div>`);
+
+ return toolBox("✨","MakeAurae Tool","More features coming soon.",`<div class="coming"><div class="coming-icon">🚀</div><p>This tool is being prepared.</p></div>`);
+}
 
 function runTool(type){
-
- const input =
-  document.getElementById("toolInput");
-
- const results =
-  document.getElementById("toolResults");
-
- if(!input || !results)return;
-
- const text =
-  input.value.trim();
-
-
- if(!text){
-
-  results.innerHTML=
-   '<div class="result"><span>⚠️ Please enter something first.</span></div>';
-
-  return;
-
- }
-
-
- /* USERNAME */
-
- if(type==="username"){
-
-  const style =
-   document.getElementById("toolStyle")
-   .value.toLowerCase();
-
-
-  let list=[
-
-   "its"+text,
-   "real"+text,
-   text+"X",
-   text+"Nova",
-   text+"Aura",
-   text+"Verse",
-   "The"+text,
-   text+"Prime"
-
-  ];
-
-
-  if(style==="gaming"){
-
-   list=[
-
-    text+"OP",
-    text+"YT",
-    text+"GG",
-    "Dark"+text,
-    text+"X",
-    text+"Rush",
-    text+"Prime",
-    text+"Plays",
-    text+"Gaming",
-    "The"+text
-
-   ];
-
-  }
-
-
-  if(style==="anime"){
-
-   list=[
-
-    text+"Senpai",
-    text+"Kun",
-    text+"Chan",
-    text+"Shinobi",
-    text+"Akatsuki",
-    "Dark"+text,
-    text+"Uchiha",
-    text+"Rinnegan",
-    text+"Sensei",
-    text+"Sama"
-
-   ];
-
-  }
-
-
-  if(style==="social"){
-
-   list=[
-
-    "its"+text,
-    "iam"+text,
-    "hey"+text,
-    "real"+text,
-    "the"+text,
-    "official"+text,
-    text+"daily",
-    text+"world",
-    text+"live",
-    text+"zone"
-
-   ];
-
-  }
-
-
-  showResults(list);
-
-  return;
-
- }
-
-
- /* STYLE */
-
- if(type==="style"){
-
-  showResults([
-
-   text,
-   toUnicodeBold(text),
-   toUnicodeItalic(text),
-   text.toUpperCase(),
-   text.toLowerCase(),
-   "『 "+text+" 』",
-   "★ "+text+" ★",
-   "✦ "+text+" ✦"
-
-  ]);
-
-  return;
-
- }
-
-
- /* CASE */
-
- if(type==="case"){
-
-  showResults([
-
-   text,
-   text.toUpperCase(),
-   text.toLowerCase(),
-   toTitleCase(text),
-   swapCase(text)
-
-  ]);
-
-  return;
-
- }
-
-
- /* COUNTER */
+ const input=document.getElementById("toolInput");
+ const results=document.getElementById("toolResults");
+ if(!results)return;
+ const text=input?input.value.trim():"";
 
  if(type==="counter"){
-
-  const words =
-   text.split(/\s+/)
-   .filter(Boolean).length;
-
-
-  const chars =
-   text.length;
-
-
-  const noSpaces =
-   text.replace(/\s/g,"").length;
-
-
+  const words=text?text.split(/\s+/).filter(Boolean).length:0;
+  const chars=text.length;
+  const noSpaces=text.replace(/\s/g,"").length;
   results.innerHTML=`
-
-   <div class="result">
-    <span>📝 Words</span>
-    <strong>${words}</strong>
-   </div>
-
-   <div class="result">
-    <span>🔤 Characters</span>
-    <strong>${chars}</strong>
-   </div>
-
-   <div class="result">
-    <span>📏 Without spaces</span>
-    <strong>${noSpaces}</strong>
-   </div>
-
-  `;
-
+   <div class="result"><span>📝 Words</span><strong>${words}</strong></div>
+   <div class="result"><span>🔤 Characters</span><strong>${chars}</strong></div>
+   <div class="result"><span>📏 Without spaces</span><strong>${noSpaces}</strong></div>`;
   return;
-
  }
 
-
- /* REVERSE */
-
- if(type==="reverse"){
-
-  showResults([
-   text.split("").reverse().join("")
-  ]);
-
+ if(!text){
+  results.innerHTML='<div class="result"><span>⚠️ Please enter something first.</span></div>';
   return;
-
  }
 
+ if(type==="username"){
+  const style=document.getElementById("toolStyle").value.toLowerCase();
+  let list=["its"+text,"real"+text,text+"X",text+"Nova",text+"Aura",text+"Verse","The"+text,text+"Prime"];
+  if(style==="gaming")list=[text+"OP",text+"YT",text+"GG","Dark"+text,text+"X",text+"Rush",text+"Prime",text+"Plays",text+"Gaming","The"+text];
+  if(style==="anime")list=[text+"Senpai",text+"Kun",text+"Chan",text+"Shinobi",text+"Akatsuki","Dark"+text,text+"Uchiha",text+"Rinnegan",text+"Sensei",text+"Sama"];
+  if(style==="social")list=["its"+text,"iam"+text,"hey"+text,"real"+text,"the"+text,"official"+text,text+"daily",text+"world",text+"live",text+"zone"];
+  showResults(list);return;
+ }
 
- /* CLEAN */
+ if(type==="style"){
+  showResults([text,toUnicodeBold(text),toUnicodeItalic(text),text.toUpperCase(),text.toLowerCase(),"『 "+text+" 』","★ "+text+" ★","✦ "+text+" ✦"]);return;
+ }
+
+ if(type==="case"){
+  showResults([text,text.toUpperCase(),text.toLowerCase(),toTitleCase(text),swapCase(text)]);return;
+ }
+
+ if(type==="reverse"){showResults([text.split("").reverse().join("")]);return}
 
  if(type==="clean"){
-
-  const cleaned =
-   text
-   .replace(/[ \t]+/g," ")
-   .replace(/\n\s*\n+/g,"\n")
-   .trim();
-
-
-  showResults([cleaned]);
-
-  return;
-
+  const cleaned=text.replace(/[ \t]+/g," ").replace(/\n\s*\n+/g,"\n").trim();
+  showResults([cleaned]);return;
  }
-
-
- /* DUPLICATE */
 
  if(type==="duplicate"){
-
-  const lines =
-   text
-   .split("\n")
-   .map(x=>x.trim())
-   .filter(Boolean);
-
-
-  const unique =
-   [...new Set(lines)];
-
-
-  showResults([
-   unique.join("\n")
-  ]);
-
-  return;
-
+  const unique=[...new Set(text.split("\n").map(x=>x.trim()).filter(Boolean))];
+  showResults([unique.join("\n")]);return;
  }
-
-
- /* HASHTAGS */
 
  if(type==="hashtag"){
-
-  const topic =
-   text
-   .replace(/[^a-zA-Z0-9 ]/g,"")
-   .split(/\s+/)
-   .filter(Boolean);
-
-
-  const joined =
-   topic.join("");
-
-
-  const tags=[
-
-   "#"+joined,
-   "#"+joined.toLowerCase(),
-   "#ContentCreator",
-   "#Creator",
-   "#Trending",
-   "#Viral",
-   "#Explore",
-   "#Reels",
-   "#Instagram",
-   "#YouTube"
-
-  ];
-
-
-  showResults([
-   tags.join(" ")
-  ]);
-
-  return;
-
+  const topic=text.replace(/[^a-zA-Z0-9 ]/g,"").split(/\s+/).filter(Boolean);
+  const joined=topic.join("");
+  const tags=["#"+joined,"#"+joined.toLowerCase(),"#ContentCreator","#Creator","#Trending","#Viral","#Explore","#Reels","#Instagram","#YouTube"];
+  showResults([tags.join(" ")]);return;
  }
 
-
- /* CAPTION */
-
  if(type==="caption"){
-
-  const style =
-   document.getElementById("toolStyle").value;
-
-
+  const style=document.getElementById("toolStyle").value;
   let captions=[
-
-   "Creating something new ✨",
-   "Just another moment worth sharing.",
+   text+" — creating something worth remembering ✨",
+   "Just "+text+" and good vibes.",
    "Small moments. Big memories. 💫",
    "Made to stand out.",
    "Keep creating. Keep growing. 🚀"
-
   ];
-
-
-  if(style==="Funny"){
-
-   captions=[
-
-    "Just posting this before I change my mind 😂",
-    "POV: You actually stopped scrolling.",
-    "Not perfect, but definitely worth posting 😎",
-    "I have no caption… so here we are.",
-    "Internet, do your thing 😂"
-
-   ];
-
-  }
-
-
-  if(style==="Motivational"){
-
-   captions=[
-
-    "Keep going. Your time is coming. 🚀",
-    "Dream it. Create it. Make it real.",
-    "Progress over perfection.",
-    "One step closer every day.",
-    "Your story is still being written. ✨"
-
-   ];
-
-  }
-
-
-  showResults(captions);
-
-  return;
-
+  if(style==="Funny")captions=["POV: "+text+" somehow became content 😂","Just posting this before I change my mind.","Not perfect, but definitely worth posting 😎","I have no caption… so here we are.","Internet, do your thing 😂"];
+  if(style==="Motivational")captions=["Keep going. "+text+" is only the beginning. 🚀","Dream it. Create it. Make it real.","Progress over perfection.","One step closer every day.","Your story is still being written. ✨"];
+  showResults(captions);return;
  }
-
-
- /* BIO */
 
  if(type==="bio"){
-
-  const style =
-   document.getElementById("toolStyle").value;
-
-
+  const style=document.getElementById("toolStyle").value;
   let bios=[
-
-   "✨ Creating my own story\n🎯 Dream • Create • Repeat",
-   "⚡ Creator | Dreamer\n📍 Making ideas real",
-   "🎬 Creating content\n🚀 Growing every day",
-   "✨ Just creating something different.",
-   "🎯 Focused on creating. Built to stand out."
-
+   "✨ "+text+"\n🎯 Dream • Create • Repeat",
+   "⚡ "+text+" | Creator\n📍 Making ideas real",
+   "🎬 "+text+"\n🚀 Growing every day",
+   "✨ Just creating something different.\n🎯 "+text,
+   "🎯 Focused on creating.\n⚡ Built to stand out."
   ];
-
-    if(style==="Gaming"){
-
-   bios=[
-
-    "🎮 Gamer\n⚡ Clutch mode ON\n🏆 Play. Win. Repeat.",
-    "🎮 Gaming is my escape\n🔥 Never back down",
-    "⚡ Headshots & Highlights\n🎮 Game On",
-    "🏆 Born to play\n🎮 Built to win",
-    "🎮 One life. Infinite games."
-
-   ];
-
-  }
-
-
-  if(style==="Anime"){
-
-   bios=[
-
-    "🍥 Anime • Edits • Vibes\n⚡ Lost in another world",
-    "🌙 Anime soul\n⚔️ Shinobi mindset",
-    "🍥 Living between reality & anime.",
-    "⚡ Main character energy.",
-    "🌌 Anime is more than entertainment."
-
-   ];
-
-  }
-
-
-  showResults(bios);
-
-  return;
-
+  if(style==="Gaming")bios=["🎮 "+text+"\n⚡ Play hard • Stay sharp","🔥 "+text+" | Gamer\n🏆 Grind • Win • Repeat","🎮 Gaming is the mission.\n⚡ "+text,"👾 "+text+"\n🎯 No luck. Just skill.","⚡ Born to play.\n🎮 Built to win."];
+  if(style==="Anime")bios=["🍥 "+text+"\n⚔️ Shinobi at heart","⚡ "+text+"\n🌙 Lost in my own story","🔥 "+text+"\n🌀 Believe it!","🌌 Anime • Dreams • Memories","🗡️ "+text+"\n✨ Creating my own arc."];
+  showResults(bios);return;
  }
-
-
- /* ========================================================= */
- /* YOUTUBE TITLES */
- /* ========================================================= */
 
  if(type==="title"){
-
   showResults([
-
-   "🔥 "+text+" — Everything You Need To Know",
-   "I Tried "+text+" And This Happened 😱",
-   "How To "+text+" Like A Pro",
-   "5 Things You Should Know About "+text,
-   "The Ultimate Guide To "+text,
-   "Why Everyone Is Talking About "+text,
-   "Don't Try "+text+" Before Watching This"
-
-  ]);
-
-  return;
-
+   "🔥 "+text+" — You Need to See This!",
+   "I Tried "+text+" and This Happened… 😱",
+   "The Ultimate Guide to "+text,
+   "How to Master "+text+" Fast",
+   "10 Things You Should Know About "+text,
+   "This Changed Everything About "+text+" 🚀",
+   text+" Tips & Tricks You NEED to Know"
+  ]);return;
  }
-
-
- /* ========================================================= */
- /* GAMING USERNAME */
- /* ========================================================= */
 
  if(type==="gameuser"){
-
-  showResults([
-
-   text+"X",
-   text+"OP",
-   text+"YT",
-   "Dark"+text,
-   "Ghost"+text,
-   text+"⚡",
-   text+"Rush",
-   text+"Clutch",
-   text+"Fury",
-   text+"Vortex"
-
-  ]);
-
-  return;
-
+  showResults([text+"X",text+"OP","Dark"+text,text+"Rush",text+"YT",text+"GG","Shadow"+text,text+"Viper",text+"Prime","The"+text]);return;
  }
-
-
- /* ========================================================= */
- /* CLAN NAME */
- /* ========================================================= */
 
  if(type==="clan"){
-
-  showResults([
-
-   "Shadow "+text,
-   "Dark "+text,
-   "Nova "+text,
-   "Alpha "+text,
-   "Venom "+text,
-   "Ghost "+text,
-   "Royal "+text,
-   "Phantom "+text,
-   "Night "+text,
-   "Elite "+text
-
-  ]);
-
-  return;
-
+  showResults([text+" Legends",text+" Empire","Shadow "+text,"Team "+text,text+" Warriors",text+" Force",text+" Elite","Nova "+text,text+" Army","Dark "+text]);return;
  }
-
-
- /* ========================================================= */
- /* GAMING BIO */
- /* ========================================================= */
 
  if(type==="gamebio"){
-
   showResults([
-
-   "🎮 "+text+" | ⚡ Clutch Mode ON",
-   "🔥 "+text+" | Never Give Up",
-   "🎯 Aim. Focus. Dominate.",
-   "⚡ Play Hard. Stay Legendary.",
-   "🏆 Built for the Victory.",
-   "🎮 Gaming is the lifestyle."
-
-  ]);
-
-  return;
-
+   "🎮 "+text+" | ⚡ Gamer\n🏆 Grind • Win • Repeat",
+   "🔥 "+text+"\n🎯 Aim. Focus. Dominate.",
+   "👾 Gaming mode: ON\n⚡ "+text,
+   "🏆 Play hard. Stay humble.\n🎮 "+text,
+   "⚡ No excuses. Just gameplay.\n🎮 "+text
+  ]);return;
  }
-
-
- /* ========================================================= */
- /* SCRIPT GENERATOR */
- /* ========================================================= */
 
  if(type==="script"){
-
-  generateLocalScript();
-
-  return;
-
+  const topic=document.getElementById("toolTopic").value.trim();
+  const details=document.getElementById("toolDetails").value.trim();
+  const videoType=document.getElementById("toolType").value;
+  const tone=document.getElementById("toolTone").value;
+  if(!topic){results.innerHTML='<div class="result"><span>⚠️ Please enter a video topic first.</span></div>';return}
+  const script=`HOOK:\n“Want to know more about ${topic}? Stay till the end! 👀”\n\nINTRO:\nHey everyone! Welcome back. Today we’re talking about ${topic}.\n\nMAIN:\nHere’s the important part: ${details||"We’ll break down the key points and keep it simple."}\n\nSTYLE:\n${videoType} • ${tone}\n\nENDING:\nIf this helped, like, follow/subscribe and share it with someone who needs it. 🚀`;
+  showResults([script]);return;
  }
-
 }
-
-
-/* ========================================================= */
-/* RESULTS */
-/* ========================================================= */
 
 function showResults(list){
-
- const results =
-  document.getElementById("toolResults");
-
- if(!results)return;
-
- results.innerHTML =
-  list.map(function(value){
-
-   return `
-
-    <div class="result">
-
-     <span>
-      ${escapeHTML(value)}
-     </span>
-
-     <div class="result-actions">
-
-      <button
-       class="fav"
-       onclick="toggleFavorite(this,'${escapeJS(value)}')">
-
-       ♡
-
-      </button>
-
-      <button
-       class="copy"
-       onclick="copyText(this,'${escapeJS(value)}')">
-
-       Copy
-
-      </button>
-
-     </div>
-
-    </div>
-
-   `;
-
-  }).join("");
-
-}
-
-
-/* ========================================================= */
-/* SCRIPT GENERATOR */
- /* ========================================================= */
-
-function generateLocalScript(){
-
- const topic =
-  document.getElementById("toolTopic")?.value.trim() || "";
-
- const details =
-  document.getElementById("toolDetails")?.value.trim() || "";
-
- const type =
-  document.getElementById("toolType")?.value ||
-  "YouTube Video";
-
- const tone =
-  document.getElementById("toolTone")?.value ||
-  "Friendly";
-
- const results =
-  document.getElementById("toolResults");
-
-
- if(!topic){
-
-  results.innerHTML =
-   '<div class="result"><span>⚠️ Please enter your video topic.</span></div>';
-
-  return;
-
- }
-
-
- const script =
-
- `🎬 VIDEO SCRIPT
-
-Topic: ${topic}
-Format: ${type}
-Tone: ${tone}
-
-━━━━━━━━━━━━━━━━━━
-
-🎯 HOOK
-
-"Hey everyone! Welcome back! Today we're talking about ${topic}. Stay till the end because there's something important you don't want to miss!"
-
-━━━━━━━━━━━━━━━━━━
-
-👋 INTRO
-
-"What's up everyone! In today's video, we're going to explore ${topic}."
-
-${details
- ? "Here's what we'll cover: "+details
- : "I'll break everything down in a simple and easy way."}
-
-━━━━━━━━━━━━━━━━━━
-
-🔥 MAIN CONTENT
-
-First, let's understand the basics of ${topic}.
-
-Explain the main point clearly and give your viewers useful information.
-
-Next, move into the most interesting part of the topic. Add examples, your own experience, or useful tips.
-
-Then explain why this topic matters to your audience.
-
-━━━━━━━━━━━━━━━━━━
-
-💡 KEY POINT
-
-"The most important thing to remember is to keep learning, experimenting and improving."
-
-━━━━━━━━━━━━━━━━━━
-
-🎬 OUTRO
-
-"So that's everything you need to know about ${topic}.
-
-If you found this video useful, make sure to like the video and subscribe for more content.
-
-I'll see you in the next one. ✨"
-
-━━━━━━━━━━━━━━━━━━
-
-📌 NOTE
-
-This is a starter script generated by MakeAurae. Customize the wording and examples to match your own style.`;
-
-
- results.innerHTML = `
-
-  <div
-   class="result"
-   style="display:block">
-
-   <div
-    style="white-space:pre-wrap;line-height:1.7">
-
-    ${escapeHTML(script)}
-
-   </div>
-
-   <br>
-
+ const box=document.getElementById("toolResults");
+ if(!box)return;
+ box.innerHTML=list.map((item,i)=>`
+  <div class="result">
+   <span>${escapeHTML(String(item))}</span>
    <div class="result-actions">
-
-    <button
-     class="fav"
-     onclick="toggleFavorite(this,'${escapeJS(script)}')">
-
-     ♡ Save
-
-    </button>
-
-    <button
-     class="copy"
-     onclick="copyText(this,'${escapeJS(script)}')">
-
-     Copy Script
-
-    </button>
-
+    <button class="copy" onclick="copyResult(this,${JSON.stringify(String(item))})">Copy</button>
+    <button class="fav" onclick="saveResult(this,${JSON.stringify(String(item))})">♡</button>
    </div>
-
-  </div>
-
- `;
-
+  </div>`).join("");
 }
 
-
-/* ========================================================= */
-/* COPY */
-/* ========================================================= */
-
-function copyText(button,text){
-
- navigator.clipboard.writeText(text)
- .then(function(){
-
-  const old =
-   button.innerText;
-
-  button.innerText =
-   "Copied!";
-
-  setTimeout(function(){
-
-   button.innerText =
-    old;
-
-  },1200);
-
- })
- .catch(function(){
-
-  const area =
-   document.createElement("textarea");
-
-  area.value=text;
-
-  document.body.appendChild(area);
-
-  area.select();
-
-  document.execCommand("copy");
-
-  area.remove();
-
-  const old =
-   button.innerText;
-
-  button.innerText="Copied!";
-
-  setTimeout(function(){
-
-   button.innerText=old;
-
-  },1200);
-
- });
-
+function copyResult(btn,text){
+ navigator.clipboard.writeText(text).then(()=>{
+  btn.innerText="Copied!";
+  setTimeout(()=>btn.innerText="Copy",1000);
+  toast("Copied to clipboard ✨");
+ }).catch(()=>toast("Copy failed — select the text manually."));
 }
 
-
-/* ========================================================= */
-/* FAVORITES */
-/* ========================================================= */
-
-function getFavorites(){
-
- try{
-
-  return JSON.parse(
-   localStorage.getItem("makeauraeFavorites")
-  ) || [];
-
- }catch(e){
-
-  return [];
-
- }
-
-}
-
-
-function toggleFavorite(button,text){
-
- let favorites =
-  getFavorites();
-
- const index =
-  favorites.indexOf(text);
-
-
- if(index===-1){
-
-  favorites.push(text);
-
-  button.classList.add("active");
-
-  button.innerText="♥";
-
- }else{
-
-  favorites.splice(index,1);
-
-  button.classList.remove("active");
-
-  button.innerText="♡";
-
- }
-
-
- localStorage.setItem(
-  "makeauraeFavorites",
-  JSON.stringify(favorites)
- );
-
+function saveResult(btn,text){
+ const exists=savedResults.some(x=>x===text);
+ if(exists){toast("Already saved ❤️");return}
+ savedResults.unshift(text);
+ localStorage.setItem("makeaurae_saved",JSON.stringify(savedResults));
+ btn.classList.add("active");btn.innerText="♥";
  renderSaved();
-
+ toast("Saved to Favorites ❤️");
 }
-
 
 function renderSaved(){
-
- const box =
-  document.getElementById("savedList");
-
+ const box=document.getElementById("savedList");
  if(!box)return;
-
- const favorites =
-  getFavorites();
-
-
- if(!favorites.length){
-
-  box.innerHTML = `
-
-   <div class="coming">
-
-    <div class="coming-icon">
-     ♡
-    </div>
-
-    <h3>
-     No saved results yet
-    </h3>
-
-    <p>
-     Tap the ♡ button on any generated result
-     to save it here.
-    </p>
-
-   </div>
-
-  `;
-
+ if(!savedResults.length){
+  box.innerHTML='<div class="empty">No saved results yet.<br>Generate something and tap ♡ to save it.</div>';
   return;
-
  }
-
-
- box.innerHTML =
-  favorites.map(function(text,index){
-
-   return `
-
-    <div
-     class="result"
-     style="margin-bottom:10px">
-
-     <span>
-      ${escapeHTML(text)}
-     </span>
-
-     <div class="result-actions">
-
-      <button
-       class="copy"
-       onclick="copyText(this,'${escapeJS(text)}')">
-
-       Copy
-
-      </button>
-
-      <button
-       class="fav active"
-       onclick="removeFavorite(${index})">
-
-       ♥
-
-      </button>
-
-     </div>
-
-    </div>
-
-   `;
-
-  }).join("");
-
+ box.innerHTML=savedResults.map((item,i)=>`
+  <div class="result">
+   <span>${escapeHTML(item)}</span>
+   <div class="result-actions">
+    <button class="copy" onclick="copyResult(this,${JSON.stringify(item)})">Copy</button>
+    <button class="fav" onclick="removeSaved(${i})">♥</button>
+   </div>
+  </div>`).join("");
 }
 
-
-function removeFavorite(index){
-
- let favorites =
-  getFavorites();
-
- favorites.splice(index,1);
-
- localStorage.setItem(
-  "makeauraeFavorites",
-  JSON.stringify(favorites)
- );
-
- renderSaved();
-
+function removeSaved(i){
+ savedResults.splice(i,1);
+ localStorage.setItem("makeaurae_saved",JSON.stringify(savedResults));
+ renderSaved();toast("Removed from Favorites");
 }
-
-
-/* ========================================================= */
-/* TEXT HELPERS */
-/* ========================================================= */
-
-function toTitleCase(text){
-
- return text
-  .toLowerCase()
-  .replace(/\b\w/g,function(c){
-
-   return c.toUpperCase();
-
-  });
-
-}
-
-
-function swapCase(text){
-
- return text
-  .split("")
-  .map(function(c){
-
-   if(c===c.toUpperCase())
-    return c.toLowerCase();
-
-   return c.toUpperCase();
-
-  })
-  .join("");
-
-}
-
-
-function toUnicodeBold(text){
-
- return text
-  .split("")
-  .map(function(c){
-
-   const code =
-    c.charCodeAt(0);
-
-   if(code>=65 && code<=90){
-
-    return String.fromCodePoint(
-     0x1D400 + code - 65
-    );
-
-   }
-
-   if(code>=97 && code<=122){
-
-    return String.fromCodePoint(
-     0x1D41A + code - 97
-    );
-
-   }
-
-   return c;
-
-  })
-  .join("");
-
-}
-
-
-function toUnicodeItalic(text){
-
- return text
-  .split("")
-  .map(function(c){
-
-   const code =
-    c.charCodeAt(0);
-
-   if(code>=65 && code<=90){
-
-    return String.fromCodePoint(
-     0x1D434 + code - 65
-    );
-
-   }
-
-   if(code>=97 && code<=122){
-
-    return String.fromCodePoint(
-     0x1D44E + code - 97
-    );
-
-   }
-
-   return c;
-
-  })
-  .join("");
-
-}
-
-
-/* ========================================================= */
-/* SECURITY HELPERS */
-/* ========================================================= */
-
-function escapeHTML(text){
-
- return String(text)
-  .replace(/&/g,"&amp;")
-  .replace(/</g,"&lt;")
-  .replace(/>/g,"&gt;")
-  .replace(/"/g,"&quot;")
-  .replace(/'/g,"&#039;");
-
-}
-
-
-function escapeJS(text){
-
- return String(text)
-  .replace(/\\/g,"\\\\")
-  .replace(/'/g,"\\'")
-  .replace(/\n/g,"\\n")
-  .replace(/\r/g,"\\r");
-
-}
-
-
-/* ========================================================= */
-/* BACK TO CATEGORY */
-/* ========================================================= */
-
-function backToCategory(){
-
- showPage("category");
-
- renderCategoryTools();
-
-}
-
-
-/* ========================================================= */
-/* SEARCH */
-/* ========================================================= */
-
-function focusSearch(){
-
- showPage("home");
-
- setTimeout(function(){
-
-  const search =
-   document.getElementById("search");
-
-  if(search){
-
-   search.focus();
-
-  }
-
- },300);
-
-}
-
 
 function searchFolders(){
-
- const search =
-  document.getElementById("search");
-
- if(!search)return;
-
- const query =
-  search.value
-  .toLowerCase()
-  .trim();
-
-
- document
-  .querySelectorAll(".folder")
-  .forEach(function(folder){
-
-   const name =
-    folder.dataset.name
-    .toLowerCase();
-
-   folder.style.display =
-    name.includes(query)
-    ? "block"
-    : "none";
-
-  });
-
+ const q=document.getElementById("search").value.toLowerCase().trim();
+ document.querySelectorAll("#folders .folder").forEach(folder=>{
+  folder.style.display=folder.dataset.name.toLowerCase().includes(q)?"block":"none";
+ });
 }
 
-
-/* ========================================================= */
-/* DRAWER */
-/* ========================================================= */
-
-function openDrawer(){
-
- const drawer =
-  document.getElementById("drawer");
-
- const overlay =
-  document.getElementById("overlay");
-
- if(drawer)
-  drawer.classList.add("open");
-
- if(overlay)
-  overlay.classList.add("show");
-
+function focusSearch(){
+ showPage("home");
+ setTimeout(()=>{
+  const s=document.getElementById("search");
+  if(s){s.focus();s.scrollIntoView({behavior:"smooth",block:"center"});}
+ },100);
 }
 
-
-function closeDrawer(){
-
- const drawer =
-  document.getElementById("drawer");
-
- const overlay =
-  document.getElementById("overlay");
-
- if(drawer)
-  drawer.classList.remove("open");
-
- if(overlay)
-  overlay.classList.remove("show");
-
-}
-
-
-/* ========================================================= */
-/* ALERT */
-/* ========================================================= */
-
-function comingAlert(name){
-
- alert(
-  name+" settings will be available soon. ✨"
- );
-
-}
-
-
-/* ========================================================= */
-/* CONTACT */
-/* ========================================================= */
+function comingAlert(name){toast(name+" settings are coming soon 🚀")}
 
 function sendContact(){
-
- const name =
-  document
-   .getElementById("contactName")
-   .value
-   .trim();
-
- const email =
-  document
-   .getElementById("contactEmail")
-   .value
-   .trim();
-
- const message =
-  document
-   .getElementById("contactMessage")
-   .value
-   .trim();
-
-
- if(!name || !email || !message){
-
-  alert(
-   "⚠️ Please fill all fields."
-  );
-
-  return;
-
- }
-
-
- if(!email.includes("@")){
-
-  alert(
-   "⚠️ Please enter a valid email."
-  );
-
-  return;
-
- }
-
-
- const subject =
-  encodeURIComponent(
-   "MakeAurae Contact — "+name
-  );
-
- const body =
-  encodeURIComponent(
-
-   "Name: "+name+
-   "\nEmail: "+email+
-   "\n\nMessage:\n"+message
-
-  );
-
-
- window.location.href =
-  "mailto:?subject="+
-  subject+
-  "&body="+
-  body;
-
+ const name=document.getElementById("contactName").value.trim();
+ const email=document.getElementById("contactEmail").value.trim();
+ const message=document.getElementById("contactMessage").value.trim();
+ if(!name||!email||!message){toast("Please fill all fields ⚠️");return}
+ const subject=encodeURIComponent("MakeAurae Contact — "+name);
+ const body=encodeURIComponent("Name: "+name+"\nEmail: "+email+"\n\n"+message);
+ window.location.href="mailto:?subject="+subject+"&body="+body;
 }
-
-
-/* ========================================================= */
-/* FEEDBACK */
-/* ========================================================= */
 
 function sendFeedback(){
-
- const type =
-  document
-   .getElementById("feedbackType")
-   .value;
-
- const message =
-  document
-   .getElementById("feedbackText")
-   .value
-   .trim();
-
-
- if(!message){
-
-  alert(
-   "⚠️ Please write your feedback."
-  );
-
-  return;
-
- }
-
-
- const subject =
-  encodeURIComponent(
-   "MakeAurae Feedback — "+type
-  );
-
- const body =
-  encodeURIComponent(
-   "Feedback Type: "+type+
-   "\n\n"+message
-  );
-
-
- window.location.href =
-  "mailto:?subject="+
-  subject+
-  "&body="+
-  body;
-
+ const type=document.getElementById("feedbackType").value;
+ const text=document.getElementById("feedbackText").value.trim();
+ if(!text){toast("Please write your feedback first ⚠️");return}
+ const subject=encodeURIComponent("MakeAurae Feedback — "+type);
+ const body=encodeURIComponent("Type: "+type+"\n\n"+text);
+ window.location.href="mailto:?subject="+subject+"&body="+body;
 }
 
+function toTitleCase(str){return str.toLowerCase().replace(/\b\w/g,c=>c.toUpperCase())}
+function swapCase(str){return [...str].map(c=>c===c.toUpperCase()?c.toLowerCase():c.toUpperCase()).join("")}
+function toUnicodeBold(str){
+ const a="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+ const b="𝐀𝐁𝐂𝐃𝐄𝐅𝐆𝐇𝐈𝐉𝐊𝐋𝐌𝐍𝐎𝐏𝐐𝐑𝐒𝐓𝐔𝐕𝐖𝐗𝐘𝐙𝐚𝐛𝐜𝐝𝐞𝐟𝐠𝐡𝐢𝐣𝐤𝐥𝐦𝐧𝐨𝐩𝐪𝐫𝐬𝐭𝐮𝐯𝐰𝐱𝐲𝐳𝟎𝟏𝟐𝟑𝟒𝟓𝟔𝟕𝟖𝟗";
+ return [...str].map(c=>{const i=a.indexOf(c);return i>-1?b[i]:c}).join("");
+}
+function toUnicodeItalic(str){
+ const a="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+ const b="𝘈𝘉𝘊𝘋𝘌𝘍𝘎𝘏𝘐𝘑𝘒𝘓𝘔𝘕𝘖𝘗𝘘𝘙𝘚𝘛𝘜𝘝𝘞𝘟𝘠𝘡𝘢𝘣𝘤𝘥𝘦𝘧𝘨𝘩𝘪𝘫𝘬𝘭𝘮𝘯𝘰𝘱𝘲𝘳𝘴𝘵𝘶𝘷𝘸𝘹𝘺𝘻";
+ return [...str].map(c=>{const i=a.indexOf(c);return i>-1?b[i]:c}).join("");
+}
+function escapeHTML(str){
+ return str.replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]));
+}
 
-/* ========================================================= */
-/* STARTUP */
-/* ========================================================= */
-
-document.addEventListener(
- "DOMContentLoaded",
- function(){
-
-  renderSaved();
-
- }
-);
-
+let toastTimer;
+function toast(message){
+ const el=document.getElementById("toast");
+ el.textContent=message;
+ el.classList.add("show");
+ clearTimeout(toastTimer);
+ toastTimer=setTimeout(()=>el.classList.remove("show"),1800);
+}
 </script>
-
 </body>
 </html>
