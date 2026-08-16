@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#08090f">
+<meta name="description" content="MakeAurae — Create smarter. Create faster.">
+<link rel="icon" type="image/png" href="logo.png">
+<title>MakeAurae — Create Smarter</title>
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:Arial,sans-serif}
+html{scroll-behavior:smooth}
+body{
+ background:#05060b;color:#fff;min-height:100vh;padding-bottom:82px;
+ overflow-x:hidden;
+}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+.page{display:none}
+.page.active{display:block}
+
+/* ================= BACKGROUND WALLPAPER ================= */
+body:before{
+ content:"";
+ position:fixed;inset:0;z-index:-3;
+ background-image:url("makeaurae-bg.png");
+ background-size:cover;
+ background-position:center top;
+ background-repeat:no-repeat;
+}
+body:after{
+ content:"";
+ position:fixed;inset:0;z-index:-2;
+ background:
+   linear-gradient(to bottom,rgba(5,6,11,.30),rgba(5,6,11,.76)),
+   rgba(5,6,11,.18);
+ pointer-events:none;
+}
+
+/* ================= LANDING ================= */
+#landing{
+ position:fixed;inset:0;z-index:9999;
+ display:flex;align-items:center;justify-content:center;
+ text-align:center;
+ background:#05060b;
+ overflow:hidden;
+ transition:opacity .7s ease;
+}
+#landing:before{
+ content:"";position:absolute;inset:0;
+ background-image:url("makeaurae-bg.png");
+ background-size:cover;background-position:center;
+ opacity:.42;
+}
+.landing-inner{position:relative;z-index:2;width:min(92vw,620px);padding:24px}
+.landing-logo{
+ width:125px;height:125px;object-fit:cover;border-radius:50%;
+ box-shadow:0 0 0 1px #8b5cf655,0 0 35px #8b5cf688;
+ animation:landingPulse 2.5s ease-in-out infinite;
+}
+@keyframes landingPulse{
+ 0%,100%{transform:scale(.96);filter:brightness(.95)}
+ 50%{transform:scale(1.04);filter:brightness(1.18)}
+}
+.landing-name{
+ margin-top:20px;font-size:34px;font-weight:800;
+ background:linear-gradient(90deg,#fff,#a855f7,#60a5fa);
+ -webkit-background-clip:text;background-clip:text;color:transparent;
+ animation:fadeUp .7s .15s both;
+}
+.landing-title{
+ margin-top:15px;font-size:42px;font-weight:800;
+ animation:fadeUp .7s .35s both;
+}
+.landing-title span{
+ background:linear-gradient(90deg,#a855f7,#60a5fa);
+ -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.landing-desc{
+ margin:13px auto 25px;max-width:520px;color:#a7acbd;
+ line-height:1.6;font-size:14px;animation:fadeUp .7s .55s both;
+}
+.loading-box{
+ width:230px;height:5px;margin:auto;border-radius:20px;
+ background:#1a1d29;overflow:hidden;
+ animation:fadeUp .7s .75s both;
+}
+.loading-line{
+ height:100%;width:0;border-radius:20px;
+ background:linear-gradient(90deg,#8b5cf6,#60a5fa);
+ box-shadow:0 0 15px #8b5cf6;
+ animation:loading 3.8s linear forwards;
+}
+.loading-text{
+ margin-top:12px;color:#777d91;font-size:11px;
+ animation:fadeIn 1s .8s both;
+}
+@keyframes loading{to{width:100%}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+
+/* ================= APP ================= */
+#app{display:none}
+header{
+ height:68px;padding:0 18px;display:flex;align-items:center;
+ justify-content:space-between;border-bottom:1px solid #ffffff16;
+ background:#08090fcc;backdrop-filter:blur(14px);
+ position:sticky;top:0;z-index:100;
+}
+.logo{display:flex;align-items:center;gap:10px}
+.logo img{width:40px;height:40px;border-radius:50%}
+.logo span{
+ font-size:23px;font-weight:800;
+ background:linear-gradient(90deg,#fff,#a855f7,#60a5fa);
+ -webkit-background-clip:text;background-clip:text;color:transparent
+}
+.actions{display:flex;gap:10px}
+.icon{
+ width:44px;height:44px;border-radius:12px;border:1px solid #292c3c;
+ background:#11131ccc;color:#fff;font-size:20px
+}
+.icon:active{transform:scale(.96)}
+
+.section{max-width:920px;margin:auto;padding:28px 18px}
+.hero{text-align:center;padding:22px 0 28px}
+.badge{
+ display:inline-block;padding:8px 14px;border:1px solid #302c4c;
+ border-radius:30px;color:#b894ff;background:#11101dcc;
+ font-size:11px;letter-spacing:1px;margin-bottom:15px
+}
+.hero h1{font-size:44px;margin-bottom:12px}
+.gradient{
+ background:linear-gradient(90deg,#fff,#a855f7,#60a5fa);
+ -webkit-background-clip:text;background-clip:text;color:transparent
+}
+.hero p{color:#a0a5b5;line-height:1.6;max-width:600px;margin:auto}
+
+.search{
+ display:flex;align-items:center;gap:10px;padding:16px 18px;
+ border:1px solid #292c3c;border-radius:20px;
+ background:#11131ccc;backdrop-filter:blur(12px);margin-bottom:30px
+}
+.search input{width:100%;border:0;outline:0;background:transparent;color:#fff}
+.search span{color:#777d91;font-size:20px}
+
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.card{
+ position:relative;min-height:190px;padding:23px 19px;border-radius:24px;
+ border:1px solid #292c3c;background:#11131ce6;overflow:hidden;
+ cursor:pointer;transition:.2s;backdrop-filter:blur(8px)
+}
+.card:hover{transform:translateY(-3px);border-color:#7054ad}
+.card:after{
+ content:"";position:absolute;right:-24px;bottom:-35px;
+ width:150px;height:150px;background:url("logo.png") center/contain no-repeat;
+ opacity:.13;filter:drop-shadow(0 0 18px #8b5cf68c);
+ pointer-events:none;z-index:1
+}
+.card:before{
+ content:"";position:absolute;width:150px;height:150px;border-radius:50%;
+ right:-65px;bottom:-75px;background:#8b5cf61a;z-index:0
+}
+.card>*{position:relative;z-index:2}
+.folder-icon{font-size:42px;margin-bottom:20px}
+.card h3{font-size:23px;margin-bottom:7px}
+.card p{font-size:14px;color:#858b9c}
+.soon{
+ position:absolute!important;right:13px;top:13px;padding:6px 9px;
+ border-radius:20px;border:1px solid #4b3570;color:#b891ff;
+ background:#161126;font-size:10px;z-index:3!important
+}
+
+.list{display:grid;gap:12px}
+.listcard{
+ display:flex;align-items:center;gap:14px;padding:16px;
+ border:1px solid #292c3c;border-radius:18px;
+ background:#11131ce8;backdrop-filter:blur(8px)
+}
+.listicon{font-size:28px;width:42px;text-align:center}
+.info{flex:1}
+.info h3{font-size:17px;margin-bottom:4px}
+.info p{color:#7d8292;font-size:13px}
+.open{
+ border:1px solid #393d50;background:#181b27;color:#c8b5ff;
+ padding:10px 13px;border-radius:11px
+}
+.back{background:none;border:0;color:#b59aff;margin-bottom:16px;font-weight:700}
+
+.tool{
+ border:1px solid #292c3c;background:#11131ceb;border-radius:24px;
+ padding:22px;backdrop-filter:blur(10px)
+}
+.toolicon{font-size:38px;margin-bottom:12px}
+.tool h2{font-size:27px;margin-bottom:8px}
+.tool>p{color:#858a9b;line-height:1.55;margin-bottom:20px}
+.input,.textarea,.select{
+ width:100%;background:#0d0f17dd;border:1px solid #2b2e3d;
+ color:#fff;border-radius:14px;padding:14px 15px;outline:0;margin-bottom:12px
+}
+.textarea{min-height:130px;resize:vertical}
+.generate{
+ width:100%;border:0;border-radius:14px;padding:14px;color:#fff;
+ font-weight:700;background:linear-gradient(90deg,#7c3aed,#2563eb);
+ margin-bottom:16px
+}
+.results{display:grid;gap:10px}
+.result{
+ padding:14px 15px;border:1px solid #292c3c;border-radius:14px;
+ background:#0e1018e8;color:#d9dce7;display:flex;
+ justify-content:space-between;gap:12px;white-space:pre-wrap;word-break:break-word
+}
+.result button{
+ border:1px solid #33374a;background:#171a25;color:#bca4ff;
+ border-radius:9px;padding:7px 10px
+}
+
+/* ================= NAV ================= */
+.bottom{
+ position:fixed;left:0;right:0;bottom:0;height:78px;z-index:200;
+ display:grid;grid-template-columns:repeat(5,1fr);
+ background:#08090ff5;backdrop-filter:blur(16px);
+ border-top:1px solid #1e2130
+}
+.nav{
+ display:flex;flex-direction:column;align-items:center;justify-content:center;
+ gap:5px;color:#6f7485;font-size:11px
+}
+.nav b{font-size:22px}.nav.active{color:#a76cff}
+
+/* ================= DRAWER ================= */
+.drawer{position:fixed;inset:0;background:#0009;z-index:500;display:none}
+.drawer.show{display:block}
+.drawerbox{
+ position:absolute;right:0;top:0;bottom:0;width:min(330px,88vw);
+ background:#0d0f17ee;border-left:1px solid #292c3c;padding:22px;
+ backdrop-filter:blur(18px)
+}
+.drawerhead{display:flex;justify-content:space-between;align-items:center;margin-bottom:22px}
+.drawerlink{
+ display:block;width:100%;padding:14px;border:1px solid #292c3c;
+ background:#11131c;color:#fff;border-radius:13px;margin-bottom:10px;text-align:left
+}
+
+
+/* ================= PROFESSIONAL COMING SOON ================= */
+.coming-page{
+ position:relative;min-height:calc(100vh - 150px);
+ display:flex;align-items:center;justify-content:center;
+ padding:35px 0 80px;overflow:hidden
+}
+.coming-page:before{
+ content:"";position:absolute;width:260px;height:260px;border-radius:50%;
+ background:rgba(139,92,246,.12);filter:blur(65px);
+ animation:comingGlow 4s ease-in-out infinite;pointer-events:none
+}
+@keyframes comingGlow{0%,100%{transform:scale(.9);opacity:.5}50%{transform:scale(1.15);opacity:1}}
+.coming-card{
+ position:relative;width:min(100%,680px);text-align:center;
+ padding:38px 24px 30px;border:1px solid #343047;
+ border-radius:28px;background:rgba(10,11,18,.72);
+ backdrop-filter:blur(18px);box-shadow:0 20px 70px rgba(0,0,0,.35);
+ overflow:hidden
+}
+.coming-card:after{
+ content:"";position:absolute;inset:0;border-radius:28px;
+ background:linear-gradient(135deg,rgba(139,92,246,.08),transparent 45%,rgba(37,99,235,.06));
+ pointer-events:none
+}
+.coming-logo{
+ width:92px;height:92px;object-fit:cover;border-radius:50%;
+ box-shadow:0 0 0 1px #8b5cf655,0 0 34px #8b5cf655;
+ margin-bottom:18px;animation:landingPulse 2.8s ease-in-out infinite
+}
+.coming-status{
+ display:inline-flex;align-items:center;gap:7px;padding:7px 12px;
+ border:1px solid #33294d;border-radius:50px;background:#151021;
+ color:#bca4ff;font-size:10px;letter-spacing:1.4px;font-weight:700;
+ margin-bottom:18px
+}
+.coming-dot{width:7px;height:7px;border-radius:50%;background:#a76cff;box-shadow:0 0 12px #a76cff}
+.coming-card h2{font-size:clamp(32px,7vw,52px);margin-bottom:12px;position:relative;z-index:2}
+.coming-card>p{max-width:510px;margin:0 auto;color:#8d92a3;line-height:1.65;font-size:14px;position:relative;z-index:2}
+.coming-feature-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:26px 0;position:relative;z-index:2}
+.coming-feature{padding:13px 8px;border:1px solid #292c3c;border-radius:14px;background:#11131cd9}
+.coming-feature b{display:block;font-size:20px;margin-bottom:6px}
+.coming-feature span{font-size:10px;color:#777d90}
+.coming-progress{position:relative;z-index:2;margin:8px auto 22px;max-width:430px;text-align:left}
+.coming-progress-top{display:flex;justify-content:space-between;font-size:10px;color:#777d90;margin-bottom:7px}
+.coming-progress-bar{height:5px;background:#1b1d29;border-radius:20px;overflow:hidden}
+.coming-progress-line{width:68%;height:100%;border-radius:20px;background:linear-gradient(90deg,#8b5cf6,#4f8cff);box-shadow:0 0 14px #8b5cf688}
+.coming-back{position:relative;z-index:2;border:1px solid #34374a;background:#171a25;color:#fff;padding:11px 18px;border-radius:12px;font-size:12px;font-weight:700}
+.coming-back:hover{border-color:#7355c9;background:#1c1929}
+@media(max-width:600px){
+ .coming-page{min-height:calc(100vh - 130px);padding:25px 0 70px}
+ .coming-card{padding:30px 17px 24px;border-radius:23px}
+ .coming-card:after{border-radius:23px}
+ .coming-logo{width:78px;height:78px}
+ .coming-feature-grid{grid-template-columns:1fr;gap:8px}
+ .coming-feature{display:flex;align-items:center;text-align:left;gap:12px;padding:11px 13px}
+ .coming-feature b{margin:0;font-size:19px}
+}
+
+@media(max-width:600px){
+ .hero h1{font-size:39px}
+ .card{min-height:175px;padding:20px 17px}
+ .folder-icon{font-size:36px}
+ .card h3{font-size:21px}
+ .landing-title{font-size:36px}
+}
+</style>
+</head>
+
+<body>
+
+<!-- ================= LANDING SCREEN ================= -->
+<div id="landing">
+ <div class="landing-inner">
+  <img class="landing-logo" src="logo.png" alt="MakeAurae Logo">
+  <div class="landing-name">MakeAurae</div>
+  <div class="landing-title">Create <span>Smarter.</span></div>
+  <p class="landing-desc">
+   Simple tools for creators, gamers and social media users.
+  </p>
+  <div class="loading-box"><div class="loading-line"></div></div>
+  <div class="loading-text">Preparing MakeAurae...</div>
+ </div>
+</div>
+
+<div id="app">
+
+<header>
+ <div class="logo">
+  <img src="logo.png" alt="MakeAurae">
+  <span>MakeAurae</span>
+ </div>
+ <div class="actions">
+  <button class="icon" onclick="focusSearch()">🔍</button>
+  <button class="icon" onclick="toggleDrawer()">☰</button>
+ </div>
+</header>
+
+<!-- HOME -->
+<main id="home" class="page active">
+ <section class="section">
+  <div class="hero">
+   <div class="badge">✦ MAKEAURAE</div>
+   <h1>Create <span class="gradient">Smarter.</span></h1>
+   <p>Simple tools for creators, gamers and social media users.</p>
+  </div>
+
+  <div class="search">
+   <span>⌕</span>
+   <input id="search" placeholder="Search folders..." oninput="renderFolders(this.value)">
+  </div>
+
+  <h2 style="margin-bottom:6px">Explore MakeAurae</h2>
+  <p style="color:#777d91;margin-bottom:18px">Choose a folder to get started</p>
+
+  <div id="folders" class="grid"></div>
+ </section>
+</main>
+
+<!-- CATEGORY -->
+<main id="category" class="page">
+ <section class="section">
+  <button class="back" onclick="showPage('home')">← Back</button>
+  <div class="hero" style="text-align:left;padding-top:5px">
+   <div id="badge" class="badge"></div>
+   <h1 id="catTitle"></h1>
+   <p id="catDesc"></p>
+  </div>
+  <div id="catTools" class="list"></div>
+ </section>
+</main>
+
+<!-- TOOL -->
+<main id="toolPage" class="page">
+ <section class="section">
+  <button class="back" onclick="openFolder(currentCategory)">← Back</button>
+  <div id="activeTool"></div>
+ </section>
+</main>
+
+<!-- SAVED -->
+<main id="saved" class="page">
+ <section class="section">
+  <div class="hero">
+   <div class="badge">♡ SAVED</div>
+   <h1>Your <span class="gradient">Saved.</span></h1>
+   <p>Saved results will appear here.</p>
+  </div>
+  <div id="savedResults" class="results"></div>
+ </section>
+</main>
+
+<!-- SETTINGS / ABOUT -->
+<main id="settings" class="page">
+ <section class="section">
+  <div class="hero">
+   <div class="badge">⚙ SETTINGS</div>
+   <h1>MakeAurae <span class="gradient">Settings.</span></h1>
+   <p>Create. Enhance. Stand Out.</p>
+  </div>
+
+  <div class="tool">
+   <div class="toolicon">✨</div>
+   <h2>MakeAurae</h2>
+   <p>
+    MakeAurae brings useful creator tools together in one simple
+    and easy-to-use hub.
+   </p>
+   <div class="results">
+    <div class="result"><span>🛠️ Creator Tools</span></div>
+    <div class="result"><span>🎮 Gaming Tools</span></div>
+    <div class="result"><span>✍️ Content Tools</span></div>
+    <div class="result"><span>📱 Social Media Tools</span></div>
+    <div class="result"><span>🚀 More Tools Coming Soon</span></div>
+   </div>
+  </div>
+ </section>
+</main>
+
+<!-- COMING SOON -->
+<main id="coming" class="page">
+ <section class="section coming-page">
+  <div class="coming-card">
+   <img class="coming-logo" src="logo.png" alt="MakeAurae">
+   <div class="coming-status"><span class="coming-dot"></span> UNDER DEVELOPMENT</div>
+   <h2><span id="comingName" class="gradient">Coming Soon</span></h2>
+   <p>
+    We are building this MakeAurae section to make your creator workflow
+    faster, simpler and better. It will be available in a future update.
+   </p>
+
+   <div class="coming-feature-grid">
+    <div class="coming-feature"><b>✨</b><span>Fresh tools</span></div>
+    <div class="coming-feature"><b>⚡</b><span>Fast experience</span></div>
+    <div class="coming-feature"><b>🚀</b><span>Future updates</span></div>
+   </div>
+
+   <div class="coming-progress">
+    <div class="coming-progress-top"><span>Development</span><span>In progress</span></div>
+    <div class="coming-progress-bar"><div class="coming-progress-line"></div></div>
+   </div>
+
+   <button class="coming-back" onclick="showPage('home')">← Back to MakeAurae</button>
+  </div>
+ </section>
+</main>
+
+<!-- BOTTOM NAV -->
+<nav class="bottom">
+ <div class="nav active" data-page="home" onclick="showPage('home')"><b>⌂</b>Home</div>
+ <div class="nav" onclick="openFolder('tools')"><b>🛠️</b>Tools</div>
+ <div class="nav" onclick="openFolder('creator')"><b>✦</b>Explore</div>
+ <div class="nav" onclick="showPage('saved')"><b>♡</b>Saved</div>
+ <div class="nav" onclick="showPage('settings')"><b>⚙</b>Settings</div>
+</nav>
+
+<!-- DRAWER -->
+<div id="drawer" class="drawer" onclick="closeDrawer(event)">
+ <div class="drawerbox" onclick="event.stopPropagation()">
+  <div class="drawerhead">
+   <h3>MakeAurae</h3>
+   <button class="icon" onclick="toggleDrawer()">×</button>
+  </div>
+  <button class="drawerlink" onclick="openFolder('tools');toggleDrawer()">🛠️ Tools</button>
+  <button class="drawerlink" onclick="openFolder('creator');toggleDrawer()">✍️ Creator</button>
+  <button class="drawerlink" onclick="openFolder('gaming');toggleDrawer()">🎮 Gaming</button>
+  <button class="drawerlink" onclick="openFolder('image');toggleDrawer()">🖼️ Image Tools</button>
+  <button class="drawerlink" onclick="openFolder('ai');toggleDrawer()">🤖 AI Tools</button>
+  <button class="drawerlink" onclick="openFolder('social');toggleDrawer()">#️⃣ Social Media</button>
+  <button class="drawerlink" onclick="showPage('saved');toggleDrawer()">♡ Saved</button>
+  <button class="drawerlink" onclick="showPage('settings');toggleDrawer()">⚙ Settings</button>
+ </div>
+</div>
+
+</div>
+
+<script>
+const C={
+ tools:{
+  title:"Tools",desc:"Simple utilities for everyday creator tasks.",icon:"🛠️",
+  tools:[
+   ["username","👤","Username Generator","Create unique usernames"],
+   ["style","🔤","Stylish Text Generator","Create stylish social text"],
+   ["script","🎬","Script Generator","Create a basic video script"],
+   ["case","🔠","Text Case Converter","Change text capitalization"],
+   ["counter","🔢","Word & Character Counter","Count words and characters"],
+   ["reverse","🔄","Text Reverser","Reverse your text"],
+   ["clean","🧹","Text Cleaner","Remove extra spaces"],
+   ["duplicate","📋","Duplicate Text Remover","Remove repeated lines"]
+  ]
+ },
+ creator:{
+  title:"Creator",desc:"Tools designed for content creators.",icon:"✍️",
+  tools:[
+   ["hashtag","#️⃣","Hashtag Generator","Generate useful hashtags"],
+   ["caption","📝","Caption Generator","Create social captions"],
+   ["bio","🎯","Bio Generator","Create creator bios"],
+   ["title","🎬","YouTube Title Generator","Create video title ideas"]
+  ]
+ },
+ pfp:{
+  title:"AI PFP",
+  desc:"Create detailed PFP ideas and ready-to-use image prompts.",
+  icon:"👤",
+  tools:[
+   ["pfpeditor","✨","AI PFP Editor","Describe your PFP or enter your own prompt"]
+  ]
+ },
+
+ gaming:{
+  title:"Gaming",desc:"Simple tools for gamers and gaming creators.",icon:"🎮",
+  tools:[
+   ["gameuser","🎮","Gaming Username Generator","Generate gaming names"],
+   ["clan","🏷️","Clan Name Generator","Create clan name ideas"],
+   ["gamebio","⚡","Gaming Bio Generator","Create gaming bios"]
+  ]
+ }
+};
+
+const F=[
+ ["tools","🛠️","Tools","Useful creator utilities",false],
+ ["creator","✍️","Creator","Content creation tools",false],
+ ["gaming","🎮","Gaming","Gaming utilities",false],
+ ["image","🖼️","Image","Image tools",true],
+ ["wallpapers","🖼️","Wallpapers","Wallpaper tools",true],
+ ["pfp","👤","PFP","Profile picture tools",true],
+ ["ai","🤖","AI Tools","AI creator utilities",true],
+ ["social","#️⃣","Social Media","Social media tools",true]
+];
+
+let currentCategory="tools";
+let currentTool="";
+
+function renderFolders(q=""){
+ q=q.toLowerCase();
+ document.getElementById("folders").innerHTML=
+ F.filter(x=>!q||x[2].toLowerCase().includes(q)||x[3].toLowerCase().includes(q))
+ .map(x=>`
+  <div class="card" onclick="openFolder('${x[0]}')">
+   ${x[4]?'<span class="soon">COMING SOON</span>':""}
+   <div class="folder-icon">${x[1]}</div>
+   <h3>${x[2]}</h3>
+   <p>${x[3]}</p>
+  </div>
+ `).join("");
+}
+
+function showPage(page){
+ document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+ const target=document.getElementById(page);
+ if(target)target.classList.add("active");
+
+ document.querySelectorAll(".nav").forEach(n=>n.classList.remove("active"));
+ const nav=document.querySelector('[data-page="'+page+'"]');
+ if(nav)nav.classList.add("active");
+
+ closeDrawer();
+ window.scrollTo({top:0,behavior:"smooth"});
+}
+
+function openFolder(folder){
+ if(!C[folder]){
+  const names={
+   image:"Image Tools",
+   wallpapers:"Wallpapers",
+   pfp:"PFP Tools",
+   ai:"AI Tools",
+   social:"Social Media Tools"
+  };
+  document.getElementById("comingName").innerText=names[folder]||"Coming Soon";
+  showPage("coming");
+  return;
+ }
+ currentCategory=folder;
+ document.getElementById("badge").innerText=C[folder].icon+" "+C[folder].title.toUpperCase();
+ document.getElementById("catTitle").innerHTML='<span class="gradient">'+C[folder].title+'.</span>';
+ document.getElementById("catDesc").innerText=C[folder].desc;
+ renderCategoryTools();
+ showPage("category");
+}
+
+function renderCategoryTools(){
+ const box=document.getElementById("catTools");
+ const data=C[currentCategory];
+ box.innerHTML=data.tools.map(t=>`
+  <div class="listcard">
+   <div class="listicon">${t[1]}</div>
+   <div class="info"><h3>${t[2]}</h3><p>${t[3]}</p></div>
+   <button class="open" onclick="openTool('${t[0]}')">Open</button>
+  </div>
+ `).join("");
+}
+
+function openTool(tool){
+ currentTool=tool;
+ document.getElementById("activeTool").innerHTML=getToolHTML(tool);
+ showPage("toolPage");
+}
+
+function box(icon,title,desc,content){
+ return `
+ <div class="tool">
+  <div class="toolicon">${icon}</div>
+  <h2>${title}</h2>
+  <p>${desc}</p>
+  ${content}
+ </div>`;
+}
+
+function getToolHTML(t){
+ const r='<div id="results" class="results"></div>';
+
+ if(t==="username")return box("👤","Username Generator","Create unique usernames for Instagram, gaming and social media.",
+ `<input id="inp" class="input" placeholder="Enter your name or word">
+ <select id="style" class="select"><option>Cool</option><option>Gaming</option><option>Social</option><option>Anime</option></select>
+ <button class="generate" onclick="run('username')">Generate Usernames ✨</button>${r}`);
+
+ if(t==="style")return box("🔤","Stylish Text Generator","Convert normal text into stylish text.",
+ `<input id="inp" class="input" placeholder="Enter your text...">
+ <button class="generate" onclick="run('style')">Generate Styles ✨</button>${r}`);
+
+ if(t==="script")return box("🎬","Script Generator","Create a simple starter script for your video.",
+ `<input id="inp" class="input" placeholder="Video topic...">
+ <textarea id="details" class="textarea" placeholder="Tell us about your video..."></textarea>
+ <select class="select"><option>YouTube Video</option><option>YouTube Shorts</option><option>Instagram Reel</option><option>Gaming Video</option></select>
+ <button class="generate" onclick="run('script')">Generate Script ✨</button>${r}`);
+
+ if(t==="case")return box("🔠","Text Case Converter","Convert text into different capitalization styles.",
+ `<textarea id="inp" class="textarea" placeholder="Enter your text..."></textarea>
+ <button class="generate" onclick="run('case')">Convert Text ✨</button>${r}`);
+
+ if(t==="counter")return box("🔢","Word & Character Counter","Count words and characters instantly.",
+ `<textarea id="inp" class="textarea" placeholder="Type or paste your text..." oninput="run('counter')"></textarea>${r}`);
+
+ if(t==="reverse")return box("🔄","Text Reverser","Reverse your text instantly.",
+ `<input id="inp" class="input" placeholder="Enter text...">
+ <button class="generate" onclick="run('reverse')">Reverse Text ✨</button>${r}`);
+
+ if(t==="clean")return box("🧹","Text Cleaner","Remove unnecessary spaces and clean your text.",
+ `<textarea id="inp" class="textarea" placeholder="Paste your text..."></textarea>
+ <button class="generate" onclick="run('clean')">Clean Text ✨</button>${r}`);
+
+ if(t==="duplicate")return box("📋","Duplicate Text Remover","Remove repeated lines from your text.",
+ `<textarea id="inp" class="textarea" placeholder="Paste your lines here..."></textarea>
+ <button class="generate" onclick="run('duplicate')">Remove Duplicates ✨</button>${r}`);
+
+ if(t==="hashtag")return box("#️⃣","Hashtag Generator","Create hashtags for your content.",
+ `<input id="inp" class="input" placeholder="Enter your topic...">
+ <button class="generate" onclick="run('hashtag')">Generate Hashtags ✨</button>${r}`);
+
+ if(t==="caption")return box("📝","Caption Generator","Create captions for your social posts.",
+ `<input id="inp" class="input" placeholder="What is your post about?">
+ <select id="style" class="select"><option>Cool</option><option>Funny</option><option>Motivational</option><option>Simple</option></select>
+ <button class="generate" onclick="run('caption')">Generate Captions ✨</button>${r}`);
+
+ if(t==="bio")return box("🎯","Bio Generator","Create short bios for Instagram and social media.",
+ `<input id="inp" class="input" placeholder="Tell us about yourself...">
+ <select id="style" class="select"><option>Creator</option><option>Gaming</option><option>Anime</option><option>Simple</option></select>
+ <button class="generate" onclick="run('bio')">Generate Bios ✨</button>${r}`);
+
+ if(t==="title")return box("🎬","YouTube Title Generator","Generate catchy video title ideas.",
+ `<input id="inp" class="input" placeholder="Enter your video topic...">
+ <button class="generate" onclick="run('title')">Generate Titles ✨</button>${r}`);
+
+ if(t==="gameuser")return box("🎮","Gaming Username Generator","Generate unique gaming names.",
+ `<input id="inp" class="input" placeholder="Enter a word or name...">
+ <button class="generate" onclick="run('gameuser')">Generate Gaming Names ✨</button>${r}`);
+
+ if(t==="clan")return box("🏷️","Clan Name Generator","Create powerful gaming clan names.",
+ `<input id="inp" class="input" placeholder="Enter a theme or word...">
+ <button class="generate" onclick="run('clan')">Generate Clan Names ✨</button>${r}`);
+
+ if(t==="gamebio")return box("⚡","Gaming Bio Generator","Create short gaming bios.",
+ `<input id="inp" class="input" placeholder="Enter your gaming style...">
+ <button class="generate" onclick="run('gamebio')">Generate Gaming Bios ✨</button>${r}`);
+
+ return box("✨","MakeAurae Tool","More features coming soon.","");
+}
+
+function out(arr){
+ const r=document.getElementById("results");
+ r.innerHTML=arr.map(x=>`
+  <div class="result">
+   <span>${String(x).replace(/</g,"&lt;")}</span>
+   <button onclick="copyResult(this)">Copy</button>
+  </div>`).join("");
+}
+
+function copyResult(btn){
+ const text=btn.parentElement.querySelector("span").innerText;
+ navigator.clipboard?.writeText(text);
+ btn.textContent="Copied ✓";
+ setTimeout(()=>btn.textContent="Copy",1000);
+}
+
+function run(t){
+ const i=document.getElementById("inp");
+ const r=document.getElementById("results");
+ if(!i||!r)return;
+ const x=i.value.trim();
+
+ if(!x){
+  r.innerHTML='<div class="result"><span>⚠️ Please enter something first.</span></div>';
+  return;
+ }
+
+ if(t==="counter"){
+  r.innerHTML=`
+   <div class="result"><span>📝 Words</span><strong>${x.split(/\s+/).filter(Boolean).length}</strong></div>
+   <div class="result"><span>🔤 Characters</span><strong>${x.length}</strong></div>
+   <div class="result"><span>📏 Without spaces</span><strong>${x.replace(/\s/g,"").length}</strong></div>`;
+  return;
+ }
+
+ if(t==="reverse"){out([x.split("").reverse().join("")]);return}
+ if(t==="clean"){out([x.replace(/[ \t]+/g," ").replace(/\n\s*\n+/g,"\n").trim()]);return}
+ if(t==="duplicate"){out([[...new Set(x.split("\n").map(v=>v.trim()).filter(Boolean))].join("\n")]);return}
+
+ if(t==="case"){
+  out([x,x.toUpperCase(),x.toLowerCase(),x.replace(/\b\w/g,c=>c.toUpperCase())]);
+  return;
+ }
+
+ if(t==="style"){
+  out([x,"𝗕𝗼𝗹𝗱: "+x,"𝘐𝘵𝘢𝘭𝘪𝘤: "+x,"『 "+x+" 』","★ "+x+" ★","✦ "+x+" ✦"]);
+  return;
+ }
+
+ if(t==="username"){
+  const s=document.getElementById("style")?.value||"Cool";
+  let a=[`its${x}`,`real${x}`,`${x}X`,`${x}Nova`,`${x}Aura`,`${x}Prime`,`The${x}`];
+  if(s==="Gaming")a=[`${x}OP`,`${x}YT`,`${x}GG`,`Dark${x}`,`${x}Rush`,`${x}Prime`,`${x}Plays`];
+  if(s==="Anime")a=[`${x}Senpai`,`${x}Kun`,`${x}Shinobi`,`${x}Akatsuki`,`${x}Uchiha`,`${x}Sama`];
+  if(s==="Social")a=[`its${x}`,`iam${x}`,`hey${x}`,`real${x}`,`official${x}`,`${x}daily`,`${x}world`];
+  out(a);return;
+ }
+
+ if(t==="hashtag"){
+  const topic=x.replace(/[^a-zA-Z0-9 ]/g,"").split(/\s+/).filter(Boolean).join("");
+  out([`#${topic} #${topic.toLowerCase()} #ContentCreator #Creator #Trending #Viral #Explore #Reels #Instagram #YouTube`]);
+  return;
+ }
+
+ if(t==="caption"){
+  const s=document.getElementById("style")?.value||"Cool";
+  let a=[
+   `Creating something new ✨ — ${x}`,
+   `Small moments. Big memories. 💫 — ${x}`,
+   `Made to stand out. — ${x}`,
+   `Keep creating. Keep growing. 🚀 — ${x}`
+  ];
+  if(s==="Funny")a=[`Just posting this before I change my mind 😂 — ${x}`,`POV: You stopped scrolling. — ${x}`,`No caption… so here we are 😂 — ${x}`];
+  if(s==="Motivational")a=[`Keep going. Your time is coming. 🚀 — ${x}`,`Dream it. Create it. Make it real. — ${x}`,`Progress over perfection. — ${x}`];
+  out(a);return;
+ }
+
+ if(t==="bio"){
+  const s=document.getElementById("style")?.value||"Creator";
+  let a=[
+   `✨ ${x}\n🎯 Dream • Create • Repeat`,
+   `⚡ ${x} | Creator\n🚀 Growing every day`,
+   `🎬 Creating content\n✨ Built to stand out`
+  ];
+  if(s==="Gaming")a=[`🎮 ${x}\n⚡ Play Hard • Win Smart`,`🔥 ${x}\n🎯 Aim. Focus. Dominate.`];
+  if(s==="Anime")a=[`⚔️ ${x}\n🌙 Anime • Edits • Dreams`,`🍥 ${x}\n✨ Otaku vibes only`];
+  out(a);return;
+ }
+
+ if(t==="title"){
+  out([
+   `${x} — You Need to See This! 🔥`,
+   `The Ultimate ${x} Guide`,
+   `I Tried ${x}… Here's What Happened`,
+   `Top ${x} Tips You Should Know`
+  ]);return;
+ }
+
+ if(t==="gameuser"){out([`${x}X`,`${x}OP`,`Dark${x}`,`${x}Rush`,`${x}Viper`,`${x}Ghost`,`${x}YT`]);return}
+ if(t==="clan"){out([`Shadow ${x}`,`Nova ${x}`,`Dark ${x} Squad`,`Royal ${x}`,`Phantom ${x}`,`Apex ${x}`]);return}
+ if(t==="gamebio"){out([`🎮 ${x} | ⚡ Play Hard\n🏆 Win Smart`,`🔥 ${x}\n🎯 Aim. Focus. Dominate.`,`👑 ${x}\n🏆 Built for the grind`]);return}
+
+ if(t==="script"){
+  const details=document.getElementById("details")?.value||"Key points and useful tips for the audience.";
+  out([`🎬 VIDEO SCRIPT\n\nHOOK:\nToday we are talking about ${x}.\n\nINTRO:\nHey everyone! Welcome back to MakeAurae.\n\nMAIN:\n${details}\n\nOUTRO:\nFollow for more useful content! ✨`]);
+ }
+}
+
+function focusSearch(){
+ showPage("home");
+ setTimeout(()=>document.getElementById("search")?.focus(),100);
+}
+
+function toggleDrawer(){document.getElementById("drawer").classList.toggle("show")}
+function closeDrawer(e){
+ if(!e||e.target.id==="drawer")document.getElementById("drawer").classList.remove("show");
+}
+
+renderFolders();
+
+/* Landing -> App */
+setTimeout(()=>{
+ const landing=document.getElementById("landing");
+ const app=document.getElementById("app");
+ landing.style.opacity="0";
+ setTimeout(()=>{
+  landing.style.display="none";
+  app.style.display="block";
+ },700);
+},4200);
+</script>
+
+</body>
+</html>
